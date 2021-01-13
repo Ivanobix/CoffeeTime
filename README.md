@@ -2,7 +2,7 @@
 
 Aplicación de gestión de cafés, lotes y fabricantes.
 
-## Descipción general
+## Descripción general
 
 ⨳ En proceso...
 
