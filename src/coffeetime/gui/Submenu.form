@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="coffeetime.gui.Submenu">
+  <grid id="cbd77" binding="contentPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="48" y="54" width="688" height="297"/>
+    </constraints>
+    <properties>
+      <preferredSize width="640" height="480"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="20adf" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="77eec" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+            <constraints border-constraint="West"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="df5e8" class="javax.swing.JButton" binding="btnAnadir">
+                <constraints/>
+                <properties>
+                  <text value="Añadir"/>
+                </properties>
+              </component>
+              <component id="ee01" class="javax.swing.JButton" binding="btnEliminar">
+                <constraints/>
+                <properties>
+                  <text value="Eliminar"/>
+                </properties>
+              </component>
+              <component id="267d6" class="javax.swing.JButton" binding="btnModificar">
+                <constraints/>
+                <properties>
+                  <text value="Modificar"/>
+                </properties>
+              </component>
+              <component id="d310" class="javax.swing.JButton" binding="btnMostrarInfoAdicional">
+                <constraints/>
+                <properties>
+                  <text value="MostrarInfo"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="f491b" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+            <constraints border-constraint="East"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="56c86" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+                <constraints/>
+                <properties/>
+              </component>
+              <component id="5eda3" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+                <constraints/>
+                <properties>
+                  <preferredSize width="150" height="30"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="8f613" class="javax.swing.JLabel">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="Coffe Time"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="3ab3f" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <tabbedpane id="86a78" binding="tabbedPane">
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="355f9" binding="pnListado" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <tabbedpane title="Listado"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="c1bae" binding="pnEstadisticas" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <tabbedpane title="Estadísticas"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+            </children>
+          </tabbedpane>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
