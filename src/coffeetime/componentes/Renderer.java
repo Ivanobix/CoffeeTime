@@ -3,6 +3,7 @@ package coffeetime.componentes;
 import coffeetime.base.Cafe;
 import coffeetime.base.Fabricante;
 import coffeetime.base.Lote;
+import coffeetime.util.Util;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +22,6 @@ public class Renderer implements ListCellRenderer {
     private JPanel renderer;
     private JSeparator separadorInferior;
     private JSeparator separadorSuperior;
-    private JLabel lblImagen;
 
     public Renderer(int tipo) {
         Color color = new Color(tipo);
@@ -44,13 +44,14 @@ public class Renderer implements ListCellRenderer {
     private void rellenarDatosCafe(Cafe cafe) {
         lblIdentificador.setText(cafe.getIdentificador());
 
-        lblTituloUno.setText("Nombre: ");
-        lblInfoUno.setText(cafe.getNombre());
+        lblTituloUno.setText("");
+        lblTituloUno.setVisible(false);
+        lblInfoUno.setText("");
+        lblInfoUno.setIcon(Util.escalarImagen(new ImageIcon(cafe.getImagenPromocional()), 60, 60));
 
-        lblTituloDos.setText("Composición: ");
-        lblInfoDos.setText("A: " + cafe.getPorcentajeArabico() + " R: " + cafe.getPorcentajeRobusta());
+        lblTituloDos.setText("Nombre: ");
+        lblInfoDos.setText(cafe.getNombre());
 
-        lblImagen.setIcon(new ImageIcon(cafe.getImagenPromocional()));
     }
 
     private void rellenarDatosLote(Lote lote) {
@@ -62,7 +63,6 @@ public class Renderer implements ListCellRenderer {
         lblTituloDos.setText("Coste: ");
         lblInfoDos.setText(String.valueOf(lote.getCosteTotal()));
 
-        lblImagen.setVisible(false);
     }
 
     private void rellenarDatosFabricante(Fabricante fabricante) {
@@ -74,6 +74,5 @@ public class Renderer implements ListCellRenderer {
         lblTituloDos.setText("Dirección: ");
         lblInfoDos.setText(fabricante.getDireccion());
 
-        lblImagen.setVisible(false);
     }
 }

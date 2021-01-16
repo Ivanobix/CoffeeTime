@@ -15,13 +15,21 @@
           <component id="f9331" class="javax.swing.JLabel" binding="lblTituloUno">
             <constraints/>
             <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
               <text value="Informacion 1:"/>
+              <verticalAlignment value="1"/>
+              <verticalTextPosition value="1"/>
             </properties>
           </component>
           <component id="f8864" class="javax.swing.JLabel" binding="lblInfoUno">
             <constraints/>
             <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
               <text value="1234567890"/>
+              <verticalAlignment value="1"/>
+              <verticalTextPosition value="1"/>
             </properties>
           </component>
         </children>
@@ -34,13 +42,21 @@
           <component id="eb04f" class="javax.swing.JLabel" binding="lblTituloDos">
             <constraints/>
             <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
               <text value="Informacion 2:"/>
+              <verticalAlignment value="1"/>
+              <verticalTextPosition value="1"/>
             </properties>
           </component>
           <component id="90926" class="javax.swing.JLabel" binding="lblInfoDos">
             <constraints/>
             <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
               <text value="1234567890"/>
+              <verticalAlignment value="1"/>
+              <verticalTextPosition value="1"/>
             </properties>
           </component>
         </children>
@@ -74,15 +90,6 @@
         <properties>
           <foreground color="-1"/>
           <preferredSize width="0" height="10"/>
-        </properties>
-      </component>
-      <component id="3cf11" class="javax.swing.JLabel" binding="lblImagen">
-        <constraints border-constraint="Center"/>
-        <properties>
-          <horizontalAlignment value="0"/>
-          <preferredSize width="50" height="50"/>
-          <text value=""/>
-          <verticalAlignment value="1"/>
         </properties>
       </component>
     </children>

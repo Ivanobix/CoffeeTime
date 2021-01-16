@@ -22,24 +22,28 @@
               <component id="df5e8" class="javax.swing.JButton" binding="btnAnadir">
                 <constraints/>
                 <properties>
+                  <actionCommand value="btnAnadir"/>
                   <text value="Añadir"/>
                 </properties>
               </component>
               <component id="ee01" class="javax.swing.JButton" binding="btnEliminar">
                 <constraints/>
                 <properties>
+                  <actionCommand value="btnEliminar"/>
                   <text value="Eliminar"/>
                 </properties>
               </component>
               <component id="267d6" class="javax.swing.JButton" binding="btnModificar">
                 <constraints/>
                 <properties>
+                  <actionCommand value="btnModificar"/>
                   <text value="Modificar"/>
                 </properties>
               </component>
               <component id="d310" class="javax.swing.JButton" binding="btnMostrarInfoAdicional">
                 <constraints/>
                 <properties>
+                  <actionCommand value="btnMostrarInfoAdicional"/>
                   <text value="MostrarInfo"/>
                 </properties>
               </component>
@@ -50,13 +54,13 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="56c86" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+              <component id="56c86" class="javax.swing.JComboBox" binding="cbFiltrado">
                 <constraints/>
                 <properties>
                   <model/>
                 </properties>
               </component>
-              <component id="5eda3" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+              <component id="5eda3" class="javax.swing.JTextField" binding="txtFiltro">
                 <constraints/>
                 <properties>
                   <preferredSize width="150" height="30"/>

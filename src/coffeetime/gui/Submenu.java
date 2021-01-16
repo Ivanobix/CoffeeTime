@@ -12,7 +12,7 @@ public class Submenu extends JDialog {
     public static final int TYPE_LOTES = 1;
     public static final int TYPE_FABRICANTES = 2;
 
-    private final int tipo;
+    final int tipo;
 
     JPanel contentPane;
     JPanel pnListado;
@@ -22,8 +22,8 @@ public class Submenu extends JDialog {
     JButton btnModificar;
     JButton btnEliminar;
     JButton btnMostrarInfoAdicional;
-    JTextField textField1;
-    JComboBox<String> comboBox1;
+    JTextField txtFiltro;
+    JComboBox<String> cbFiltrado;
     JList listaElementos;
     DefaultListModel dlm;
 
@@ -33,7 +33,6 @@ public class Submenu extends JDialog {
         initComponents();
         pack();
         setLocationRelativeTo(null);
-        setModal(true);
         setVisible(true);
     }
 

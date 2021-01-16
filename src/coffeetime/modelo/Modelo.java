@@ -211,7 +211,7 @@ public class Modelo {
      * @param fechaDeCaducidad Nueva fecha de caducidad estimada.
      * @param fabricante       Nuevo fabricante.
      */
-    public void modificarFabricante(Lote lote, int numeroUnidades, double costeTotal, LocalDate fechaDeEnvasado, LocalDate fechaDeCaducidad, Fabricante fabricante) {
+    public void modificarLote(Lote lote, int numeroUnidades, double costeTotal, LocalDate fechaDeEnvasado, LocalDate fechaDeCaducidad, Fabricante fabricante) {
         lote.setNumeroUnidades(numeroUnidades);
         lote.setCosteTotal(costeTotal);
         lote.setFechaDeEnvasado(fechaDeEnvasado);
