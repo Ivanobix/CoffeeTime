@@ -1,5 +1,10 @@
 package coffeetime.gui;
 
+import coffeetime.base.Cafe;
+import coffeetime.base.Fabricante;
+import coffeetime.base.Lote;
+import coffeetime.componentes.Renderer;
+
 import javax.swing.*;
 
 public class Submenu extends JDialog {
@@ -18,19 +23,44 @@ public class Submenu extends JDialog {
     JButton btnEliminar;
     JButton btnMostrarInfoAdicional;
     JTextField textField1;
-    JComboBox comboBox1;
+    JComboBox<String> comboBox1;
+    JList listaElementos;
+    DefaultListModel dlm;
 
     public Submenu(int tipo) {
         this.tipo = tipo;
         setContentPane(contentPane);
         initComponents();
         pack();
-        setModal(true);
         setLocationRelativeTo(null);
+        setModal(true);
         setVisible(true);
     }
 
     private void initComponents() {
+        if (tipo == TYPE_CAFES) {
+            tabbedPane.remove(1);
+        }
+
+    }
+
+    private void createUIComponents() {
+        if (tipo == TYPE_CAFES) {
+            listaElementos = new JList<Cafe>();
+            dlm = new DefaultListModel<Cafe>();
+            listaElementos.setModel(dlm);
+            listaElementos.setCellRenderer(new Renderer(Renderer.CAFES));
+        } else if (tipo == TYPE_LOTES) {
+            listaElementos = new JList<Lote>();
+            dlm = new DefaultListModel<Lote>();
+            listaElementos.setModel(dlm);
+            listaElementos.setCellRenderer(new Renderer(Renderer.LOTES));
+        } else {
+            listaElementos = new JList<Fabricante>();
+            dlm = new DefaultListModel<Fabricante>();
+            listaElementos.setModel(dlm);
+            listaElementos.setCellRenderer(new Renderer(Renderer.FABRICANTES));
+        }
 
     }
 }

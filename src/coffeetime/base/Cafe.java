@@ -78,7 +78,7 @@ public class Cafe implements Serializable {
     /**
      * Devuelve la ruta de la imagen promocional del café.
      *
-     * @return Fecha de envasado del café.
+     * @return Ruta de la imagen promocional del café.
      */
     public String getImagenPromocional() {
         return imagenPromocional;
@@ -87,7 +87,7 @@ public class Cafe implements Serializable {
     /**
      * Establece la ruta de la imagen promocional del café.
      *
-     * @param imagenPromocional Fecha de envasado del café.
+     * @param imagenPromocional Ruta de la imagen promocional del café.
      */
     public void setImagenPromocional(String imagenPromocional) {
         this.imagenPromocional = imagenPromocional;

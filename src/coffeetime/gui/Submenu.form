@@ -52,7 +52,9 @@
             <children>
               <component id="56c86" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <model/>
+                </properties>
               </component>
               <component id="5eda3" class="javax.swing.JTextField" binding="textField1" default-binding="true">
                 <constraints/>
@@ -87,7 +89,19 @@
                 </constraints>
                 <properties/>
                 <border type="none"/>
-                <children/>
+                <children>
+                  <scrollpane id="2ac94">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="bf2c7" class="javax.swing.JList" binding="listaElementos" custom-create="true">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
               </grid>
               <grid id="c1bae" binding="pnEstadisticas" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints>
