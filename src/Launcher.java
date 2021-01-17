@@ -28,8 +28,8 @@ public class Launcher {
 
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
 

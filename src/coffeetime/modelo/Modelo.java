@@ -192,12 +192,7 @@ public class Modelo {
      */
     public void eliminarLote(Lote lote) {
         lotes.remove(lote);
-        Iterator<Cafe> it = cafes.iterator();
-        while (it.hasNext()) {
-            if (it.next().getLote().equals(lote)) {
-                it.remove();
-            }
-        }
+        cafes.removeIf(cafe -> cafe.getLote().equals(lote));
         cambios = true;
     }
 
