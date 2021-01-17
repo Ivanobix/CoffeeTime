@@ -4,15 +4,9 @@ import coffeetime.base.Cafe;
 import coffeetime.base.Fabricante;
 import coffeetime.base.Lote;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Modelo. Clase encargada del almacenamiento y tratamiento de los datos (Cafés, Lotes
@@ -142,15 +136,18 @@ public class Modelo {
      * @param fabricante Fabricante a eliminar de la lista.
      */
     public void eliminarFabricante(Fabricante fabricante) {
-        fabricantes.remove(fabricante);
-        Iterator<Lote> it = lotes.iterator();
-        while (it.hasNext()) {
-            Lote lote = it.next();
+        //Eliminar todos los cafés de cada lote del fabricante
+        for (Lote lote : lotes) {
             if (lote.getFabricante().equals(fabricante)) {
-                eliminarLote(lote);
-                it.remove();
+                cafes.removeIf(cafe -> cafe.getLote().equals(lote));
             }
         }
+
+        //Eliminar todos los lotes del fabricante
+        lotes.removeIf(lote -> lote.getFabricante().equals(fabricante));
+
+        //Eliminar fabricante
+        fabricantes.remove(fabricante);
         cambios = true;
     }
 
