@@ -1,4 +1,4 @@
-package coffeetime.gui;
+package coffeetime.gui.visualizado;
 
 import coffeetime.base.Cafe;
 import coffeetime.util.Util;

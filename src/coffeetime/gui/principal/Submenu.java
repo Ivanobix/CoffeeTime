@@ -1,4 +1,4 @@
-package coffeetime.gui;
+package coffeetime.gui.principal;
 
 import coffeetime.base.Cafe;
 import coffeetime.base.Fabricante;

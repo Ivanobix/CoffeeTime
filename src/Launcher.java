@@ -1,5 +1,5 @@
-import coffeetime.gui.ControladorMenuPrincipal;
-import coffeetime.gui.MenuPrincipal;
+import coffeetime.gui.principal.ControladorMenuPrincipal;
+import coffeetime.gui.principal.MenuPrincipal;
 import coffeetime.modelo.Modelo;
 import com.formdev.flatlaf.FlatDarkLaf;
 

@@ -1,4 +1,4 @@
-package coffeetime.gui;
+package coffeetime.gui.principal;
 
 import javax.swing.*;
 import java.awt.*;

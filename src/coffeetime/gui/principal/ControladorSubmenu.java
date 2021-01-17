@@ -1,8 +1,12 @@
-package coffeetime.gui;
+package coffeetime.gui.principal;
 
 import coffeetime.base.Cafe;
 import coffeetime.base.Fabricante;
 import coffeetime.base.Lote;
+import coffeetime.gui.visualizado.ResumenCafe;
+import coffeetime.gui.visualizado.ResumenFabricante;
+import coffeetime.gui.visualizado.ResumenLote;
+import coffeetime.gui.gestion.*;
 import coffeetime.modelo.Modelo;
 
 import java.awt.event.ActionEvent;

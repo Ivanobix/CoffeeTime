@@ -1,6 +1,7 @@
-package coffeetime.gui;
+package coffeetime.gui.gestion;
 
 import coffeetime.base.Fabricante;
+import coffeetime.gui.otros.AsignacionDeLotesAFabricante;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
 
@@ -44,12 +45,18 @@ public class ControladorGestionFabricantes implements ActionListener {
         }
 
         ventanaGestionFabricantes.btnGestionar.setText("Modificar");
+        ventanaGestionFabricantes.lblLotesFabricados.setVisible(true);
+        ventanaGestionFabricantes.btnGestionarLotes.setVisible(true);
 
     }
 
     private void initHandlers() {
         ventanaGestionFabricantes.btnGestionar.addActionListener(this);
         ventanaGestionFabricantes.btnCancelar.addActionListener(this);
+
+        if (modificando) {
+            ventanaGestionFabricantes.btnGestionarLotes.addActionListener(this);
+        }
     }
 
     private void gestionarFabricante() {
@@ -73,15 +80,20 @@ public class ControladorGestionFabricantes implements ActionListener {
             if (ventanaGestionFabricantes.txtNombre.getText().replace(" ", "").length() != 0) {
                 if (ventanaGestionFabricantes.txtDireccion.getText().replace(" ", "").length() != 0) {
                     if (ventanaGestionFabricantes.dpFechaAlta.getDate() != null) {
-                        String nombre = ventanaGestionFabricantes.txtNombre.getText();
-                        String direccion = ventanaGestionFabricantes.txtDireccion.getText();
                         int trabajadores = Integer.parseInt(ventanaGestionFabricantes.txtTrabajadores.getText());
-                        LocalDate fechaCreacion = ventanaGestionFabricantes.dpFechaAlta.getDate();
-                        boolean internacional = false;
-                        if (ventanaGestionFabricantes.chbxInternacional.isSelected()) {
-                            internacional = true;
+                        if (trabajadores > 0 && trabajadores < 1500000) {
+                            String nombre = ventanaGestionFabricantes.txtNombre.getText();
+                            String direccion = ventanaGestionFabricantes.txtDireccion.getText();
+                            LocalDate fechaCreacion = ventanaGestionFabricantes.dpFechaAlta.getDate();
+                            boolean internacional = false;
+                            if (ventanaGestionFabricantes.chbxInternacional.isSelected()) {
+                                internacional = true;
+                            }
+                            fabricante = new Fabricante(nombre, direccion, trabajadores, fechaCreacion, internacional);
+                        } else {
+                            Util.mostrarError("El número de trabajadores debe ser mayor a 0 y menor que 1.500.000.\n Ejemplo: 100");
                         }
-                        fabricante = new Fabricante(nombre, direccion, trabajadores, fechaCreacion, internacional);
+
 
                     } else {
                         Util.mostrarError("Debes seleccionar una fecha de alta.");
@@ -121,6 +133,9 @@ public class ControladorGestionFabricantes implements ActionListener {
             case "btnCancelar":
                 ventanaGestionFabricantes.dispose();
                 break;
+            case "btnGestionarLotes":
+                new AsignacionDeLotesAFabricante(fabricanteAModificar, modelo.getLotes());
+                ventanaGestionFabricantes.dispose();
         }
     }
 }

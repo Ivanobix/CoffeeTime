@@ -1,4 +1,4 @@
-package coffeetime.gui;
+package coffeetime.gui.gestion;
 
 import coffeetime.base.Fabricante;
 import com.github.lgooddatepicker.components.DatePicker;

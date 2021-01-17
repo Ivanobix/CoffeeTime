@@ -1,4 +1,4 @@
-package coffeetime.gui;
+package coffeetime.gui.gestion;
 
 import com.github.lgooddatepicker.components.DatePicker;
 
@@ -13,6 +13,8 @@ public class GestionFabricantes extends JDialog {
     JCheckBox chbxInternacional;
     JButton btnGestionar;
     JButton btnCancelar;
+    JButton btnGestionarLotes;
+    JLabel lblLotesFabricados;
 
     public GestionFabricantes() {
         setContentPane(contentPane);
