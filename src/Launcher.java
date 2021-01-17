@@ -4,6 +4,7 @@ import coffeetime.modelo.Modelo;
 import com.formdev.flatlaf.FlatDarkLaf;
 
 import javax.swing.*;
+import java.util.Locale;
 
 /**
  * Coffee Time. Aplicación diseñada para la gestión y relación de cafés, lotes y
@@ -25,6 +26,9 @@ public class Launcher {
      * @param args Argumentos de inicialización.
      */
     public static void main(String[] args) {
+
+        //Locale.setDefault(Locale.ENGLISH);
+        //Locale.setDefault(Locale.FRENCH);
 
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());

@@ -7,12 +7,15 @@ import coffeetime.util.Util;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ResourceBundle;
 
 public class Renderer implements ListCellRenderer {
 
     public static final int CAFES = Color.CYAN.getRGB();
     public static final int LOTES = Color.GREEN.getRGB();
     public static final int FABRICANTES = Color.RED.getRGB();
+
+    private final ResourceBundle idioma;
 
     private JLabel lblIdentificador;
     private JLabel lblTituloUno;
@@ -28,6 +31,7 @@ public class Renderer implements ListCellRenderer {
     private JPanel pnCentral;
 
     public Renderer(int tipo) {
+        idioma = ResourceBundle.getBundle("idioma");
         Color color = new Color(tipo);
         separadorSuperior.setForeground(color);
         separadorInferior.setForeground(color);
@@ -61,7 +65,7 @@ public class Renderer implements ListCellRenderer {
         lblInfoUno.setText("");
         lblInfoUno.setIcon(Util.escalarImagen(new ImageIcon(cafe.getImagenPromocional()), 60, 60));
 
-        lblTituloDos.setText("Nombre: ");
+        lblTituloDos.setText(idioma.getString("renderer.nombre"));
         lblInfoDos.setText(cafe.getNombre());
 
     }
@@ -69,10 +73,10 @@ public class Renderer implements ListCellRenderer {
     private void rellenarDatosLote(Lote lote) {
         lblIdentificador.setText(lote.getIdentificador());
 
-        lblTituloUno.setText("Unidades: ");
+        lblTituloUno.setText(idioma.getString("renderer.unidades"));
         lblInfoUno.setText(String.valueOf(lote.getNumeroUnidades()));
 
-        lblTituloDos.setText("Coste: ");
+        lblTituloDos.setText(idioma.getString("renderer.coste"));
         lblInfoDos.setText(String.valueOf(lote.getCosteTotal()));
 
     }
@@ -80,10 +84,10 @@ public class Renderer implements ListCellRenderer {
     private void rellenarDatosFabricante(Fabricante fabricante) {
         lblIdentificador.setText(fabricante.getIdentificador());
 
-        lblTituloUno.setText("Nombre: ");
+        lblTituloUno.setText(idioma.getString("renderer.nombre"));
         lblInfoUno.setText(fabricante.getNombre());
 
-        lblTituloDos.setText("Dirección: ");
+        lblTituloDos.setText(idioma.getString("renderer.direccion"));
         lblInfoDos.setText(fabricante.getDireccion());
 
     }

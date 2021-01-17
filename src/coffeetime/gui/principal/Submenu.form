@@ -86,7 +86,7 @@
             <children>
               <grid id="355f9" binding="pnListado" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints>
-                  <tabbedpane title="Listado"/>
+                  <tabbedpane title-resource-bundle="idioma" title-key="listado"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
@@ -106,7 +106,7 @@
               </grid>
               <grid id="c1bae" binding="pnEstadisticas" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints>
-                  <tabbedpane title="Estadísticas"/>
+                  <tabbedpane title-resource-bundle="idioma" title-key="estadisticas"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>

@@ -15,7 +15,7 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Nombre:"/>
+          <text resource-bundle="idioma" key="nombre"/>
         </properties>
       </component>
       <component id="db0ca" class="javax.swing.JLabel">
@@ -23,7 +23,7 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Dirección:"/>
+          <text resource-bundle="idioma" key="direccion"/>
         </properties>
       </component>
       <component id="b1ee2" class="javax.swing.JTextField" binding="txtNombre">
@@ -47,7 +47,7 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Trabajadores:"/>
+          <text resource-bundle="idioma" key="trabajadores"/>
         </properties>
       </component>
       <component id="aab07" class="javax.swing.JTextField" binding="txtTrabajadores">
@@ -63,7 +63,7 @@
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Internacional:"/>
+          <text resource-bundle="idioma" key="internacional"/>
         </properties>
       </component>
       <component id="73f44" class="javax.swing.JLabel">
@@ -71,7 +71,7 @@
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Fecha De Alta: "/>
+          <text resource-bundle="idioma" key="fechaDeAlta"/>
         </properties>
       </component>
       <component id="3db35" class="com.github.lgooddatepicker.components.DatePicker" binding="dpFechaAlta">
@@ -95,7 +95,7 @@
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Lotes Fabricados:"/>
+          <text resource-bundle="idioma" key="lotesFabricados"/>
           <visible value="false"/>
         </properties>
       </component>

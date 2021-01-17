@@ -2,10 +2,12 @@ package coffeetime.gui.principal;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ResourceBundle;
 
 
 public class MenuPrincipal extends Component {
     private static final Color TEMA_OSCURO = new Color(21, 21, 21);
+    private final ResourceBundle idioma;
 
     private final JFrame frame;
     JPanel pnPrincipal;
@@ -22,7 +24,8 @@ public class MenuPrincipal extends Component {
     JMenuItem mnitCerrarSesion;
 
     public MenuPrincipal() {
-        frame = new JFrame("MenuPrincipal");
+        idioma = ResourceBundle.getBundle("idioma");
+        frame = new JFrame();
         initComponents();
         frame.setContentPane(pnPrincipal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,33 +55,33 @@ public class MenuPrincipal extends Component {
         JMenuBar menuBar = new JMenuBar();
         frame.setJMenuBar(menuBar);
 
-        JMenu mnArchivo = new JMenu("Archivo");
+        JMenu mnArchivo = new JMenu(idioma.getString("archivo"));
         menuBar.add(mnArchivo);
 
-        mnitGuardar = new JMenuItem("Guardar", new ImageIcon("media/herramientas/guardar.png"));
+        mnitGuardar = new JMenuItem(idioma.getString("guardar"), new ImageIcon("media/herramientas/guardar.png"));
         mnitGuardar.setActionCommand("mnitGuardar");
         mnArchivo.add(mnitGuardar);
 
-        mnitCargar = new JMenuItem("Cargar", new ImageIcon("media/herramientas/cargar.png"));
+        mnitCargar = new JMenuItem(idioma.getString("cargar"), new ImageIcon("media/herramientas/cargar.png"));
         mnitCargar.setActionCommand("mnitCargar");
         mnArchivo.add(mnitCargar);
 
-        mnitNuevo = new JMenuItem("Nuevo", new ImageIcon("media/herramientas/nuevo.png"));
+        mnitNuevo = new JMenuItem(idioma.getString("nuevo"), new ImageIcon("media/herramientas/nuevo.png"));
         mnitNuevo.setActionCommand("mnitNuevo");
         mnArchivo.add(mnitNuevo);
 
-        mnitCerrarSesion = new JMenuItem("Cerrar Sesión", new ImageIcon("media/herramientas/cerrarSesion.png"));
+        mnitCerrarSesion = new JMenuItem(idioma.getString("cerrarSesion"), new ImageIcon("media/herramientas/cerrarSesion.png"));
         mnitCerrarSesion.setActionCommand("mnitCerrarSesion");
         mnArchivo.add(mnitCerrarSesion);
 
-        JMenu mnEditar = new JMenu("Editar");
+        JMenu mnEditar = new JMenu(idioma.getString("editar"));
         menuBar.add(mnEditar);
 
-        mnitDeshacer = new JMenuItem("Deshacer", new ImageIcon("media/herramientas/deshacer.png"));
+        mnitDeshacer = new JMenuItem(idioma.getString("deshacer"), new ImageIcon("media/herramientas/deshacer.png"));
         mnitDeshacer.setActionCommand("mnitDeshacer");
         mnEditar.add(mnitDeshacer);
 
-        mnitPreferencias = new JMenuItem("Preferencias", new ImageIcon("media/herramientas/preferencias.png"));
+        mnitPreferencias = new JMenuItem(idioma.getString("preferencias"), new ImageIcon("media/herramientas/preferencias.png"));
         mnitPreferencias.setActionCommand("mnitPreferencias");
         mnEditar.add(mnitPreferencias);
 

@@ -2,6 +2,7 @@ package coffeetime.util;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ResourceBundle;
 
 /**
  * Util. Clase dedicada a la creación de JOptionPanels personalizados para su
@@ -23,7 +24,8 @@ public class Util {
      * @param error Mensaje de error a mostrar al usuario.
      */
     public static void mostrarError(String error) {
-        JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+        ResourceBundle idioma = ResourceBundle.getBundle("idioma");
+        JOptionPane.showMessageDialog(null, error, idioma.getString("error"), JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -34,7 +36,8 @@ public class Util {
      * @return Mensaje de confirmación generado.
      */
     public static int mostrarConfirmacion(String mensaje) {
-        return JOptionPane.showConfirmDialog(null, mensaje, "Confirmación", JOptionPane.YES_NO_OPTION);
+        ResourceBundle idioma = ResourceBundle.getBundle("idioma");
+        return JOptionPane.showConfirmDialog(null, mensaje, idioma.getString("confirmacion"), JOptionPane.YES_NO_OPTION);
     }
 
     /**
