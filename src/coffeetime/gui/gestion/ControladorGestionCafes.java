@@ -42,8 +42,6 @@ public class ControladorGestionCafes implements ActionListener {
         cargarLotes();
         initHandlers();
 
-        ventanaGestionCafe.btnGestionar.setText("Añadir");
-
     }
 
     /**
@@ -70,8 +68,6 @@ public class ControladorGestionCafes implements ActionListener {
 
         ImageIcon iconoOriginal = new ImageIcon(ventanaGestionCafe.txtRutaImagen.getText());
         ventanaGestionCafe.imgPromocional.setIcon(Util.escalarImagen(iconoOriginal, 70, 70));
-
-        ventanaGestionCafe.btnGestionar.setText("Modificar");
 
     }
 

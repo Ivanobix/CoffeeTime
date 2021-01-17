@@ -8,6 +8,7 @@ import coffeetime.gui.visualizado.ResumenFabricante;
 import coffeetime.gui.visualizado.ResumenLote;
 import coffeetime.gui.gestion.*;
 import coffeetime.modelo.Modelo;
+import coffeetime.util.Util;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -80,7 +81,7 @@ public class ControladorSubmenu implements ActionListener {
                 modelo.eliminarFabricante((Fabricante) objeto);
             }
         } else {
-            //Mostrar aviso de ningún objeto ha sido seleccionado
+            Util.mostrarError("Ningún elemento ha sido seleccionado");
         }
 
         actualizarLista();
@@ -98,7 +99,7 @@ public class ControladorSubmenu implements ActionListener {
             }
             submenu.dispose();
         } else {
-            //Mostrar aviso de nigún objeto ha sido seleccionado
+            Util.mostrarError("Ningún elemento ha sido seleccionado");
         }
 
     }
@@ -115,7 +116,7 @@ public class ControladorSubmenu implements ActionListener {
             }
 
         } else {
-            //Mostrar aviso de nigún objeto ha sido seleccionado
+            Util.mostrarError("Ningún elemento ha sido seleccionado");
         }
     }
 

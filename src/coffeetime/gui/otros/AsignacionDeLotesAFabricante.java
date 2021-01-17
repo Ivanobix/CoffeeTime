@@ -1,11 +1,9 @@
 package coffeetime.gui.otros;
 
-import coffeetime.base.Fabricante;
 import coffeetime.base.Lote;
 import coffeetime.componentes.Renderer;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class AsignacionDeLotesAFabricante extends JDialog {
 

@@ -5,7 +5,7 @@
       <xy x="48" y="54" width="688" height="297"/>
     </constraints>
     <properties>
-      <preferredSize width="640" height="480"/>
+      <preferredSize width="900" height="480"/>
     </properties>
     <border type="none"/>
     <children>
@@ -23,28 +23,32 @@
                 <constraints/>
                 <properties>
                   <actionCommand value="btnAnadir"/>
-                  <text value="Añadir"/>
+                  <icon value="gestion/anadir.png"/>
+                  <text value=""/>
                 </properties>
               </component>
               <component id="ee01" class="javax.swing.JButton" binding="btnEliminar">
                 <constraints/>
                 <properties>
                   <actionCommand value="btnEliminar"/>
-                  <text value="Eliminar"/>
+                  <icon value="gestion/eliminar.png"/>
+                  <text value=""/>
                 </properties>
               </component>
               <component id="267d6" class="javax.swing.JButton" binding="btnModificar">
                 <constraints/>
                 <properties>
                   <actionCommand value="btnModificar"/>
-                  <text value="Modificar"/>
+                  <icon value="gestion/modificar.png"/>
+                  <text value=""/>
                 </properties>
               </component>
               <component id="d310" class="javax.swing.JButton" binding="btnMostrarInfoAdicional">
                 <constraints/>
                 <properties>
                   <actionCommand value="btnMostrarInfoAdicional"/>
-                  <text value="MostrarInfo"/>
+                  <icon value="gestion/mostrar.png"/>
+                  <text value=""/>
                 </properties>
               </component>
             </children>
@@ -68,13 +72,6 @@
               </component>
             </children>
           </grid>
-          <component id="8f613" class="javax.swing.JLabel">
-            <constraints border-constraint="Center"/>
-            <properties>
-              <horizontalAlignment value="0"/>
-              <text value="Coffe Time"/>
-            </properties>
-          </component>
         </children>
       </grid>
       <grid id="3ab3f" layout-manager="BorderLayout" hgap="0" vgap="0">

@@ -18,8 +18,8 @@
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value="Informacion 1:"/>
-              <verticalAlignment value="1"/>
-              <verticalTextPosition value="1"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
             </properties>
           </component>
           <component id="f8864" class="javax.swing.JLabel" binding="lblInfoUno">
@@ -28,8 +28,8 @@
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value="1234567890"/>
-              <verticalAlignment value="1"/>
-              <verticalTextPosition value="1"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
             </properties>
           </component>
         </children>
@@ -45,8 +45,8 @@
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value="Informacion 2:"/>
-              <verticalAlignment value="1"/>
-              <verticalTextPosition value="1"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
             </properties>
           </component>
           <component id="90926" class="javax.swing.JLabel" binding="lblInfoDos">
@@ -55,8 +55,8 @@
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value="1234567890"/>
-              <verticalAlignment value="1"/>
-              <verticalTextPosition value="1"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
             </properties>
           </component>
         </children>

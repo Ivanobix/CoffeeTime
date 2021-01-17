@@ -69,7 +69,7 @@
             <properties>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="35b92" class="javax.swing.JLabel" binding="lblDireccion">
@@ -79,7 +79,7 @@
             <properties>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="68e0" class="javax.swing.JLabel" binding="lblTrabajadores">
@@ -89,7 +89,7 @@
             <properties>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="fa428" class="javax.swing.JLabel" binding="lblInternacional">
@@ -99,7 +99,7 @@
             <properties>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="ff3db" class="javax.swing.JLabel" binding="lblFechaAlta">
@@ -109,7 +109,7 @@
             <properties>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
         </children>

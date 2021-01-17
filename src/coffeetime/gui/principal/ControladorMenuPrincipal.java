@@ -25,11 +25,15 @@ public class ControladorMenuPrincipal implements ActionListener {
 
     private void initHandlers() {
         menuPrincipal.btnCafes.addActionListener(this);
-        menuPrincipal.btnConfiguracion.addActionListener(this);
         menuPrincipal.btnFabricantes.addActionListener(this);
         menuPrincipal.btnLotes.addActionListener(this);
+
         menuPrincipal.mnitGuardar.addActionListener(this);
         menuPrincipal.mnitCargar.addActionListener(this);
+        menuPrincipal.mnitNuevo.addActionListener(this);
+        menuPrincipal.mnitPreferencias.addActionListener(this);
+        menuPrincipal.mnitDeshacer.addActionListener(this);
+        menuPrincipal.mnitCerrarSesion.addActionListener(this);
 
     }
 
@@ -64,6 +68,12 @@ public class ControladorMenuPrincipal implements ActionListener {
         }
     }
 
+    private void reiniciarElementos() {
+        if (Util.mostrarConfirmacion("¿Estás seguro de querer eliminar todos los datos?") == Util.ACEPTAR) {
+            modelo.reiniciarDatos();
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -77,9 +87,6 @@ public class ControladorMenuPrincipal implements ActionListener {
                 new ControladorSubmenu(new Submenu(Submenu.TYPE_LOTES), modelo);
                 break;
 
-            case "btnConfiguracion":
-
-                break;
             case "mnitGuardar":
                 guardarDatos();
                 break;
@@ -87,10 +94,16 @@ public class ControladorMenuPrincipal implements ActionListener {
                 cargarDatos();
                 break;
             case "mnitNuevo":
-
+                reiniciarElementos();
+                break;
+            case "mnitPreferencias":
+                System.out.println("Preferencias");
                 break;
             case "mnitDeshacer":
-
+                System.out.println("Deshacer");
+                break;
+            case "mnitCerrarSesion":
+                System.out.println("Cerrar Sesión");
                 break;
         }
     }

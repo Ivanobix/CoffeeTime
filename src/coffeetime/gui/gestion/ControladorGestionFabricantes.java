@@ -22,9 +22,9 @@ public class ControladorGestionFabricantes implements ActionListener {
         this.modelo = modelo;
         modificando = false;
         fabricanteAModificar = null;
+        ventanaGestionFabricantes.dpFechaAlta.setDate(LocalDate.now());
 
         initHandlers();
-        ventanaGestionFabricantes.btnGestionar.setText("Añadir");
     }
 
     public ControladorGestionFabricantes(GestionFabricantes ventanaGestionFabricantes, Modelo modelo, Fabricante fabricante) {
@@ -45,7 +45,6 @@ public class ControladorGestionFabricantes implements ActionListener {
             ventanaGestionFabricantes.chbxInternacional.setSelected(true);
         }
 
-        ventanaGestionFabricantes.btnGestionar.setText("Modificar");
         ventanaGestionFabricantes.lblLotesFabricados.setVisible(true);
         ventanaGestionFabricantes.btnGestionarLotes.setVisible(true);
 

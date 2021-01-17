@@ -62,7 +62,7 @@
             <properties>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="4dbfa" class="javax.swing.JLabel" binding="lblArabico">
@@ -72,7 +72,7 @@
             <properties>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="c631a" class="javax.swing.JLabel" binding="lblRobusta">
@@ -82,7 +82,7 @@
             <properties>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="c2941" class="javax.swing.JButton" binding="btnVerLote">
@@ -91,7 +91,8 @@
             </constraints>
             <properties>
               <horizontalTextPosition value="0"/>
-              <text value="Ver Lote"/>
+              <icon value="visualizado/ir.png"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="d795" class="javax.swing.JLabel">
@@ -108,7 +109,8 @@
             </constraints>
             <properties>
               <horizontalTextPosition value="0"/>
-              <text value="Ver Imagen"/>
+              <icon value="visualizado/verImagen.png"/>
+              <text value=""/>
             </properties>
           </component>
         </children>

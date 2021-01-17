@@ -25,7 +25,8 @@ public class ControladorGestionLotes implements ActionListener {
         cargarFabricantes();
         initHandlers();
 
-        ventanaGestionLotes.btnGestionar.setText("Añadir");
+        ventanaGestionLotes.dpCaducidad.setDate(LocalDate.now());
+        ventanaGestionLotes.dpEnvasado.setDate(LocalDate.now());
 
     }
 
@@ -43,8 +44,6 @@ public class ControladorGestionLotes implements ActionListener {
         ventanaGestionLotes.dpCaducidad.setDate(lote.getFechaDeCaducidad());
 
         ventanaGestionLotes.cbFabricante.setSelectedItem(lote.getFabricante());
-
-        ventanaGestionLotes.btnGestionar.setText("Modificar");
 
     }
 
@@ -87,8 +86,12 @@ public class ControladorGestionLotes implements ActionListener {
                                 if (unidades > 0) {
                                     LocalDate envasado = ventanaGestionLotes.dpEnvasado.getDate();
                                     LocalDate caducidad = ventanaGestionLotes.dpCaducidad.getDate();
-                                    Fabricante fabricante = (Fabricante) ventanaGestionLotes.cbFabricante.getSelectedItem();
-                                    lote = new Lote(unidades, coste, envasado, caducidad, fabricante);
+                                    if (envasado.isAfter(caducidad)) {
+                                        Fabricante fabricante = (Fabricante) ventanaGestionLotes.cbFabricante.getSelectedItem();
+                                        lote = new Lote(unidades, coste, envasado, caducidad, fabricante);
+                                    } else {
+                                        Util.mostrarError("La fecha de caducidad no puede ser anterior a la de envasado.");
+                                    }
                                 } else {
                                     Util.mostrarError("Las unidades deben ser mayor que cero.\n Ejemplo: 500.");
                                 }
