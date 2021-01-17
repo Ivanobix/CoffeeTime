@@ -22,6 +22,10 @@ public class Renderer implements ListCellRenderer {
     private JPanel renderer;
     private JSeparator separadorInferior;
     private JSeparator separadorSuperior;
+    private JPanel pnOeste;
+    private JPanel pnEste;
+    private JPanel pnNorte;
+    private JPanel pnCentral;
 
     public Renderer(int tipo) {
         Color color = new Color(tipo);
@@ -38,6 +42,14 @@ public class Renderer implements ListCellRenderer {
         } else {
             rellenarDatosFabricante((Fabricante) value);
         }
+
+        if (isSelected) {
+            resaltar();
+
+        } else {
+            restablecerFondo();
+        }
+
         return renderer;
     }
 
@@ -74,5 +86,20 @@ public class Renderer implements ListCellRenderer {
         lblTituloDos.setText("Dirección: ");
         lblInfoDos.setText(fabricante.getDireccion());
 
+    }
+
+    private void resaltar() {
+        Color color = new Color(28, 28, 28);
+        pnEste.setBackground(color);
+        pnOeste.setBackground(color);
+        pnNorte.setBackground(color);
+        pnCentral.setBackground(color);
+    }
+
+    private void restablecerFondo() {
+        pnEste.setBackground(Color.DARK_GRAY);
+        pnOeste.setBackground(Color.DARK_GRAY);
+        pnNorte.setBackground(Color.DARK_GRAY);
+        pnCentral.setBackground(Color.DARK_GRAY);
     }
 }

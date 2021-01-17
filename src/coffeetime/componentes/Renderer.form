@@ -7,7 +7,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="216e1" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+      <grid id="216e1" binding="pnOeste" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints border-constraint="West"/>
         <properties/>
         <border type="none"/>
@@ -34,7 +34,7 @@
           </component>
         </children>
       </grid>
-      <grid id="f7f76" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+      <grid id="f7f76" binding="pnEste" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints border-constraint="East"/>
         <properties/>
         <border type="none"/>
@@ -61,7 +61,7 @@
           </component>
         </children>
       </grid>
-      <grid id="31751" layout-manager="BorderLayout" hgap="0" vgap="0">
+      <grid id="31751" binding="pnNorte" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="North"/>
         <properties/>
         <border type="none"/>
@@ -92,6 +92,12 @@
           <preferredSize width="0" height="10"/>
         </properties>
       </component>
+      <grid id="9d1ce" binding="pnCentral" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
     </children>
   </grid>
 </form>

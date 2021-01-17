@@ -2,6 +2,7 @@ package coffeetime.gui.gestion;
 
 import coffeetime.base.Fabricante;
 import coffeetime.gui.otros.AsignacionDeLotesAFabricante;
+import coffeetime.gui.otros.ControladorAsignacionDeLotesAFabricantes;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
 
@@ -134,7 +135,7 @@ public class ControladorGestionFabricantes implements ActionListener {
                 ventanaGestionFabricantes.dispose();
                 break;
             case "btnGestionarLotes":
-                new AsignacionDeLotesAFabricante(fabricanteAModificar, modelo.getLotes());
+                new ControladorAsignacionDeLotesAFabricantes(new AsignacionDeLotesAFabricante(), fabricanteAModificar, modelo.getLotes());
                 ventanaGestionFabricantes.dispose();
         }
     }
