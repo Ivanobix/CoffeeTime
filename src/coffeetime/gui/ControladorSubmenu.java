@@ -103,13 +103,13 @@ public class ControladorSubmenu implements ActionListener {
         Object objeto = submenu.listaElementos.getSelectedValue();
         if (objeto != null) {
             if (submenu.tipo == Submenu.TYPE_CAFES) {
-                //Mostrar Info Cafés
+                new ResumenCafe((Cafe) objeto);
             } else if (submenu.tipo == Submenu.TYPE_LOTES) {
-                //Mostrar Info Lotes
+                new ResumenLote((Lote) objeto);
             } else {
-                //Mostrar Info Fabricantes
+                new ResumenFabricante((Fabricante) objeto);
             }
-            submenu.dispose();
+
         } else {
             //Mostrar aviso de nigún objeto ha sido seleccionado
         }

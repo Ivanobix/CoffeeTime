@@ -38,6 +38,25 @@ public class Util {
     }
 
     /**
+     * Mostrar Imagen. Muestra por pantalla una ventana que contiene únicamente una imagen.
+     *
+     * @param rutaDeLaImagen Ruta de la imagen a mostrar.
+     */
+    public static void mostrarImagen(String rutaDeLaImagen) {
+        JDialog jDialog = new JDialog();
+        jDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+        ImageIcon imageIcon = new ImageIcon(rutaDeLaImagen);
+        JLabel imagen = new JLabel();
+        imagen.setIcon(imageIcon);
+
+        jDialog.getContentPane().add(imagen);
+        jDialog.setSize(imageIcon.getIconWidth(), imageIcon.getIconHeight());
+        jDialog.pack();
+        jDialog.setVisible(true);
+    }
+
+    /**
      * Escalar imagen. Redimensiona la imagen proporcionada para concidir con los
      * valores proporcionados, pero manteniendo la relación de aspecto.
      *
