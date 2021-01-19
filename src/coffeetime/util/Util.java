@@ -41,6 +41,17 @@ public class Util {
     }
 
     /**
+     * Mensaje de Aviso. Muestra por pantalla una ventana indicando un aviso
+     * determinado.
+     *
+     * @param aviso Mensaje de aviso a mostrar al usuario.
+     */
+    public static void mostrarAviso(String aviso) {
+        ResourceBundle idioma = ResourceBundle.getBundle("idioma");
+        JOptionPane.showMessageDialog(null, aviso, idioma.getString("error.aviso"), JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    /**
      * Mostrar Imagen. Muestra por pantalla una ventana que contiene únicamente una imagen.
      *
      * @param rutaDeLaImagen Ruta de la imagen a mostrar.

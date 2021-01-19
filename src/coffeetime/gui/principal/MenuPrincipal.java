@@ -61,11 +61,11 @@ public class MenuPrincipal extends Component {
     }
 
     private void establecerIdiomaBotones() {
-        if (Locale.getDefault() == Locale.ENGLISH) {
+        if (Locale.getDefault().getLanguage().equals("en")) {
             btnCafes.setIcon(new ImageIcon("media/menuPrincipal/cafes_en.png"));
             btnLotes.setIcon(new ImageIcon("media/menuPrincipal/lotes_en.png"));
             btnFabricantes.setIcon(new ImageIcon("media/menuPrincipal/fabricantes_en.png"));
-        } else if (Locale.getDefault() == Locale.FRENCH) {
+        } else if (Locale.getDefault().getLanguage().equals("fr")) {
             btnCafes.setIcon(new ImageIcon("media/menuPrincipal/cafes_fr.png"));
             btnLotes.setIcon(new ImageIcon("media/menuPrincipal/lotes_fr.png"));
             btnFabricantes.setIcon(new ImageIcon("media/menuPrincipal/fabricantes_fr.png"));

@@ -1,5 +1,6 @@
 package coffeetime.gui.principal;
 
+import coffeetime.gui.otros.Preferencias;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
 
@@ -109,7 +110,7 @@ public class ControladorMenuPrincipal implements ActionListener {
                 reiniciarElementos();
                 break;
             case "mnitPreferencias":
-                System.out.println("Preferencias");
+                new Preferencias();
                 break;
             case "mnitDeshacer":
                 System.out.println("Deshacer");

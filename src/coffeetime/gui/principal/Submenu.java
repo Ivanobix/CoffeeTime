@@ -12,11 +12,8 @@ public class Submenu extends JDialog {
     public static final int TYPE_CAFES = 0;
     public static final int TYPE_LOTES = 1;
     public static final int TYPE_FABRICANTES = 2;
-
-    private final ResourceBundle idioma;
-
     final int tipo;
-
+    private final ResourceBundle idioma;
     JPanel contentPane;
     JPanel pnListado;
     JPanel pnEstadisticas;
