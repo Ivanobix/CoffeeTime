@@ -29,6 +29,9 @@ public class GestionCafes extends JDialog {
     }
 
     private void initComponents() {
+        contentPane.getRootPane().setDefaultButton(btnGestionar);
+        btnGestionar.requestFocus();
+
         dcbm = new DefaultComboBoxModel<>();
         cbLote.setModel(dcbm);
     }

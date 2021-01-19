@@ -22,6 +22,10 @@ public class GestionFabricantes extends JDialog {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
+        contentPane.getRootPane().setDefaultButton(btnGestionar);
+        btnGestionar.requestFocus();
+
     }
 
 }

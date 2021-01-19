@@ -15,7 +15,7 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text resource-bundle="idioma" key="nombre"/>
+          <text resource-bundle="idioma" key="general.nombre"/>
         </properties>
       </component>
       <component id="db0ca" class="javax.swing.JLabel">
@@ -23,7 +23,7 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text resource-bundle="idioma" key="direccion"/>
+          <text resource-bundle="idioma" key="general.direccion"/>
         </properties>
       </component>
       <component id="b1ee2" class="javax.swing.JTextField" binding="txtNombre">
@@ -47,7 +47,7 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text resource-bundle="idioma" key="trabajadores"/>
+          <text resource-bundle="idioma" key="general.trabajadores"/>
         </properties>
       </component>
       <component id="aab07" class="javax.swing.JTextField" binding="txtTrabajadores">
@@ -63,7 +63,7 @@
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text resource-bundle="idioma" key="internacional"/>
+          <text resource-bundle="idioma" key="general.internacional"/>
         </properties>
       </component>
       <component id="73f44" class="javax.swing.JLabel">
@@ -71,7 +71,7 @@
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text resource-bundle="idioma" key="fechaDeAlta"/>
+          <text resource-bundle="idioma" key="general.fechaDeAlta"/>
         </properties>
       </component>
       <component id="3db35" class="com.github.lgooddatepicker.components.DatePicker" binding="dpFechaAlta">
@@ -80,7 +80,9 @@
             <preferred-size width="-1" height="20"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <toolTipText resource-bundle="idioma" key="seleccionar.UnaFecha"/>
+        </properties>
       </component>
       <component id="3af0c" class="javax.swing.JCheckBox" binding="chbxInternacional">
         <constraints>
@@ -88,6 +90,7 @@
         </constraints>
         <properties>
           <text value=""/>
+          <toolTipText resource-bundle="idioma" key="seleccionar.marcarSiInternacional"/>
         </properties>
       </component>
       <component id="5e976" class="javax.swing.JLabel" binding="lblLotesFabricados">
@@ -95,7 +98,7 @@
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text resource-bundle="idioma" key="lotesFabricados"/>
+          <text resource-bundle="idioma" key="general.lotesFabricados"/>
           <visible value="false"/>
         </properties>
       </component>
@@ -105,7 +108,8 @@
         </constraints>
         <properties>
           <actionCommand value="btnGestionarLotes"/>
-          <text value="Gestionar"/>
+          <text resource-bundle="idioma" key="asignar.Lotes"/>
+          <toolTipText resource-bundle="idioma" key="seleccionar.Lotes"/>
           <visible value="false"/>
         </properties>
       </component>
@@ -122,6 +126,7 @@
               <actionCommand value="btnGestionar"/>
               <icon value="gestion/aceptar.png"/>
               <text value=""/>
+              <toolTipText resource-bundle="idioma" key="general.aceptar"/>
             </properties>
           </component>
           <component id="3431a" class="javax.swing.JButton" binding="btnCancelar">
@@ -130,6 +135,7 @@
               <actionCommand value="btnCancelar"/>
               <icon value="gestion/cancelar.png"/>
               <text value=""/>
+              <toolTipText resource-bundle="idioma" key="general.cancelar"/>
             </properties>
           </component>
         </children>

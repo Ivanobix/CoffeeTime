@@ -37,7 +37,7 @@ public class Util {
      */
     public static int mostrarConfirmacion(String mensaje) {
         ResourceBundle idioma = ResourceBundle.getBundle("idioma");
-        return JOptionPane.showConfirmDialog(null, mensaje, idioma.getString("confirmacion"), JOptionPane.YES_NO_OPTION);
+        return JOptionPane.showConfirmDialog(null, mensaje, idioma.getString("error.confirmacion"), JOptionPane.YES_NO_OPTION);
     }
 
     /**

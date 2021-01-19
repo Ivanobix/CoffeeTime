@@ -7,8 +7,10 @@ import coffeetime.util.Util;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class ControladorGestionLotes implements ActionListener {
 
@@ -17,17 +19,20 @@ public class ControladorGestionLotes implements ActionListener {
     private final boolean modificando;
     private final Lote loteAModificar;
 
+    private ResourceBundle idioma;
+
     public ControladorGestionLotes(GestionLotes ventanaGestionLotes, Modelo modelo) {
         this.ventanaGestionLotes = ventanaGestionLotes;
         this.modelo = modelo;
         modificando = false;
         loteAModificar = null;
-        cargarFabricantes();
+        idioma = ResourceBundle.getBundle("idioma");
+        crearAtajos();
         initHandlers();
+        cargarFabricantes();
 
         ventanaGestionLotes.dpCaducidad.setDate(LocalDate.now());
         ventanaGestionLotes.dpEnvasado.setDate(LocalDate.now());
-
     }
 
     public ControladorGestionLotes(GestionLotes ventanaGestionLotes, Modelo modelo, Lote lote) {
@@ -35,21 +40,29 @@ public class ControladorGestionLotes implements ActionListener {
         this.modelo = modelo;
         modificando = true;
         loteAModificar = lote;
-        cargarFabricantes();
+        crearAtajos();
         initHandlers();
-
-        ventanaGestionLotes.txtCoste.setText(String.valueOf(lote.getCosteTotal()));
-        ventanaGestionLotes.txtUnidades.setText(String.valueOf(lote.getNumeroUnidades()));
-        ventanaGestionLotes.dpEnvasado.setDate(lote.getFechaDeEnvasado());
-        ventanaGestionLotes.dpCaducidad.setDate(lote.getFechaDeCaducidad());
-
-        ventanaGestionLotes.cbFabricante.setSelectedItem(lote.getFabricante());
-
+        cargarFabricantes();
+        rellenarDatos();
     }
 
     private void initHandlers() {
         ventanaGestionLotes.btnGestionar.addActionListener(this);
         ventanaGestionLotes.btnCancelar.addActionListener(this);
+    }
+
+    private void crearAtajos() {
+        ventanaGestionLotes.btnGestionar.setMnemonic(KeyEvent.VK_1);
+        ventanaGestionLotes.btnCancelar.setMnemonic(KeyEvent.VK_2);
+    }
+
+    private void rellenarDatos() {
+        ventanaGestionLotes.txtCoste.setText(String.valueOf(loteAModificar.getCosteTotal()));
+        ventanaGestionLotes.txtUnidades.setText(String.valueOf(loteAModificar.getNumeroUnidades()));
+        ventanaGestionLotes.dpEnvasado.setDate(loteAModificar.getFechaDeEnvasado());
+        ventanaGestionLotes.dpCaducidad.setDate(loteAModificar.getFechaDeCaducidad());
+
+        ventanaGestionLotes.cbFabricante.setSelectedItem(loteAModificar.getFabricante());
     }
 
     private void cargarFabricantes() {
@@ -86,33 +99,33 @@ public class ControladorGestionLotes implements ActionListener {
                                 if (unidades > 0) {
                                     LocalDate envasado = ventanaGestionLotes.dpEnvasado.getDate();
                                     LocalDate caducidad = ventanaGestionLotes.dpCaducidad.getDate();
-                                    if (envasado.isAfter(caducidad)) {
+                                    if (envasado.isBefore(caducidad)) {
                                         Fabricante fabricante = (Fabricante) ventanaGestionLotes.cbFabricante.getSelectedItem();
                                         lote = new Lote(unidades, coste, envasado, caducidad, fabricante);
                                     } else {
-                                        Util.mostrarError("La fecha de caducidad no puede ser anterior a la de envasado.");
+                                        Util.mostrarError(idioma.getString("error.caducidadAntesDeEnvasado"));
                                     }
                                 } else {
-                                    Util.mostrarError("Las unidades deben ser mayor que cero.\n Ejemplo: 500.");
+                                    Util.mostrarError(idioma.getString("error.unidadesMenorQueCero"));
                                 }
                             } else {
-                                Util.mostrarError("El coste debe ser mayor que cero.\n Ejemplo: 1.6.");
+                                Util.mostrarError(idioma.getString("error.costeMenorQueCero"));
                             }
                         } else {
-                            Util.mostrarError("Debes seleccionar una fecha de caducidad.");
+                            Util.mostrarError(idioma.getString("error.faltaCaducidad"));
                         }
 
                     } else {
-                        Util.mostrarError("Debes seleccionar una fecha de envasado.");
+                        Util.mostrarError(idioma.getString("error.faltaEnvasado"));
                     }
                 } else {
-                    Util.mostrarError("Debes seleccionar un fabricante.");
+                    Util.mostrarError(idioma.getString("error.fabricante"));
                 }
             } else {
-                Util.mostrarError("El coste no es correcto.\n Ejemplo: 15.95.");
+                Util.mostrarError(idioma.getString("error.coste"));
             }
         } else {
-            Util.mostrarError("Las unidades no son correctas.\n Ejemplo: 10000");
+            Util.mostrarError(idioma.getString("error.unidades"));
         }
         return lote;
     }

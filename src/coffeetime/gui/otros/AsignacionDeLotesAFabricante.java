@@ -7,10 +7,10 @@ import javax.swing.*;
 
 public class AsignacionDeLotesAFabricante extends JDialog {
 
-    private JPanel contentPane;
     JList<Lote> listLotesDeOtrosFabricantes;
     JButton btnCambiarFabricante;
     DefaultListModel<Lote> dlm;
+    private JPanel contentPane;
 
     public AsignacionDeLotesAFabricante() {
         setContentPane(contentPane);
@@ -23,6 +23,9 @@ public class AsignacionDeLotesAFabricante extends JDialog {
     }
 
     private void initComponents() {
+        contentPane.getRootPane().setDefaultButton(btnCambiarFabricante);
+        btnCambiarFabricante.requestFocus();
+
         dlm = new DefaultListModel<>();
         listLotesDeOtrosFabricantes.setModel(dlm);
         listLotesDeOtrosFabricantes.setCellRenderer(new Renderer(Renderer.LOTES));

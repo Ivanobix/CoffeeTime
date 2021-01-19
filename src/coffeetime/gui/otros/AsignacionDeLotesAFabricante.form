@@ -17,6 +17,7 @@
         <properties>
           <icon value="gestion/cambiarFabricanteDeLote.png"/>
           <text value=""/>
+          <toolTipText resource-bundle="idioma" key="asignar.Fabricante"/>
         </properties>
       </component>
       <scrollpane id="555c6">

@@ -8,7 +8,9 @@ import coffeetime.util.Util;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 public class ControladorGestionFabricantes implements ActionListener {
 
@@ -17,13 +19,16 @@ public class ControladorGestionFabricantes implements ActionListener {
     private final boolean modificando;
     private final Fabricante fabricanteAModificar;
 
+    private ResourceBundle idioma;
+
     public ControladorGestionFabricantes(GestionFabricantes ventanaGestionFabricantes, Modelo modelo) {
         this.ventanaGestionFabricantes = ventanaGestionFabricantes;
         this.modelo = modelo;
         modificando = false;
         fabricanteAModificar = null;
+        idioma = ResourceBundle.getBundle("idioma");
         ventanaGestionFabricantes.dpFechaAlta.setDate(LocalDate.now());
-
+        crearAtajos();
         initHandlers();
     }
 
@@ -32,22 +37,9 @@ public class ControladorGestionFabricantes implements ActionListener {
         this.modelo = modelo;
         modificando = true;
         fabricanteAModificar = fabricante;
-
+        crearAtajos();
         initHandlers();
-
-        ventanaGestionFabricantes.txtNombre.setText(fabricante.getNombre());
-        ventanaGestionFabricantes.txtDireccion.setText(fabricante.getDireccion());
-        ventanaGestionFabricantes.txtTrabajadores.setText(String.valueOf(fabricante.getTrabajadores()));
-
-        ventanaGestionFabricantes.dpFechaAlta.setDate(fabricante.getFechaAlta());
-
-        if (fabricante.isInternacional()) {
-            ventanaGestionFabricantes.chbxInternacional.setSelected(true);
-        }
-
-        ventanaGestionFabricantes.lblLotesFabricados.setVisible(true);
-        ventanaGestionFabricantes.btnGestionarLotes.setVisible(true);
-
+        rellenarDatos();
     }
 
     private void initHandlers() {
@@ -57,6 +49,27 @@ public class ControladorGestionFabricantes implements ActionListener {
         if (modificando) {
             ventanaGestionFabricantes.btnGestionarLotes.addActionListener(this);
         }
+    }
+
+    private void crearAtajos() {
+        ventanaGestionFabricantes.btnGestionar.setMnemonic(KeyEvent.VK_1);
+        ventanaGestionFabricantes.btnCancelar.setMnemonic(KeyEvent.VK_2);
+        ventanaGestionFabricantes.btnGestionarLotes.setMnemonic(KeyEvent.VK_3);
+    }
+
+    private void rellenarDatos() {
+        ventanaGestionFabricantes.txtNombre.setText(fabricanteAModificar.getNombre());
+        ventanaGestionFabricantes.txtDireccion.setText(fabricanteAModificar.getDireccion());
+        ventanaGestionFabricantes.txtTrabajadores.setText(String.valueOf(fabricanteAModificar.getTrabajadores()));
+
+        ventanaGestionFabricantes.dpFechaAlta.setDate(fabricanteAModificar.getFechaAlta());
+
+        if (fabricanteAModificar.isInternacional()) {
+            ventanaGestionFabricantes.chbxInternacional.setSelected(true);
+        }
+
+        ventanaGestionFabricantes.lblLotesFabricados.setVisible(true);
+        ventanaGestionFabricantes.btnGestionarLotes.setVisible(true);
     }
 
     private void gestionarFabricante() {
@@ -91,23 +104,23 @@ public class ControladorGestionFabricantes implements ActionListener {
                             }
                             fabricante = new Fabricante(nombre, direccion, trabajadores, fechaCreacion, internacional);
                         } else {
-                            Util.mostrarError("El número de trabajadores debe ser mayor a 0 y menor que 1.500.000.\n Ejemplo: 100");
+                            Util.mostrarError(idioma.getString("error.numTrabajadores"));
                         }
 
 
                     } else {
-                        Util.mostrarError("Debes seleccionar una fecha de alta.");
+                        Util.mostrarError(idioma.getString("error.faltaFechaAlta"));
                     }
                 } else {
                     Util.mostrarError(
-                            "La dirección no puede estar vacía.\n Ejemplo: Avenida Ramón y Cajal, 5, 24002, León.");
+                            idioma.getString("error.direccionVacia"));
                 }
             } else {
-                Util.mostrarError("El nombre no puede estar vacío.\n Ejemplo: Granell.");
+                Util.mostrarError(idioma.getString("error.nombreVacioFabricante"));
             }
 
         } else {
-            Util.mostrarError("El valor de los trabajadores no está en el formato correcto.\n Ejemplo: 25");
+            Util.mostrarError(idioma.getString("error.formatoTrabajadores"));
         }
 
         return fabricante;

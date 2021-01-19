@@ -9,8 +9,10 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * Controlador Gestión Cafés. Controlador para la ventana de gestión de cafés
@@ -28,6 +30,8 @@ public class ControladorGestionCafes implements ActionListener {
     private final boolean modificando;
     private final Cafe cafeAModificar;
 
+    private ResourceBundle idioma;
+
     /**
      * Constructor para crear un nuevo café.
      *
@@ -39,8 +43,10 @@ public class ControladorGestionCafes implements ActionListener {
         this.modelo = modelo;
         modificando = false;
         cafeAModificar = null;
-        cargarLotes();
+        idioma = ResourceBundle.getBundle("idioma");
+        crearAtajos();
         initHandlers();
+        cargarLotes();
 
     }
 
@@ -57,18 +63,9 @@ public class ControladorGestionCafes implements ActionListener {
         modificando = true;
         cafeAModificar = cafe;
         cargarLotes();
+        crearAtajos();
         initHandlers();
-
-        ventanaGestionCafe.txtNombre.setText(cafe.getNombre());
-        ventanaGestionCafe.txtArabico.setText(String.valueOf(cafe.getPorcentajeArabico()));
-        ventanaGestionCafe.txtRobusta.setText(String.valueOf(cafe.getPorcentajeRobusta()));
-        ventanaGestionCafe.txtRutaImagen.setText(cafe.getImagenPromocional());
-
-        ventanaGestionCafe.cbLote.setSelectedItem(cafe.getLote());
-
-        ImageIcon iconoOriginal = new ImageIcon(ventanaGestionCafe.txtRutaImagen.getText());
-        ventanaGestionCafe.imgPromocional.setIcon(Util.escalarImagen(iconoOriginal, 70, 70));
-
+        rellenarDatos();
     }
 
     /**
@@ -79,6 +76,24 @@ public class ControladorGestionCafes implements ActionListener {
         ventanaGestionCafe.btnSeleccionarImagen.addActionListener(this);
         ventanaGestionCafe.btnGestionar.addActionListener(this);
         ventanaGestionCafe.btnCancelar.addActionListener(this);
+    }
+
+    private void crearAtajos() {
+        ventanaGestionCafe.btnGestionar.setMnemonic(KeyEvent.VK_1);
+        ventanaGestionCafe.btnCancelar.setMnemonic(KeyEvent.VK_2);
+        ventanaGestionCafe.btnSeleccionarImagen.setMnemonic(KeyEvent.VK_3);
+    }
+
+    private void rellenarDatos() {
+        ventanaGestionCafe.txtNombre.setText(cafeAModificar.getNombre());
+        ventanaGestionCafe.txtArabico.setText(String.valueOf(cafeAModificar.getPorcentajeArabico()));
+        ventanaGestionCafe.txtRobusta.setText(String.valueOf(cafeAModificar.getPorcentajeRobusta()));
+        ventanaGestionCafe.txtRutaImagen.setText(cafeAModificar.getImagenPromocional());
+
+        ventanaGestionCafe.cbLote.setSelectedItem(cafeAModificar.getLote());
+
+        ImageIcon iconoOriginal = new ImageIcon(ventanaGestionCafe.txtRutaImagen.getText());
+        ventanaGestionCafe.imgPromocional.setIcon(Util.escalarImagen(iconoOriginal, 70, 70));
     }
 
     private void cargarLotes() {
@@ -138,20 +153,19 @@ public class ControladorGestionCafes implements ActionListener {
                             cafe = new Cafe(nombre, rutaImagen, arabico, robusta, lote);
 
                         } else {
-                            Util.mostrarError(
-                                    "La suma de los ingredientes no puede ser mayor al 100% ni menor al 0%.\n Ejemplo: Arábico: 45% Robusta: 30%.");
+                            Util.mostrarError(idioma.getString("error.mezclaNoCorrecta"));
                         }
                     } else {
-                        Util.mostrarError("Debes seleccionar una imagen promocional.");
+                        Util.mostrarError(idioma.getString("error.imagenNoSeleccionada"));
                     }
                 } else {
-                    Util.mostrarError("Debes seleccionar un lote.");
+                    Util.mostrarError(idioma.getString("error.loteNoSeleccionado"));
                 }
             } else {
-                Util.mostrarError("El nombre no puede estar vacío.\n Ejemplo: Lavazza Café.");
+                Util.mostrarError(idioma.getString("error.nombreVacio"));
             }
         } else {
-            Util.mostrarError("Los valores de la mezcla no están en el formato correcto.\n Ejemplo: 23.2.");
+            Util.mostrarError(idioma.getString("error.formatoMezcla"));
         }
         return cafe;
     }

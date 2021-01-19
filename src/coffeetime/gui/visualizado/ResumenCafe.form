@@ -28,7 +28,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="idioma" key="nombre"/>
+              <text resource-bundle="idioma" key="general.nombre"/>
             </properties>
           </component>
           <component id="62ebd" class="javax.swing.JLabel">
@@ -36,7 +36,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="idioma" key="arabico"/>
+              <text resource-bundle="idioma" key="general.arabico"/>
             </properties>
           </component>
           <component id="85c28" class="javax.swing.JLabel">
@@ -44,7 +44,7 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="idioma" key="robusta"/>
+              <text resource-bundle="idioma" key="general.robusta"/>
             </properties>
           </component>
           <component id="febc5" class="javax.swing.JLabel">
@@ -52,7 +52,7 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="idioma" key="lote"/>
+              <text resource-bundle="idioma" key="general.lote"/>
             </properties>
           </component>
           <component id="495ad" class="javax.swing.JLabel" binding="lblNombre">
@@ -93,6 +93,7 @@
               <horizontalTextPosition value="0"/>
               <icon value="visualizado/ir.png"/>
               <text value=""/>
+              <toolTipText resource-bundle="idioma" key="mostrar.Lote"/>
             </properties>
           </component>
           <component id="d795" class="javax.swing.JLabel">
@@ -100,7 +101,7 @@
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="idioma" key="imagenPromocional"/>
+              <text resource-bundle="idioma" key="general.imagenPromocional"/>
             </properties>
           </component>
           <component id="41e3e" class="javax.swing.JButton" binding="btnVerImagen">
@@ -111,6 +112,7 @@
               <horizontalTextPosition value="0"/>
               <icon value="visualizado/verImagen.png"/>
               <text value=""/>
+              <toolTipText resource-bundle="idioma" key="ver.Imagen"/>
             </properties>
           </component>
         </children>

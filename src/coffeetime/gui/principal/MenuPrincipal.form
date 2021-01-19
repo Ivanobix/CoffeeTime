@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="coffeetime.gui.principal.MenuPrincipal">
   <grid id="27dc6" binding="pnPrincipal" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="726" height="416"/>
+      <xy x="20" y="20" width="1176" height="716"/>
     </constraints>
     <properties>
       <preferredSize width="1030" height="520"/>
@@ -27,8 +27,9 @@
             </constraints>
             <properties>
               <actionCommand value="btnCafes"/>
-              <icon value="menuPrincipal/cafes.png"/>
+              <icon value="menuPrincipal/cafes_es.png"/>
               <text value=""/>
+              <toolTipText resource-bundle="idioma" key="irA.Cafes"/>
             </properties>
           </component>
           <component id="e907d" class="javax.swing.JButton" binding="btnFabricantes">
@@ -37,8 +38,9 @@
             </constraints>
             <properties>
               <actionCommand value="btnFabricantes"/>
-              <icon value="menuPrincipal/fabricantes.png"/>
+              <icon value="menuPrincipal/fabricantes_es.png"/>
               <text value=""/>
+              <toolTipText resource-bundle="idioma" key="irA.Fabricantes"/>
             </properties>
           </component>
           <component id="3e51f" class="javax.swing.JButton" binding="btnLotes">
@@ -47,8 +49,9 @@
             </constraints>
             <properties>
               <actionCommand value="btnLotes"/>
-              <icon value="menuPrincipal/lotes.png"/>
+              <icon value="menuPrincipal/lotes_es.png"/>
               <text value=""/>
+              <toolTipText resource-bundle="idioma" key="irA.Lotes"/>
             </properties>
           </component>
         </children>

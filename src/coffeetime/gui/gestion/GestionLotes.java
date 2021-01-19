@@ -26,6 +26,9 @@ public class GestionLotes extends JDialog {
     }
 
     private void initComponents() {
+        contentPane.getRootPane().setDefaultButton(btnGestionar);
+        btnGestionar.requestFocus();
+
         dcbm = new DefaultComboBoxModel<>();
         cbFabricante.setModel(dcbm);
     }

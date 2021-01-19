@@ -20,7 +20,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="idioma" key="unidades"/>
+              <text resource-bundle="idioma" key="general.unidades"/>
             </properties>
           </component>
           <component id="c0d40" class="javax.swing.JLabel">
@@ -28,7 +28,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="idioma" key="coste"/>
+              <text resource-bundle="idioma" key="general.coste"/>
             </properties>
           </component>
           <component id="e5011" class="javax.swing.JLabel">
@@ -36,7 +36,7 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="idioma" key="envasado"/>
+              <text resource-bundle="idioma" key="general.envasado"/>
             </properties>
           </component>
           <component id="4a47e" class="javax.swing.JLabel">
@@ -44,7 +44,7 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="idioma" key="caducidad"/>
+              <text resource-bundle="idioma" key="general.caducidad"/>
             </properties>
           </component>
           <component id="dcefd" class="javax.swing.JLabel">
@@ -52,7 +52,7 @@
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="idioma" key="fabricante"/>
+              <text resource-bundle="idioma" key="general.fabricante"/>
             </properties>
           </component>
           <component id="c378f" class="javax.swing.JLabel" binding="lblUnidades">
@@ -94,6 +94,7 @@
             <properties>
               <icon value="visualizado/ir.png"/>
               <text value=""/>
+              <toolTipText resource-bundle="idioma" key="mostrar.Fabricante"/>
             </properties>
           </component>
         </children>

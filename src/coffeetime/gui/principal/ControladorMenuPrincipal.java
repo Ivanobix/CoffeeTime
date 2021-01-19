@@ -7,8 +7,10 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class ControladorMenuPrincipal implements ActionListener {
 
@@ -16,11 +18,15 @@ public class ControladorMenuPrincipal implements ActionListener {
     private static final String NOMBRE_EXTENSION_FICHEROS = "dat";
     private final MenuPrincipal menuPrincipal;
     private final Modelo modelo;
+    private final ResourceBundle idioma;
 
     public ControladorMenuPrincipal(MenuPrincipal menuPrincipal, Modelo modelo) {
         this.menuPrincipal = menuPrincipal;
         this.modelo = modelo;
+        idioma = ResourceBundle.getBundle("idioma");
         initHandlers();
+        crearAtajos();
+
     }
 
     private void initHandlers() {
@@ -37,6 +43,12 @@ public class ControladorMenuPrincipal implements ActionListener {
 
     }
 
+    private void crearAtajos() {
+        menuPrincipal.btnFabricantes.setMnemonic(KeyEvent.VK_2);
+        menuPrincipal.btnLotes.setMnemonic(KeyEvent.VK_3);
+        menuPrincipal.btnCafes.setMnemonic(KeyEvent.VK_1);
+    }
+
     private void guardarDatos() {
         JFileChooser selector = new JFileChooser();
         selector.setAcceptAllFileFilterUsed(false);
@@ -48,7 +60,7 @@ public class ControladorMenuPrincipal implements ActionListener {
             try {
                 modelo.guardarDatos(fichero);
             } catch (IOException e1) {
-                Util.mostrarError("Error al guardar el fichero");
+                Util.mostrarError(idioma.getString("error.guardarFichero"));
             }
         }
     }
@@ -63,13 +75,13 @@ public class ControladorMenuPrincipal implements ActionListener {
             try {
                 modelo.cargarDatos(ficheroCarga);
             } catch (ClassNotFoundException | IOException e1) {
-                Util.mostrarError("Error al abrir el fichero");
+                Util.mostrarError(idioma.getString("error.cargarFichero"));
             }
         }
     }
 
     private void reiniciarElementos() {
-        if (Util.mostrarConfirmacion("¿Estás seguro de querer eliminar todos los datos?") == Util.ACEPTAR) {
+        if (Util.mostrarConfirmacion(idioma.getString("error.seguroDeBorrar")) == Util.ACEPTAR) {
             modelo.reiniciarDatos();
         }
     }

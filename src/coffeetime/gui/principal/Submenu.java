@@ -6,6 +6,7 @@ import coffeetime.base.Lote;
 import coffeetime.componentes.Renderer;
 
 import javax.swing.*;
+import java.util.ResourceBundle;
 
 public class Submenu extends JDialog {
     public static final int TYPE_CAFES = 0;
@@ -31,15 +32,25 @@ public class Submenu extends JDialog {
         this.tipo = tipo;
         setContentPane(contentPane);
         initComponents();
+        internacionalizar();
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
+        this.getRootPane().setDefaultButton(btnAnadir);
+        btnAnadir.requestFocus();
     }
 
     private void initComponents() {
         if (tipo == TYPE_CAFES) {
             tabbedPane.remove(1);
         }
+    }
+
+    private void internacionalizar() {
+        ResourceBundle idioma = ResourceBundle.getBundle("idioma");
+        tabbedPane.setToolTipTextAt(0, idioma.getString("ver.Listado"));
+        tabbedPane.setToolTipTextAt(1, idioma.getString("ver.Estadisticas"));
 
     }
 

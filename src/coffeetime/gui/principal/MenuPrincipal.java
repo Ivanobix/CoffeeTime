@@ -2,6 +2,9 @@ package coffeetime.gui.principal;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 
@@ -36,53 +39,79 @@ public class MenuPrincipal extends Component {
     }
 
     private void initComponents() {
+        frame.getRootPane().setDefaultButton(btnFabricantes);
         initBarraDeHerramientas();
+        establecerTema();
+        establecerEstiloBotones();
+        establecerIdiomaBotones();
 
+    }
+
+    private void establecerTema() {
         pnDatos.setBackground(TEMA_OSCURO);
-
-        btnCafes.setBorderPainted(false);
-        btnCafes.setBackground(TEMA_OSCURO);
-
-        btnFabricantes.setBorderPainted(false);
-        btnFabricantes.setBackground(TEMA_OSCURO);
-
-        btnLotes.setBorderPainted(false);
         btnLotes.setBackground(TEMA_OSCURO);
+        btnFabricantes.setBackground(TEMA_OSCURO);
+        btnCafes.setBackground(TEMA_OSCURO);
+    }
 
+    private void establecerEstiloBotones() {
+        btnCafes.setBorderPainted(false);
+        btnFabricantes.setBorderPainted(false);
+        btnLotes.setBorderPainted(false);
+    }
+
+    private void establecerIdiomaBotones() {
+        if (Locale.getDefault() == Locale.ENGLISH) {
+            btnCafes.setIcon(new ImageIcon("media/menuPrincipal/cafes_en.png"));
+            btnLotes.setIcon(new ImageIcon("media/menuPrincipal/lotes_en.png"));
+            btnFabricantes.setIcon(new ImageIcon("media/menuPrincipal/fabricantes_en.png"));
+        } else if (Locale.getDefault() == Locale.FRENCH) {
+            btnCafes.setIcon(new ImageIcon("media/menuPrincipal/cafes_fr.png"));
+            btnLotes.setIcon(new ImageIcon("media/menuPrincipal/lotes_fr.png"));
+            btnFabricantes.setIcon(new ImageIcon("media/menuPrincipal/fabricantes_fr.png"));
+        }
     }
 
     private void initBarraDeHerramientas() {
         JMenuBar menuBar = new JMenuBar();
         frame.setJMenuBar(menuBar);
 
-        JMenu mnArchivo = new JMenu(idioma.getString("archivo"));
+        JMenu mnArchivo = new JMenu(idioma.getString("menu.archivo"));
+        mnArchivo.setMnemonic(KeyEvent.VK_A);
         menuBar.add(mnArchivo);
 
-        mnitGuardar = new JMenuItem(idioma.getString("guardar"), new ImageIcon("media/herramientas/guardar.png"));
+        mnitGuardar = new JMenuItem(idioma.getString("menu.guardar"), new ImageIcon("media/herramientas/guardar.png"));
         mnitGuardar.setActionCommand("mnitGuardar");
+        mnitGuardar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
         mnArchivo.add(mnitGuardar);
 
-        mnitCargar = new JMenuItem(idioma.getString("cargar"), new ImageIcon("media/herramientas/cargar.png"));
+        mnitCargar = new JMenuItem(idioma.getString("menu.cargar"), new ImageIcon("media/herramientas/cargar.png"));
         mnitCargar.setActionCommand("mnitCargar");
+        mnitCargar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_DOWN_MASK));
         mnArchivo.add(mnitCargar);
 
-        mnitNuevo = new JMenuItem(idioma.getString("nuevo"), new ImageIcon("media/herramientas/nuevo.png"));
+        mnitNuevo = new JMenuItem(idioma.getString("menu.nuevo"), new ImageIcon("media/herramientas/nuevo.png"));
         mnitNuevo.setActionCommand("mnitNuevo");
+        mnitNuevo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, InputEvent.CTRL_DOWN_MASK));
         mnArchivo.add(mnitNuevo);
 
-        mnitCerrarSesion = new JMenuItem(idioma.getString("cerrarSesion"), new ImageIcon("media/herramientas/cerrarSesion.png"));
+        mnitCerrarSesion = new JMenuItem(idioma.getString("menu.cerrarSesion"), new ImageIcon("media/herramientas/cerrarSesion.png"));
         mnitCerrarSesion.setActionCommand("mnitCerrarSesion");
+        mnitCerrarSesion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, InputEvent.ALT_DOWN_MASK));
         mnArchivo.add(mnitCerrarSesion);
 
-        JMenu mnEditar = new JMenu(idioma.getString("editar"));
+        JMenu mnEditar = new JMenu(idioma.getString("menu.editar"));
+        mnEditar.setMnemonic(KeyEvent.VK_E);
         menuBar.add(mnEditar);
 
-        mnitDeshacer = new JMenuItem(idioma.getString("deshacer"), new ImageIcon("media/herramientas/deshacer.png"));
+        mnitDeshacer = new JMenuItem(idioma.getString("menu.deshacer"), new ImageIcon("media/herramientas/deshacer.png"));
         mnitDeshacer.setActionCommand("mnitDeshacer");
+        mnitDeshacer.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK));
         mnEditar.add(mnitDeshacer);
 
-        mnitPreferencias = new JMenuItem(idioma.getString("preferencias"), new ImageIcon("media/herramientas/preferencias.png"));
+        mnitPreferencias = new JMenuItem(idioma.getString("menu.preferencias"), new ImageIcon("media/herramientas/preferencias.png"));
         mnitPreferencias.setActionCommand("mnitPreferencias");
+        mnitPreferencias.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK));
         mnEditar.add(mnitPreferencias);
 
     }

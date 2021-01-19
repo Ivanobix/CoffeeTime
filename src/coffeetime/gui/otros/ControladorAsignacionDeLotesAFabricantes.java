@@ -3,6 +3,7 @@ package coffeetime.gui.otros;
 import coffeetime.base.Fabricante;
 import coffeetime.base.Lote;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class ControladorAsignacionDeLotesAFabricantes {
@@ -18,6 +19,7 @@ public class ControladorAsignacionDeLotesAFabricantes {
         this.lotes.addAll(lotes);
 
         initHandlers();
+        crearAtajos();
         cargarDatos();
     }
 
@@ -29,6 +31,10 @@ public class ControladorAsignacionDeLotesAFabricantes {
             }
 
         });
+    }
+
+    private void crearAtajos() {
+        ventanaAsignacionDeLotesAFabricante.btnCambiarFabricante.setMnemonic(KeyEvent.VK_1);
     }
 
     private void cargarDatos() {

@@ -3,26 +3,31 @@ package coffeetime.gui.principal;
 import coffeetime.base.Cafe;
 import coffeetime.base.Fabricante;
 import coffeetime.base.Lote;
+import coffeetime.gui.gestion.*;
 import coffeetime.gui.visualizado.ResumenCafe;
 import coffeetime.gui.visualizado.ResumenFabricante;
 import coffeetime.gui.visualizado.ResumenLote;
-import coffeetime.gui.gestion.*;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class ControladorSubmenu implements ActionListener {
 
     private final Submenu submenu;
     private final Modelo modelo;
+    private final ResourceBundle idioma;
 
     public ControladorSubmenu(Submenu submenu, Modelo modelo) {
         this.submenu = submenu;
         this.modelo = modelo;
+        idioma = ResourceBundle.getBundle("idioma");
         initHandlers();
+        crearAtajos();
         cargarDatos();
     }
 
@@ -32,6 +37,13 @@ public class ControladorSubmenu implements ActionListener {
         submenu.btnModificar.addActionListener(this);
         submenu.btnMostrarInfoAdicional.addActionListener(this);
 
+    }
+
+    private void crearAtajos() {
+        submenu.btnAnadir.setMnemonic(KeyEvent.VK_1);
+        submenu.btnEliminar.setMnemonic(KeyEvent.VK_2);
+        submenu.btnModificar.setMnemonic(KeyEvent.VK_3);
+        submenu.btnMostrarInfoAdicional.setMnemonic(KeyEvent.VK_4);
     }
 
     private void cargarDatos() {
@@ -81,7 +93,7 @@ public class ControladorSubmenu implements ActionListener {
                 modelo.eliminarFabricante((Fabricante) objeto);
             }
         } else {
-            Util.mostrarError("Ningún elemento ha sido seleccionado");
+            Util.mostrarError(idioma.getString("error.nadaSeleccionado"));
         }
 
         actualizarLista();
@@ -99,7 +111,7 @@ public class ControladorSubmenu implements ActionListener {
             }
             submenu.dispose();
         } else {
-            Util.mostrarError("Ningún elemento ha sido seleccionado");
+            Util.mostrarError(idioma.getString("error.nadaSeleccionado"));
         }
 
     }
@@ -116,7 +128,7 @@ public class ControladorSubmenu implements ActionListener {
             }
 
         } else {
-            Util.mostrarError("Ningún elemento ha sido seleccionado");
+            Util.mostrarError(idioma.getString("error.nadaSeleccionado"));
         }
     }
 
