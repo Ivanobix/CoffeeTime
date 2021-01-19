@@ -25,10 +25,8 @@ public class Launcher {
      * @param args Argumentos de inicialización.
      */
     public static void main(String[] args) {
-
         //Locale.setDefault(Locale.ENGLISH);
         //Locale.setDefault(Locale.FRENCH);
-
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
