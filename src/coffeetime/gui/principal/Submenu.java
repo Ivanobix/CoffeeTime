@@ -13,6 +13,8 @@ public class Submenu extends JDialog {
     public static final int TYPE_LOTES = 1;
     public static final int TYPE_FABRICANTES = 2;
 
+    private final ResourceBundle idioma;
+
     final int tipo;
 
     JPanel contentPane;
@@ -30,6 +32,7 @@ public class Submenu extends JDialog {
 
     public Submenu(int tipo) {
         this.tipo = tipo;
+        idioma = ResourceBundle.getBundle("idioma");
         setContentPane(contentPane);
         initComponents();
         internacionalizar();
@@ -45,13 +48,43 @@ public class Submenu extends JDialog {
         if (tipo == TYPE_CAFES) {
             tabbedPane.remove(1);
         }
+        rellenarFiltros();
+    }
+
+    private void rellenarFiltros() {
+        if (tipo == TYPE_CAFES) {
+            rellenarFiltrosCafe();
+        } else if (tipo == TYPE_LOTES) {
+            rellenarFiltrosLote();
+        } else {
+            rellenarFiltrosFabricante();
+        }
+    }
+
+    private void rellenarFiltrosCafe() {
+        cbFiltrado.addItem(idioma.getString("general.nombre"));
+        cbFiltrado.addItem(idioma.getString("general.arabico"));
+        cbFiltrado.addItem(idioma.getString("general.robusta"));
+        cbFiltrado.addItem(idioma.getString("general.lote"));
+    }
+
+    private void rellenarFiltrosLote() {
+        cbFiltrado.addItem(idioma.getString("general.unidades"));
+        cbFiltrado.addItem(idioma.getString("general.coste"));
+        cbFiltrado.addItem(idioma.getString("general.fabricante"));
+    }
+
+    private void rellenarFiltrosFabricante() {
+        cbFiltrado.addItem(idioma.getString("general.nombre"));
+        cbFiltrado.addItem(idioma.getString("general.direccion"));
+        cbFiltrado.addItem(idioma.getString("general.trabajadores"));
     }
 
     private void internacionalizar() {
-        ResourceBundle idioma = ResourceBundle.getBundle("idioma");
         tabbedPane.setToolTipTextAt(0, idioma.getString("ver.Listado"));
-        tabbedPane.setToolTipTextAt(1, idioma.getString("ver.Estadisticas"));
-
+        if (tipo != TYPE_CAFES) {
+            tabbedPane.setToolTipTextAt(1, idioma.getString("ver.Estadisticas"));
+        }
     }
 
     private void createUIComponents() {

@@ -13,10 +13,11 @@ import coffeetime.util.Util;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ControladorSubmenu implements ActionListener {
+public class ControladorSubmenu implements ActionListener, KeyListener {
 
     private final Submenu submenu;
     private final Modelo modelo;
@@ -37,6 +38,7 @@ public class ControladorSubmenu implements ActionListener {
         submenu.btnModificar.addActionListener(this);
         submenu.btnMostrarInfoAdicional.addActionListener(this);
 
+        submenu.txtFiltro.addKeyListener(this);
     }
 
     private void crearAtajos() {
@@ -132,6 +134,97 @@ public class ControladorSubmenu implements ActionListener {
         }
     }
 
+    private void filtrar() {
+        String filtro = submenu.txtFiltro.getText().trim().toLowerCase();
+        if (!filtro.replaceAll(" ", "").equals("")) {
+            submenu.dlm.clear();
+            int filtrado = submenu.cbFiltrado.getSelectedIndex() + 1;
+            if (submenu.tipo == Submenu.TYPE_CAFES) {
+                buscarCafes(filtrado, filtro);
+            } else if (submenu.tipo == Submenu.TYPE_LOTES) {
+                buscarLotes(filtrado, filtro);
+            } else {
+                buscarFabricantes(filtrado, filtro);
+            }
+
+        } else {
+            actualizarLista();
+        }
+
+    }
+
+    private void buscarCafes(int filtrado, String filtro) {
+        for (Cafe cafe : modelo.getCafes()) {
+            switch (filtrado) {
+                case 1: //Nombre
+                    if (cafe.getNombre().toLowerCase().contains(filtro)) {
+                        submenu.dlm.addElement(cafe);
+                    }
+                    break;
+                case 2: //Arabico
+                    if (String.valueOf(cafe.getPorcentajeArabico()).contains(filtro)) {
+                        submenu.dlm.addElement(cafe);
+                    }
+                    break;
+                case 3: //Robusta
+                    if (String.valueOf(cafe.getPorcentajeRobusta()).contains(filtro)) {
+                        submenu.dlm.addElement(cafe);
+                    }
+                    break;
+                case 4: //Lote
+                    if (cafe.getLote().getIdentificador().toLowerCase().contains(filtro)) {
+                        submenu.dlm.addElement(cafe);
+                    }
+                    break;
+            }
+        }
+    }
+
+    private void buscarLotes(int filtrado, String filtro) {
+        for (Lote lote : modelo.getLotes()) {
+            switch (filtrado) {
+                case 1: //Unidades
+                    if (String.valueOf(lote.getNumeroUnidades()).contains(filtro)) {
+                        submenu.dlm.addElement(lote);
+                    }
+                    break;
+                case 2: //Coste
+                    if (String.valueOf(lote.getCosteTotal()).contains(filtro)) {
+                        submenu.dlm.addElement(lote);
+                    }
+                    break;
+                case 3: //Fabricante
+                    if (lote.getFabricante().getNombre().toLowerCase().contains(filtro)) {
+                        submenu.dlm.addElement(lote);
+                    }
+                    break;
+
+            }
+        }
+    }
+
+    private void buscarFabricantes(int filtrado, String filtro) {
+        for (Fabricante fabricante : modelo.getFabricantes()) {
+            switch (filtrado) {
+                case 1: //Nombre
+                    if (fabricante.getNombre().toLowerCase().contains(filtro)) {
+                        submenu.dlm.addElement(fabricante);
+                    }
+                    break;
+                case 2: //Dirección
+                    if (fabricante.getDireccion().toLowerCase().contains(filtro)) {
+                        submenu.dlm.addElement(fabricante);
+                    }
+                    break;
+                case 3: //Trabajadores
+                    if (String.valueOf(fabricante.getTrabajadores()).contains(filtro)) {
+                        submenu.dlm.addElement(fabricante);
+                    }
+                    break;
+            }
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -149,4 +242,20 @@ public class ControladorSubmenu implements ActionListener {
                 break;
         }
     }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        filtrar();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
 }

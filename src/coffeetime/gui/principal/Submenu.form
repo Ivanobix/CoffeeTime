@@ -67,7 +67,7 @@
                 <constraints/>
                 <properties>
                   <model/>
-                  <preferredSize width="78" height="25"/>
+                  <preferredSize width="150" height="25"/>
                   <toolTipText resource-bundle="idioma" key="seleccionar.Filtrado"/>
                 </properties>
               </component>
