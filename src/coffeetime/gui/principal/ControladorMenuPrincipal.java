@@ -1,6 +1,8 @@
 package coffeetime.gui.principal;
 
+import coffeetime.base.Usuario;
 import coffeetime.gui.otros.CreacionUsuarios;
+import coffeetime.gui.otros.EliminacionUsuarios;
 import coffeetime.gui.otros.Preferencias;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
@@ -9,8 +11,10 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
@@ -27,9 +31,10 @@ public class ControladorMenuPrincipal implements ActionListener {
     public ControladorMenuPrincipal(MenuPrincipal menuPrincipal, Modelo modelo) {
         this.menuPrincipal = menuPrincipal;
         this.modelo = modelo;
-        idioma = ResourceBundle.getBundle("idioma");
+        idioma = Util.obtenerTraducciones();
         initHandlers();
         crearAtajos();
+        cargarUsuario();
 
     }
 
@@ -38,13 +43,26 @@ public class ControladorMenuPrincipal implements ActionListener {
         menuPrincipal.btnFabricantes.addActionListener(this);
         menuPrincipal.btnLotes.addActionListener(this);
 
+        menuPrincipal.mnArchivo.setMnemonic(KeyEvent.VK_A);
+        menuPrincipal.mnEditar.setMnemonic(KeyEvent.VK_E);
+
+        menuPrincipal.mnitGuardar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
+        menuPrincipal.mnitCargar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_DOWN_MASK));
+        menuPrincipal.mnitNuevo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, InputEvent.CTRL_DOWN_MASK));
+        menuPrincipal.mnitCerrarSesion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, InputEvent.ALT_DOWN_MASK));
+        menuPrincipal.mnitDeshacer.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK));
+        menuPrincipal.mnitPreferencias.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK));
+        menuPrincipal.mnitAddUsuarios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.ALT_DOWN_MASK));
+        menuPrincipal.mnitRemoveUsuarios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.SHIFT_DOWN_MASK));
+
         menuPrincipal.mnitGuardar.addActionListener(this);
         menuPrincipal.mnitCargar.addActionListener(this);
         menuPrincipal.mnitNuevo.addActionListener(this);
         menuPrincipal.mnitPreferencias.addActionListener(this);
         menuPrincipal.mnitDeshacer.addActionListener(this);
         menuPrincipal.mnitCerrarSesion.addActionListener(this);
-        menuPrincipal.mnitUsuarios.addActionListener(this);
+        menuPrincipal.mnitAddUsuarios.addActionListener(this);
+        menuPrincipal.mnitRemoveUsuarios.addActionListener(this);
 
     }
 
@@ -104,6 +122,30 @@ public class ControladorMenuPrincipal implements ActionListener {
         System.exit(0);
     }
 
+    private void cargarUsuario() {
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileReader("data/account.conf"));
+            String nivelUsuario = properties.getProperty("NivelUsuario");
+            activarFunciones(nivelUsuario);
+        } catch (Exception e) {
+            activarFunciones(String.valueOf(Usuario.ADMIN));
+        }
+    }
+
+    private void activarFunciones(String nivelUsuario) {
+        if (nivelUsuario.equals(String.valueOf(Usuario.DEFAULT))) {
+            menuPrincipal.mnitAddUsuarios.setEnabled(false);
+            menuPrincipal.mnitRemoveUsuarios.setEnabled(false);
+        } else if (nivelUsuario.equals(String.valueOf(Usuario.BASICO))) {
+            menuPrincipal.mnitNuevo.setEnabled(false);
+            menuPrincipal.mnitGuardar.setEnabled(false);
+            menuPrincipal.mnitDeshacer.setEnabled(false);
+            menuPrincipal.mnitAddUsuarios.setEnabled(false);
+            menuPrincipal.mnitRemoveUsuarios.setEnabled(false);
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -128,8 +170,11 @@ public class ControladorMenuPrincipal implements ActionListener {
             case "mnitPreferencias":
                 new Preferencias();
                 break;
-            case "mnitUsuarios":
+            case "mnitAddUsuarios":
                 new CreacionUsuarios();
+                break;
+            case "mnitRemoveUsuarios":
+                new EliminacionUsuarios();
                 break;
             case "mnitDeshacer":
                 System.out.println("Deshacer");

@@ -31,7 +31,7 @@ public class Renderer implements ListCellRenderer {
     private JPanel pnCentral;
 
     public Renderer(int tipo) {
-        idioma = ResourceBundle.getBundle("idioma");
+        idioma = Util.obtenerTraducciones();
         Color color = new Color(tipo);
         separadorSuperior.setForeground(color);
         separadorInferior.setForeground(color);

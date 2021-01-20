@@ -2,6 +2,7 @@ package coffeetime.util;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ResourceBundle;
 
 /**
@@ -94,5 +95,16 @@ public class Util {
         int altoRecomendado = (int) (altoOriginal * relacion);
 
         return new ImageIcon(imagenOriginal.getScaledInstance(anchoRecomendado, altoRecomendado, Image.SCALE_SMOOTH));
+    }
+
+    public static void crearDirectorioData() {
+        File data = new File("data");
+        if (!data.exists()) {
+            data.mkdir();
+        }
+    }
+
+    public static ResourceBundle obtenerTraducciones() {
+        return ResourceBundle.getBundle("idioma");
     }
 }

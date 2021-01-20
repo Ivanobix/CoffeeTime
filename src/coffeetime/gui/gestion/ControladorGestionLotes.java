@@ -26,7 +26,7 @@ public class ControladorGestionLotes implements ActionListener {
         this.modelo = modelo;
         modificando = false;
         loteAModificar = null;
-        idioma = ResourceBundle.getBundle("idioma");
+        idioma = Util.obtenerTraducciones();
         crearAtajos();
         initHandlers();
         cargarFabricantes();

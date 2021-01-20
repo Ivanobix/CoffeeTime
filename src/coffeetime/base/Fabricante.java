@@ -13,6 +13,8 @@ import java.util.UUID;
  */
 public class Fabricante implements Serializable {
 
+    private static final long serialVersionUID = 6529685098267096520L;
+
     private String identificador;
     private String nombre;
     private String direccion;

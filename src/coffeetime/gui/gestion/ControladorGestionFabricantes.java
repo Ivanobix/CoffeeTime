@@ -26,7 +26,7 @@ public class ControladorGestionFabricantes implements ActionListener {
         this.modelo = modelo;
         modificando = false;
         fabricanteAModificar = null;
-        idioma = ResourceBundle.getBundle("idioma");
+        idioma = Util.obtenerTraducciones();
         ventanaGestionFabricantes.dpFechaAlta.setDate(LocalDate.now());
         crearAtajos();
         initHandlers();

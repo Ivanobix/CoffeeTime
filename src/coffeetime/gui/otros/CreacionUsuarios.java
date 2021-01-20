@@ -23,7 +23,7 @@ public class CreacionUsuarios extends JDialog {
     private ResourceBundle idioma;
 
     public CreacionUsuarios() {
-        idioma = ResourceBundle.getBundle("idioma");
+        idioma = Util.obtenerTraducciones();
         setContentPane(contentPane);
         initComponents();
         pack();

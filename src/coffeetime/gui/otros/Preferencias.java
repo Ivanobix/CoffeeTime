@@ -23,7 +23,7 @@ public class Preferencias extends JDialog {
     private ResourceBundle idioma;
 
     public Preferencias() {
-        idioma = ResourceBundle.getBundle("idioma");
+        idioma = Util.obtenerTraducciones();
         setContentPane(contentPane);
         initComponents();
         setLocationRelativeTo(null);

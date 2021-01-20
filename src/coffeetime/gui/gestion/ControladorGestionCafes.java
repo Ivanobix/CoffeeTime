@@ -43,7 +43,7 @@ public class ControladorGestionCafes implements ActionListener {
         this.modelo = modelo;
         modificando = false;
         cafeAModificar = null;
-        idioma = ResourceBundle.getBundle("idioma");
+        idioma = Util.obtenerTraducciones();
         crearAtajos();
         initHandlers();
         cargarLotes();

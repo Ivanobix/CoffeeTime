@@ -3,6 +3,7 @@ package coffeetime.gui.principal;
 import coffeetime.base.Cafe;
 import coffeetime.base.Fabricante;
 import coffeetime.base.Lote;
+import coffeetime.base.Usuario;
 import coffeetime.gui.gestion.*;
 import coffeetime.gui.visualizado.ResumenCafe;
 import coffeetime.gui.visualizado.ResumenFabricante;
@@ -14,7 +15,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class ControladorSubmenu implements ActionListener, KeyListener {
@@ -26,10 +29,11 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
     public ControladorSubmenu(Submenu submenu, Modelo modelo) {
         this.submenu = submenu;
         this.modelo = modelo;
-        idioma = ResourceBundle.getBundle("idioma");
+        idioma = Util.obtenerTraducciones();
+        cargarDatos();
         initHandlers();
         crearAtajos();
-        cargarDatos();
+        cargarUsuario();
     }
 
     private void initHandlers() {
@@ -222,6 +226,28 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
                     }
                     break;
             }
+        }
+    }
+
+    private void cargarUsuario() {
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileReader("data/account.conf"));
+            String nivelUsuario = properties.getProperty("NivelUsuario");
+            activarFunciones(nivelUsuario);
+        } catch (Exception e) {
+            activarFunciones(String.valueOf(Usuario.ADMIN));
+        }
+    }
+
+    private void activarFunciones(String nivelUsuario) {
+        if (nivelUsuario.equals(String.valueOf(Usuario.DEFAULT))) {
+            submenu.btnModificar.setEnabled(false);
+            submenu.btnEliminar.setEnabled(false);
+        } else if (nivelUsuario.equals(String.valueOf(Usuario.BASICO))) {
+            submenu.btnAnadir.setEnabled(false);
+            submenu.btnEliminar.setEnabled(false);
+            submenu.btnModificar.setEnabled(false);
         }
     }
 

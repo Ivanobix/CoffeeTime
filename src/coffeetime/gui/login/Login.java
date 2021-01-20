@@ -23,7 +23,7 @@ public class Login extends JDialog {
         if (usuarios == null) {
             dispose();
         } else {
-            idioma = ResourceBundle.getBundle("idioma");
+            idioma = Util.obtenerTraducciones();
             setContentPane(contentPane);
             setUndecorated(true);
             initComponents();

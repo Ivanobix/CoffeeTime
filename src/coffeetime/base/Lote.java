@@ -13,6 +13,8 @@ import java.util.UUID;
  */
 public class Lote implements Serializable {
 
+    private static final long serialVersionUID = 6529685652987757690L;
+
     private String identificador;
     private int numeroUnidades;
     private double costeTotal;

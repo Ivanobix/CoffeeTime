@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CoffeeTime:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CoffeeTime_jar</output-path>
+    <root id="archive" name="CoffeeTime.jar">
+      <element id="module-output" name="CoffeeTime" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/flatlaf-0.46.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/LGoodDatePicker-10.3.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

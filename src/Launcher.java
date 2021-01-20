@@ -2,6 +2,7 @@ import coffeetime.gui.login.Login;
 import coffeetime.gui.principal.ControladorMenuPrincipal;
 import coffeetime.gui.principal.MenuPrincipal;
 import coffeetime.modelo.Modelo;
+import coffeetime.util.Util;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -26,6 +27,7 @@ import java.util.Properties;
 public class Launcher {
 
     private Launcher() {
+        Util.crearDirectorioData();
         cargarPreferencias();
         new Login();
         new ControladorMenuPrincipal(new MenuPrincipal(), new Modelo());

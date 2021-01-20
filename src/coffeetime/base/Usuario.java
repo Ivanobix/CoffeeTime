@@ -6,7 +6,7 @@ public class Usuario implements Serializable {
     public static final int ADMIN = 0;
     public static final int DEFAULT = 1;
     public static final int BASICO = 2;
-
+    private static final long serialVersionUID = 6529685098267757690L;
     private String usuario;
     private String contrasena;
     private int tipoUsuario;
@@ -39,5 +39,10 @@ public class Usuario implements Serializable {
 
     public void setTipoUsuario(int tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    @Override
+    public String toString() {
+        return usuario;
     }
 }

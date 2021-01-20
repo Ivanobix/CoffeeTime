@@ -12,6 +12,8 @@ import java.util.UUID;
  */
 public class Cafe implements Serializable {
 
+    private static final long serialVersionUID = 987655098267757690L;
+
     private String identificador;
     private String nombre;
     private String imagenPromocional;
