@@ -1,3 +1,4 @@
+import coffeetime.gui.login.Login;
 import coffeetime.gui.principal.ControladorMenuPrincipal;
 import coffeetime.gui.principal.MenuPrincipal;
 import coffeetime.modelo.Modelo;
@@ -26,6 +27,7 @@ public class Launcher {
 
     private Launcher() {
         cargarPreferencias();
+        new Login();
         new ControladorMenuPrincipal(new MenuPrincipal(), new Modelo());
     }
 

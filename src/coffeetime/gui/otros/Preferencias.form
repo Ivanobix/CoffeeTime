@@ -170,7 +170,7 @@
           <component id="bcc9f" class="javax.swing.JButton" binding="btnAceptar">
             <constraints/>
             <properties>
-              <icon value="gestion/aceptar.png"/>
+              <icon value="general/aceptar.png"/>
               <text value=""/>
               <toolTipText resource-bundle="idioma" key="general.aceptar"/>
             </properties>
@@ -178,7 +178,7 @@
           <component id="91804" class="javax.swing.JButton" binding="btnCancelar">
             <constraints/>
             <properties>
-              <icon value="gestion/cancelar.png"/>
+              <icon value="general/cancelar.png"/>
               <text value=""/>
               <toolTipText resource-bundle="idioma" key="general.cancelar"/>
             </properties>

@@ -44,6 +44,9 @@ public class Preferencias extends JDialog {
         cbIdioma.addItem("EN");
         cbIdioma.addItem("FR");
 
+        contentPane.getRootPane().setDefaultButton(btnAceptar);
+        btnAceptar.requestFocus();
+
     }
 
     private void initHandlers() {

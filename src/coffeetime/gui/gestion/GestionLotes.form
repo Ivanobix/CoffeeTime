@@ -107,7 +107,7 @@
             <constraints/>
             <properties>
               <actionCommand value="btnGestionar"/>
-              <icon value="gestion/aceptar.png"/>
+              <icon value="general/aceptar.png"/>
               <text value=""/>
               <toolTipText resource-bundle="idioma" key="general.aceptar"/>
             </properties>
@@ -116,7 +116,7 @@
             <constraints/>
             <properties>
               <actionCommand value="btnCancelar"/>
-              <icon value="gestion/cancelar.png"/>
+              <icon value="general/cancelar.png"/>
               <text value=""/>
               <toolTipText resource-bundle="idioma" key="general.cancelar"/>
             </properties>

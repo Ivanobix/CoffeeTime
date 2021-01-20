@@ -1,15 +1,20 @@
 package coffeetime.gui.principal;
 
+import coffeetime.base.Usuario;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.FileReader;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 
 public class MenuPrincipal extends Component {
-    private static final Color TEMA_OSCURO = new Color(21, 21, 21);
+    private static final Color TEMA_OSCURO = new Color(30, 30, 30);
+    private static final Color TEMA_CLARO = new Color(255, 255, 255);
     private final ResourceBundle idioma;
 
     private final JFrame frame;
@@ -25,15 +30,17 @@ public class MenuPrincipal extends Component {
     JMenuItem mnitDeshacer;
     JMenuItem mnitPreferencias;
     JMenuItem mnitCerrarSesion;
+    JMenuItem mnitUsuarios;
 
     public MenuPrincipal() {
         idioma = ResourceBundle.getBundle("idioma");
         frame = new JFrame();
-        initComponents();
         frame.setContentPane(pnPrincipal);
+        initComponents();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
+        cargarUsuario();
         frame.setVisible(true);
 
     }
@@ -41,17 +48,28 @@ public class MenuPrincipal extends Component {
     private void initComponents() {
         frame.getRootPane().setDefaultButton(btnFabricantes);
         initBarraDeHerramientas();
-        establecerTema();
         establecerEstiloBotones();
         establecerIdiomaBotones();
 
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileReader("data/preferencias.conf"));
+            if (properties.getProperty("Tema").equals("claro")) {
+                establecerTema(TEMA_CLARO);
+            } else {
+                establecerTema(TEMA_OSCURO);
+            }
+        } catch (Exception e) {
+            establecerTema(TEMA_OSCURO);
+        }
     }
 
-    private void establecerTema() {
-        pnDatos.setBackground(TEMA_OSCURO);
-        btnLotes.setBackground(TEMA_OSCURO);
-        btnFabricantes.setBackground(TEMA_OSCURO);
-        btnCafes.setBackground(TEMA_OSCURO);
+    private void establecerTema(Color color) {
+        pnDatos.setBackground(color);
+        btnLotes.setBackground(color);
+        btnFabricantes.setBackground(color);
+        btnCafes.setBackground(color);
+
     }
 
     private void establecerEstiloBotones() {
@@ -114,6 +132,33 @@ public class MenuPrincipal extends Component {
         mnitPreferencias.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK));
         mnEditar.add(mnitPreferencias);
 
+        mnitUsuarios = new JMenuItem(idioma.getString("menu.usuarios"), new ImageIcon("media/herramientas/usuarios.png"));
+        mnitUsuarios.setActionCommand("mnitUsuarios");
+        mnitUsuarios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.ALT_DOWN_MASK));
+        mnEditar.add(mnitUsuarios);
+
+    }
+
+    private void cargarUsuario() {
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileReader("data/account.conf"));
+            String nivelUsuario = properties.getProperty("NivelUsuario");
+            activarFunciones(nivelUsuario);
+        } catch (Exception e) {
+            activarFunciones(String.valueOf(Usuario.ADMIN));
+        }
+    }
+
+    private void activarFunciones(String nivelUsuario) {
+        if (nivelUsuario.equals(String.valueOf(Usuario.DEFAULT))) {
+            mnitUsuarios.setEnabled(false);
+        } else if (nivelUsuario.equals(String.valueOf(Usuario.BASICO))) {
+            mnitNuevo.setEnabled(false);
+            mnitGuardar.setEnabled(false);
+            mnitDeshacer.setEnabled(false);
+            mnitUsuarios.setEnabled(false);
+        }
     }
 
 }

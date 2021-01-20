@@ -1,8 +1,2 @@
-#IntelliJ
 out/
-
-#Eclipse
-bin
-*.class
-.metadata/
-.recommenders/
+data/

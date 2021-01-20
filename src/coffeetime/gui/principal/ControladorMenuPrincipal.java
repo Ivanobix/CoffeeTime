@@ -1,5 +1,6 @@
 package coffeetime.gui.principal;
 
+import coffeetime.gui.otros.CreacionUsuarios;
 import coffeetime.gui.otros.Preferencias;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
@@ -10,7 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class ControladorMenuPrincipal implements ActionListener {
@@ -41,6 +44,7 @@ public class ControladorMenuPrincipal implements ActionListener {
         menuPrincipal.mnitPreferencias.addActionListener(this);
         menuPrincipal.mnitDeshacer.addActionListener(this);
         menuPrincipal.mnitCerrarSesion.addActionListener(this);
+        menuPrincipal.mnitUsuarios.addActionListener(this);
 
     }
 
@@ -87,6 +91,19 @@ public class ControladorMenuPrincipal implements ActionListener {
         }
     }
 
+    private void cerrarSesion() {
+        try {
+            Properties propiedades = new Properties();
+            propiedades.put("Usuario", "");
+            propiedades.put("Contrasena", "");
+            propiedades.put("NivelUsuario", "");
+            propiedades.store(new FileWriter("data/account.conf"), "Coffe Time");
+
+        } catch (Exception ignored) {
+        }
+        System.exit(0);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -99,7 +116,6 @@ public class ControladorMenuPrincipal implements ActionListener {
             case "btnLotes":
                 new ControladorSubmenu(new Submenu(Submenu.TYPE_LOTES), modelo);
                 break;
-
             case "mnitGuardar":
                 guardarDatos();
                 break;
@@ -112,11 +128,14 @@ public class ControladorMenuPrincipal implements ActionListener {
             case "mnitPreferencias":
                 new Preferencias();
                 break;
+            case "mnitUsuarios":
+                new CreacionUsuarios();
+                break;
             case "mnitDeshacer":
                 System.out.println("Deshacer");
                 break;
             case "mnitCerrarSesion":
-                System.out.println("Cerrar Sesión");
+                cerrarSesion();
                 break;
         }
     }
