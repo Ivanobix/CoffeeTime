@@ -1,4 +1,4 @@
-import coffeetime.gui.login.Login;
+import coffeetime.gui.login.ControladorLogin;
 import coffeetime.gui.principal.ControladorMenuPrincipal;
 import coffeetime.gui.principal.MenuPrincipal;
 import coffeetime.modelo.Modelo;
@@ -29,7 +29,7 @@ public class Launcher {
     private Launcher() {
         Util.crearDirectorioData();
         cargarPreferencias();
-        new Login();
+        new ControladorLogin();
         new ControladorMenuPrincipal(new MenuPrincipal(), new Modelo());
     }
 

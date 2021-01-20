@@ -1,9 +1,7 @@
 package coffeetime.gui.principal;
 
 import coffeetime.base.Usuario;
-import coffeetime.gui.otros.CreacionUsuarios;
-import coffeetime.gui.otros.EliminacionUsuarios;
-import coffeetime.gui.otros.Preferencias;
+import coffeetime.gui.otros.*;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
 
@@ -168,13 +166,13 @@ public class ControladorMenuPrincipal implements ActionListener {
                 reiniciarElementos();
                 break;
             case "mnitPreferencias":
-                new Preferencias();
+                new ControladorPreferencias(new Preferencias());
                 break;
             case "mnitAddUsuarios":
-                new CreacionUsuarios();
+                new ControladorCreacionUsuarios(new CreacionUsuarios());
                 break;
             case "mnitRemoveUsuarios":
-                new EliminacionUsuarios();
+                new ControladorEliminacionUsuarios(new EliminacionUsuarios());
                 break;
             case "mnitDeshacer":
                 System.out.println("Deshacer");
