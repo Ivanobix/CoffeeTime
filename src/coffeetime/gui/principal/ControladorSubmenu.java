@@ -11,6 +11,7 @@ import coffeetime.gui.visualizado.ResumenLote;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -89,20 +90,24 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
     }
 
     private void eliminar() {
-        Object objeto = submenu.listaElementos.getSelectedValue();
-        if (objeto != null) {
-            if (submenu.tipo == Submenu.TYPE_CAFES) {
-                modelo.eliminarCafe((Cafe) objeto);
-            } else if (submenu.tipo == Submenu.TYPE_LOTES) {
-                modelo.eliminarLote((Lote) objeto);
+        int seguroDeEliminar = Util.mostrarConfirmacion(idioma.getString("confirmacion.eliminarElemento"));
+        if (seguroDeEliminar == JOptionPane.YES_OPTION) {
+            Object objeto = submenu.listaElementos.getSelectedValue();
+            if (objeto != null) {
+                if (submenu.tipo == Submenu.TYPE_CAFES) {
+                    modelo.eliminarCafe((Cafe) objeto);
+                } else if (submenu.tipo == Submenu.TYPE_LOTES) {
+                    modelo.eliminarLote((Lote) objeto);
+                } else {
+                    modelo.eliminarFabricante((Fabricante) objeto);
+                }
             } else {
-                modelo.eliminarFabricante((Fabricante) objeto);
+                Util.mostrarError(idioma.getString("error.nadaSeleccionado"));
             }
-        } else {
-            Util.mostrarError(idioma.getString("error.nadaSeleccionado"));
+
+            actualizarLista();
         }
 
-        actualizarLista();
     }
 
     private void modificar() {

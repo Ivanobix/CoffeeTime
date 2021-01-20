@@ -3,6 +3,7 @@ package coffeetime.gui.otros;
 import coffeetime.base.Usuario;
 import coffeetime.util.Util;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -44,25 +45,28 @@ public class ControladorEliminacionUsuarios {
 
     private void eliminarUsuario() {
         if (eliminacionUsuarios.cbUsuario.getSelectedIndex() != -1) {
-            try {
-                FileOutputStream flujoSalida = new FileOutputStream("data/usuarios.dat");
-                ObjectOutputStream serializador = new ObjectOutputStream(flujoSalida);
-                usuarios.remove(eliminacionUsuarios.cbUsuario.getSelectedIndex());
-                serializador.writeObject(usuarios);
-                serializador.close();
-                eliminacionUsuarios.dispose();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            int seguroDeEliminar = Util.mostrarConfirmacion(idioma.getString("confirmacion.eliminarUsuario"));
+            if (seguroDeEliminar == JOptionPane.YES_OPTION) {
+                try {
+                    FileOutputStream flujoSalida = new FileOutputStream("data/usuarios.dat");
+                    ObjectOutputStream serializador = new ObjectOutputStream(flujoSalida);
+                    usuarios.remove(eliminacionUsuarios.cbUsuario.getSelectedIndex());
+                    serializador.writeObject(usuarios);
+                    serializador.close();
+                    eliminacionUsuarios.dispose();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-            try {
-                Properties propiedades = new Properties();
-                propiedades.put("Usuario", "");
-                propiedades.put("Contrasena", "");
-                propiedades.put("NivelUsuario", "");
-                propiedades.store(new FileWriter("data/account.conf"), "Coffe Time");
+                try {
+                    Properties propiedades = new Properties();
+                    propiedades.put("Usuario", "");
+                    propiedades.put("Contrasena", "");
+                    propiedades.put("NivelUsuario", "");
+                    propiedades.store(new FileWriter("data/account.conf"), "Coffe Time");
 
-            } catch (Exception ignored) {
+                } catch (Exception ignored) {
+                }
             }
         } else {
             Util.mostrarError(idioma.getString("error.seleccionarusuario"));
