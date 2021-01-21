@@ -56,6 +56,16 @@
                   <toolTipText resource-bundle="idioma" key="submenu.visualizarInfoElemento"/>
                 </properties>
               </component>
+              <component id="10358" class="javax.swing.JButton" binding="btnCambiarGrafica">
+                <constraints/>
+                <properties>
+                  <actionCommand value="btnCambiarGrafica"/>
+                  <icon value="gestion/cambiarDiagrama.png"/>
+                  <text value=""/>
+                  <toolTipText resource-bundle="idioma" key="submenu.cambiarGrafica"/>
+                  <visible value="false"/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="f491b" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">

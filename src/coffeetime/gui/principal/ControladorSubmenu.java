@@ -10,6 +10,10 @@ import coffeetime.gui.visualizado.ResumenFabricante;
 import coffeetime.gui.visualizado.ResumenLote;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,15 +30,18 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
     private final Submenu submenu;
     private final Modelo modelo;
     private final ResourceBundle idioma;
+    private int graficaFabricanteAMostrar;
 
     public ControladorSubmenu(Submenu submenu, Modelo modelo) {
         this.submenu = submenu;
         this.modelo = modelo;
         idioma = Util.obtenerTraducciones();
+        graficaFabricanteAMostrar = 1;
         cargarDatos();
         initHandlers();
         crearAtajos();
         cargarUsuario();
+        crearEstadisticas();
     }
 
     private void initHandlers() {
@@ -42,6 +49,7 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         submenu.btnEliminar.addActionListener(this);
         submenu.btnModificar.addActionListener(this);
         submenu.btnMostrarInfoAdicional.addActionListener(this);
+        submenu.btnCambiarGrafica.addActionListener(this);
 
         submenu.txtFiltro.addKeyListener(this);
     }
@@ -70,6 +78,87 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
                 submenu.dlm.addElement(fabricante);
             }
         }
+    }
+
+    private void crearEstadisticas() {
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        submenu.pnEstadisticas.removeAll();
+        if (submenu.tipo == Submenu.TYPE_CAFES) {
+            submenu.pnEstadisticas.add(new ChartPanel(crearGraficoCafe(dataset)));
+        } else if (submenu.tipo == Submenu.TYPE_LOTES) {
+            submenu.pnEstadisticas.add(new ChartPanel(crearGraficoLote(dataset)));
+        } else {
+            submenu.pnEstadisticas.add(new ChartPanel(crearGraficoFabricante(dataset)));
+        }
+
+        submenu.repaint();
+    }
+
+    private JFreeChart crearGraficoCafe(DefaultPieDataset dataset) {
+        String tituloGrafica = idioma.getString("grafico.cafe");
+        double arabico = 0;
+        double robusta = 0;
+
+        for (Cafe cafe : modelo.getCafes()) {
+            arabico += cafe.getPorcentajeArabico();
+            robusta += cafe.getPorcentajeRobusta();
+        }
+        dataset.setValue(idioma.getString("grafico.arabico"), arabico);
+        dataset.setValue(idioma.getString("grafico.robusta"), robusta);
+
+        return ChartFactory.createPieChart(tituloGrafica, dataset);
+    }
+
+    private JFreeChart crearGraficoLote(DefaultPieDataset dataset) {
+        String tituloGrafica = idioma.getString("grafico.lote");
+        for (Lote lote : modelo.getLotes()) {
+            dataset.setValue(lote.getIdentificador(), lote.getCosteTotal());
+        }
+        return ChartFactory.createPieChart(tituloGrafica, dataset);
+    }
+
+    private JFreeChart crearGraficoFabricante(DefaultPieDataset dataset) {
+        String tituloGrafica = "";
+        if (graficaFabricanteAMostrar == 1) {
+            tituloGrafica = idioma.getString("grafico.fabricante1");
+            int unidadesVendidas = 0;
+            for (Fabricante fabricante : modelo.getFabricantes()) {
+                for (Lote lote : modelo.getLotes()) {
+                    if (lote.getFabricante().equals(fabricante)) {
+                        unidadesVendidas += lote.getNumeroUnidades();
+                    }
+                }
+                dataset.setValue(fabricante.getNombre(), unidadesVendidas);
+                unidadesVendidas = 0;
+            }
+        } else {
+            tituloGrafica = idioma.getString("grafico.fabricante2");
+            ArrayList<String> variantesCafe = new ArrayList<>();
+            for (Fabricante fabricante : modelo.getFabricantes()) {
+                for (Lote lote : modelo.getLotes()) {
+                    if (lote.getFabricante().equals(fabricante)) {
+                        for (Cafe cafe : modelo.getCafes()) {
+                            if (cafe.getLote().equals(lote) && !(variantesCafe.contains(cafe.getNombre()))) {
+                                variantesCafe.add(cafe.getNombre());
+                            }
+                        }
+                    }
+                }
+                dataset.setValue(fabricante.getNombre(), variantesCafe.size());
+                variantesCafe.clear();
+            }
+        }
+
+        return ChartFactory.createPieChart(tituloGrafica, dataset);
+    }
+
+    private void cambiarGraficaFabricante() {
+        if (graficaFabricanteAMostrar == 1) {
+            graficaFabricanteAMostrar = 2;
+        } else {
+            graficaFabricanteAMostrar = 1;
+        }
+        crearEstadisticas();
     }
 
     private void actualizarLista() {
@@ -270,6 +359,9 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
                 break;
             case "btnMostrarInfoAdicional":
                 mostrarInfoAdicional();
+                break;
+            case "btnCambiarGrafica":
+                cambiarGraficaFabricante();
                 break;
         }
     }

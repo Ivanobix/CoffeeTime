@@ -22,6 +22,7 @@ public class Submenu extends JDialog {
     JButton btnModificar;
     JButton btnEliminar;
     JButton btnMostrarInfoAdicional;
+    JButton btnCambiarGrafica;
     JTextField txtFiltro;
     JComboBox<String> cbFiltrado;
     JList listaElementos;
@@ -42,11 +43,13 @@ public class Submenu extends JDialog {
     }
 
     private void initComponents() {
-        if (tipo == TYPE_CAFES) {
-            tabbedPane.remove(1);
-        }
         rellenarFiltros();
+
+        if (tipo == TYPE_FABRICANTES) {
+            btnCambiarGrafica.setVisible(true);
+        }
     }
+
 
     private void rellenarFiltros() {
         if (tipo == TYPE_CAFES) {
