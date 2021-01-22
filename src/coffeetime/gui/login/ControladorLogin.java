@@ -3,6 +3,7 @@ package coffeetime.gui.login;
 import coffeetime.base.Usuario;
 import coffeetime.util.Util;
 
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -19,6 +20,7 @@ public class ControladorLogin {
         cargarUsuarios();
         if (usuarios != null) {
             idioma = Util.obtenerTraducciones();
+            crearAtajos();
             initHandlers();
             login.setVisible(true);
         }
@@ -27,6 +29,11 @@ public class ControladorLogin {
     private void initHandlers() {
         login.btnCancelar.addActionListener(e -> System.exit(0));
         login.btnAceptar.addActionListener(e -> comprobarUsuario());
+    }
+
+    private void crearAtajos() {
+        login.btnAceptar.setMnemonic(KeyEvent.VK_1);
+        login.btnCancelar.setMnemonic(KeyEvent.VK_2);
     }
 
     private void cargarUsuarios() {

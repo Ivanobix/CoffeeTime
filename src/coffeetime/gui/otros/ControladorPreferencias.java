@@ -2,6 +2,7 @@ package coffeetime.gui.otros;
 
 import coffeetime.util.Util;
 
+import java.awt.event.KeyEvent;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class ControladorPreferencias {
         this.preferencias = preferencias;
         idioma = Util.obtenerTraducciones();
         marcarPreferenciasAnteriores();
+        crearAtajos();
         initHandlers();
     }
 
@@ -27,6 +29,11 @@ public class ControladorPreferencias {
         });
 
         preferencias.btnCancelar.addActionListener(e -> preferencias.dispose());
+    }
+
+    private void crearAtajos() {
+        preferencias.btnAceptar.setMnemonic(KeyEvent.VK_1);
+        preferencias.btnCancelar.setMnemonic(KeyEvent.VK_2);
     }
 
     private void guardarPreferencias() {

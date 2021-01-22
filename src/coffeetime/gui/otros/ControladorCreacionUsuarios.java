@@ -3,6 +3,7 @@ package coffeetime.gui.otros;
 import coffeetime.base.Usuario;
 import coffeetime.util.Util;
 
+import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -18,12 +19,18 @@ public class ControladorCreacionUsuarios {
     public ControladorCreacionUsuarios(CreacionUsuarios creacionUsuarios) {
         this.creacionUsuarios = creacionUsuarios;
         idioma = Util.obtenerTraducciones();
+        crearAtajos();
         initHandlers();
     }
 
     private void initHandlers() {
         creacionUsuarios.btnCancelar.addActionListener(e -> creacionUsuarios.dispose());
         creacionUsuarios.btnAceptar.addActionListener(e -> crearUsuario());
+    }
+
+    private void crearAtajos() {
+        creacionUsuarios.btnAceptar.setMnemonic(KeyEvent.VK_1);
+        creacionUsuarios.btnCancelar.setMnemonic(KeyEvent.VK_2);
     }
 
     private void crearUsuario() {

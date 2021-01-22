@@ -4,6 +4,7 @@ import coffeetime.base.Usuario;
 import coffeetime.util.Util;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -18,12 +19,18 @@ public class ControladorEliminacionUsuarios {
         this.eliminacionUsuarios = eliminacionUsuarios;
         idioma = Util.obtenerTraducciones();
         rellenarListaUsuarios();
+        crearAtajos();
         initHandlers();
     }
 
     private void initHandlers() {
         eliminacionUsuarios.btnCancelar.addActionListener(e -> eliminacionUsuarios.dispose());
         eliminacionUsuarios.btnAceptar.addActionListener(e -> eliminarUsuario());
+    }
+
+    private void crearAtajos() {
+        eliminacionUsuarios.btnAceptar.setMnemonic(KeyEvent.VK_1);
+        eliminacionUsuarios.btnCancelar.setMnemonic(KeyEvent.VK_2);
     }
 
     private void rellenarListaUsuarios() {

@@ -60,6 +60,7 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         submenu.btnEliminar.setMnemonic(KeyEvent.VK_2);
         submenu.btnModificar.setMnemonic(KeyEvent.VK_3);
         submenu.btnMostrarInfoAdicional.setMnemonic(KeyEvent.VK_4);
+        submenu.btnCambiarGrafica.setMnemonic(KeyEvent.VK_5);
     }
 
     private void cargarDatos() {
