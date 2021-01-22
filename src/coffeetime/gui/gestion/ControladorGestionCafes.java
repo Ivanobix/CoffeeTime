@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -148,7 +150,7 @@ public class ControladorGestionCafes implements ActionListener {
                         double robusta = Double.parseDouble(ventanaGestionCafe.txtRobusta.getText());
                         if (arabico + robusta <= 100 && arabico + robusta >= 0) {
                             String nombre = ventanaGestionCafe.txtNombre.getText();
-                            String rutaImagen = ventanaGestionCafe.txtRutaImagen.getText();
+                            String rutaImagen = generarNuevaRutaImagen();
                             Lote lote = (Lote) ventanaGestionCafe.cbLote.getSelectedItem();
                             cafe = new Cafe(nombre, rutaImagen, arabico, robusta, lote);
 
@@ -184,6 +186,21 @@ public class ControladorGestionCafes implements ActionListener {
             aDevolver = false;
         }
         return aDevolver;
+    }
+
+    private String generarNuevaRutaImagen() {
+        String rutaDestino = "";
+        try {
+            File origen = new File(ventanaGestionCafe.txtRutaImagen.getText());
+            rutaDestino = "img/" + origen.getName();
+            Util.crearDirectorioImagenes();
+            File destino = new File(rutaDestino);
+            Files.copy(origen.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (Exception ignored) {
+
+        }
+        return rutaDestino;
+
     }
 
     @Override

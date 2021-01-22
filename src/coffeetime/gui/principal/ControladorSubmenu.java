@@ -13,6 +13,7 @@ import coffeetime.util.Util;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 import javax.swing.*;
@@ -81,14 +82,13 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
     }
 
     private void crearEstadisticas() {
-        DefaultPieDataset dataset = new DefaultPieDataset();
         submenu.pnEstadisticas.removeAll();
         if (submenu.tipo == Submenu.TYPE_CAFES) {
-            submenu.pnEstadisticas.add(new ChartPanel(crearGraficoCafe(dataset)));
+            submenu.pnEstadisticas.add(new ChartPanel(crearGraficoCafe(new DefaultPieDataset())));
         } else if (submenu.tipo == Submenu.TYPE_LOTES) {
-            submenu.pnEstadisticas.add(new ChartPanel(crearGraficoLote(dataset)));
+            submenu.pnEstadisticas.add(new ChartPanel(crearGraficoLote(new DefaultCategoryDataset())));
         } else {
-            submenu.pnEstadisticas.add(new ChartPanel(crearGraficoFabricante(dataset)));
+            submenu.pnEstadisticas.add(new ChartPanel(crearGraficoFabricante(new DefaultPieDataset())));
         }
 
         submenu.repaint();
@@ -109,16 +109,16 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         return ChartFactory.createPieChart(tituloGrafica, dataset);
     }
 
-    private JFreeChart crearGraficoLote(DefaultPieDataset dataset) {
+    private JFreeChart crearGraficoLote(DefaultCategoryDataset dataset) {
         String tituloGrafica = idioma.getString("grafico.lote");
         for (Lote lote : modelo.getLotes()) {
-            dataset.setValue(lote.getIdentificador(), lote.getCosteTotal());
+            dataset.setValue(lote.getCosteTotal(), lote.getFabricante().getNombre(), lote.getIdentificador());
         }
-        return ChartFactory.createPieChart(tituloGrafica, dataset);
+        return ChartFactory.createBarChart(tituloGrafica, idioma.getString("general.lote"), idioma.getString("general.coste"), dataset);
     }
 
     private JFreeChart crearGraficoFabricante(DefaultPieDataset dataset) {
-        String tituloGrafica = "";
+        String tituloGrafica;
         if (graficaFabricanteAMostrar == 1) {
             tituloGrafica = idioma.getString("grafico.fabricante1");
             int unidadesVendidas = 0;

@@ -104,6 +104,13 @@ public class Util {
         }
     }
 
+    public static void crearDirectorioImagenes() {
+        File data = new File("img");
+        if (!data.exists()) {
+            data.mkdir();
+        }
+    }
+
     public static ResourceBundle obtenerTraducciones() {
         return ResourceBundle.getBundle("idioma");
     }
