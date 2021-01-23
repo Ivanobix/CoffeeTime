@@ -4,6 +4,8 @@
     <root id="archive" name="CoffeeTime.jar">
       <element id="module-output" name="CoffeeTime" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/flatlaf-0.46.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jcommon-1.0.24.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jfreechart-1.0.19.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/LGoodDatePicker-10.3.1.jar" path-in-jar="/" />
     </root>
   </artifact>

@@ -1,23 +1,22 @@
 # Coffee Time
 
-Aplicación de gestión de cafés, lotes y fabricantes.
+Aplicación simple de gestión de cafés, lotes y fabricantes.
 
 ## Descripción general
 
-⨳ En proceso...
-
-## Instalación
-
-En proceso...
+[Información](https://github.com/Ivanobix/CoffeeTime/wiki/1.-Inicio)
 
 ## Uso
 
-En proceso...
+[Manual](https://github.com/Ivanobix/CoffeeTime/wiki)
+
+## Lenguaje
+
+Java 8.
 
 ## Contribuciones
 
-Cualquier usuario que encuentre un problema con la aplicación o quiera sugerir cualquier tipo de mejora deberá hacerlo
-en el siguiente [enlace](https://github.com/Ivanobix/CoffeeTime/issues).
+[Contribuciones](https://github.com/Ivanobix/CoffeeTime/issues).
 
 ## Licencia
 
