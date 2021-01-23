@@ -57,20 +57,35 @@ public class ControladorEliminacionUsuarios {
      * En caso de existir, rellena el desplegable con los usuarios existentes.
      */
     private void rellenarListaUsuarios() {
-        usuarios = null;
         try {
+            usuarios = null;
+
             FileInputStream flujoEntrada = new FileInputStream("data/usuarios.dat");
             ObjectInputStream deserializador = new ObjectInputStream(flujoEntrada);
             usuarios = (ArrayList<Usuario>) deserializador.readObject();
             deserializador.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (usuarios != null) {
-            for (Usuario usuario : usuarios) {
-                eliminacionUsuarios.cbUsuario.addItem(usuario);
+
+            if (usuarios != null) {
+                Properties properties = new Properties();
+                properties.load(new FileReader("data/account.conf"));
+                int nivelUsuario = Integer.parseInt(properties.getProperty("NivelUsuario"));
+                if (nivelUsuario == Usuario.BASICO || nivelUsuario == Usuario.DEFAULT) {
+                    String usuario = properties.getProperty("Usuario");
+                    for (Usuario usser : usuarios) {
+                        if (usser.getUsuario().equals(usuario)) {
+                            eliminacionUsuarios.cbUsuario.addItem(usser);
+                            break;
+                        }
+                    }
+                } else {
+                    for (Usuario usuario : usuarios) {
+                        eliminacionUsuarios.cbUsuario.addItem(usuario);
+                    }
+                }
             }
+        } catch (Exception ignore) {
         }
+
     }
 
     /**
@@ -87,19 +102,18 @@ public class ControladorEliminacionUsuarios {
                     serializador.writeObject(usuarios);
                     serializador.close();
                     eliminacionUsuarios.dispose();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
-                try {
                     Properties propiedades = new Properties();
+
                     propiedades.put("Usuario", "");
                     propiedades.put("Contrasena", "");
                     propiedades.put("NivelUsuario", "");
                     propiedades.store(new FileWriter("data/account.conf"), "Coffe Time");
 
-                } catch (Exception ignored) {
+                    System.exit(0);
+                } catch (Exception ignore) {
                 }
+
             }
         } else {
             Util.mostrarError(idioma.getString("error.seleccionarusuario"));
