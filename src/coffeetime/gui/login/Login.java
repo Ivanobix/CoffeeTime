@@ -2,6 +2,12 @@ package coffeetime.gui.login;
 
 import javax.swing.*;
 
+/**
+ * Login. Ventana dedicada al control de acceso a la aplicación.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class Login extends JDialog {
     JPasswordField txtContrasena;
     JTextField txtUsuario;
@@ -10,6 +16,9 @@ public class Login extends JDialog {
     private JPanel contentPane;
 
 
+    /**
+     * Constructor.
+     */
     public Login() {
         setContentPane(contentPane);
         setUndecorated(true);
@@ -19,6 +28,10 @@ public class Login extends JDialog {
         setModal(true);
     }
 
+    /**
+     * Inicializar Componentes. Inicializa todos aquellos componentes visuales de
+     * los que dispone esta clase y establece sus propiedades.
+     */
     private void initComponents() {
         contentPane.getRootPane().setDefaultButton(btnAceptar);
         txtUsuario.requestFocus();

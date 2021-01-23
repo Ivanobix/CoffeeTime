@@ -27,6 +27,9 @@ import java.util.Properties;
  */
 public class Launcher {
 
+    /**
+     * Constructor.
+     */
     private Launcher() {
         Util.crearDirectorioData();
         cargarPreferencias();
@@ -54,6 +57,11 @@ public class Launcher {
         new Launcher();
     }
 
+    /**
+     * Cambia el tamaño de letra de todos los componentes de la aplicación.
+     *
+     * @param tamano Tamaño de letra.
+     */
     public static void cambiarTamanoFuente(int tamano) {
         String[] componentes = {"Label.font", "Button.font", "ToggleButton.font", "RadioButton.font",
                 "CheckBox.font", "ComboBox.font", "List.font", "MenuBar.font", "MenuItem.font",
@@ -69,6 +77,10 @@ public class Launcher {
 
     }
 
+    /**
+     * Si existen, carga las preferencias establecidas por el usuario.
+     * Si no existen, carga unas preferencias por defecto.
+     */
     private void cargarPreferencias() {
         try {
             Properties properties = new Properties();

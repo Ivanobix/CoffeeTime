@@ -9,7 +9,12 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-
+/**
+ * Menú Principal. Ventana principal de la aplicación que permite el acceso al resto de funcionalidades de la misma.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class MenuPrincipal extends Component {
     private static final Color TEMA_OSCURO = new Color(30, 30, 30);
     private static final Color TEMA_CLARO = new Color(255, 255, 255);
@@ -32,6 +37,9 @@ public class MenuPrincipal extends Component {
     JMenuItem mnitAddUsuarios;
     JMenuItem mnitRemoveUsuarios;
 
+    /**
+     * Constructor.
+     */
     public MenuPrincipal() {
         idioma = Util.obtenerTraducciones();
         frame = new JFrame();
@@ -44,6 +52,10 @@ public class MenuPrincipal extends Component {
 
     }
 
+    /**
+     * Inicializar Componentes. Inicializa todos aquellos componentes visuales de
+     * los que dispone esta clase y establece sus propiedades.
+     */
     private void initComponents() {
         frame.getRootPane().setDefaultButton(btnFabricantes);
         initBarraDeHerramientas();
@@ -63,6 +75,11 @@ public class MenuPrincipal extends Component {
         }
     }
 
+    /**
+     * Establece el color de fondo de los componentes principales.
+     *
+     * @param color Color a aplicar.
+     */
     private void establecerTema(Color color) {
         pnDatos.setBackground(color);
         btnLotes.setBackground(color);
@@ -71,12 +88,18 @@ public class MenuPrincipal extends Component {
 
     }
 
+    /**
+     * Establece el estilo específicos de los
+     */
     private void establecerEstiloBotones() {
         btnCafes.setBorderPainted(false);
         btnFabricantes.setBorderPainted(false);
         btnLotes.setBorderPainted(false);
     }
 
+    /**
+     * Cambia el idioma de los botones en función del idioma seleccionado en las preferencias.
+     */
     private void establecerIdiomaBotones() {
         if (Locale.getDefault().getLanguage().equals("en")) {
             btnCafes.setIcon(new ImageIcon(this.getClass().getResource("/menuPrincipal/cafes_en.png")));
@@ -89,6 +112,9 @@ public class MenuPrincipal extends Component {
         }
     }
 
+    /**
+     * Inicializa la barra de herramientas y establece sus propiedades principales.
+     */
     private void initBarraDeHerramientas() {
         JMenuBar menuBar = new JMenuBar();
         frame.setJMenuBar(menuBar);

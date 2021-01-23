@@ -5,6 +5,12 @@ import coffeetime.componentes.Renderer;
 
 import javax.swing.*;
 
+/**
+ * Login. Ventana dedicada a la asignación de lotes a un determinado fabricante.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class AsignacionDeLotesAFabricante extends JDialog {
 
     JList<Lote> listLotesDeOtrosFabricantes;
@@ -12,6 +18,9 @@ public class AsignacionDeLotesAFabricante extends JDialog {
     DefaultListModel<Lote> dlm;
     private JPanel contentPane;
 
+    /**
+     * Constructor.
+     */
     public AsignacionDeLotesAFabricante() {
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -22,6 +31,10 @@ public class AsignacionDeLotesAFabricante extends JDialog {
 
     }
 
+    /**
+     * Inicializar Componentes. Inicializa todos aquellos componentes visuales de
+     * los que dispone esta clase y establece sus propiedades.
+     */
     private void initComponents() {
         contentPane.getRootPane().setDefaultButton(btnCambiarFabricante);
         btnCambiarFabricante.requestFocus();

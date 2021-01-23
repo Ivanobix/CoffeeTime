@@ -17,13 +17,13 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * Controlador Gestión Cafés. Controlador para la ventana de gestión de cafés
+ * Controlador Gestión Café. Controlador para la ventana de Gestión de Café
  * dedicado a la recogida de eventos, así como la comprobación de datos
  * introducidos e insercción de los datos en cada campo de texto (en el caso de
  * modificación).
  *
  * @author Iván García Prieto
- * @version 16.01.2021
+ * @version 23.01.2021
  */
 public class ControladorGestionCafes implements ActionListener {
 
@@ -31,14 +31,13 @@ public class ControladorGestionCafes implements ActionListener {
     private final Modelo modelo;
     private final boolean modificando;
     private final Cafe cafeAModificar;
-
     private ResourceBundle idioma;
 
     /**
-     * Constructor para crear un nuevo café.
+     * Constructor para crear un nuevo Café.
      *
      * @param modelo             Modelo de la aplicación.
-     * @param ventanaGestionCafe Ventana de gestión de café a controlar.
+     * @param ventanaGestionCafe Ventana de Gestión de Café a controlar.
      */
     public ControladorGestionCafes(GestionCafes ventanaGestionCafe, Modelo modelo) {
         this.ventanaGestionCafe = ventanaGestionCafe;
@@ -53,10 +52,10 @@ public class ControladorGestionCafes implements ActionListener {
     }
 
     /**
-     * Constructor para modificar un café.
+     * Constructor para modificar un Café.
      *
      * @param modelo             Modelo de la aplicación.
-     * @param ventanaGestionCafe Ventana de gestión de café a controlar.
+     * @param ventanaGestionCafe Ventana de Gestión de Café a controlar.
      * @param cafe               Café a modificar.
      */
     public ControladorGestionCafes(GestionCafes ventanaGestionCafe, Modelo modelo, Cafe cafe) {
@@ -80,12 +79,18 @@ public class ControladorGestionCafes implements ActionListener {
         ventanaGestionCafe.btnCancelar.addActionListener(this);
     }
 
+    /**
+     * Establece los atajos de teclado para todos los botones existentes.
+     */
     private void crearAtajos() {
         ventanaGestionCafe.btnGestionar.setMnemonic(KeyEvent.VK_1);
         ventanaGestionCafe.btnCancelar.setMnemonic(KeyEvent.VK_2);
         ventanaGestionCafe.btnSeleccionarImagen.setMnemonic(KeyEvent.VK_3);
     }
 
+    /**
+     * Rellena los datos de todos los campos en función del Café a modificar.
+     */
     private void rellenarDatos() {
         ventanaGestionCafe.txtNombre.setText(cafeAModificar.getNombre());
         ventanaGestionCafe.txtArabico.setText(String.valueOf(cafeAModificar.getPorcentajeArabico()));
@@ -98,6 +103,9 @@ public class ControladorGestionCafes implements ActionListener {
         ventanaGestionCafe.imgPromocional.setIcon(Util.escalarImagen(iconoOriginal, 70, 70));
     }
 
+    /**
+     * Añade al desplegable todos los Lotes existentes.
+     */
     private void cargarLotes() {
         ArrayList<Lote> lotes = modelo.getLotes();
         for (Lote lote : lotes) {
@@ -105,6 +113,9 @@ public class ControladorGestionCafes implements ActionListener {
         }
     }
 
+    /**
+     * Permite al usuario seleccionar una imagen de su equipo.
+     */
     private void selecionarImagen() {
         JFileChooser selector = new JFileChooser();
         selector.setFileFilter(new FileNameExtensionFilter("JPG & PNG", "jpg", "png"));
@@ -119,6 +130,9 @@ public class ControladorGestionCafes implements ActionListener {
         }
     }
 
+    /**
+     * Gestiona el Café generado tras la comprobación de datos.
+     */
     private void gestionarCafe() {
         Cafe cafe = comprobarDatos();
         if (cafe != null) {
@@ -135,7 +149,7 @@ public class ControladorGestionCafes implements ActionListener {
 
     /**
      * Comprobación de todos los datos introducidos para la creación o modificación
-     * de un café.
+     * de un Café.
      *
      * @return Café generado a partir de los datos introducidos en la ventana.
      */
@@ -188,6 +202,11 @@ public class ControladorGestionCafes implements ActionListener {
         return aDevolver;
     }
 
+    /**
+     * Crea una copia de la imagen seleccionada y genera la nueva ruta.
+     *
+     * @return Ruta de la copia.
+     */
     private String generarNuevaRutaImagen() {
         String rutaDestino = "";
         try {
@@ -203,6 +222,11 @@ public class ControladorGestionCafes implements ActionListener {
 
     }
 
+    /**
+     * Procedimientos a seguir en caso de que un botón haya sido pulsado.
+     *
+     * @param e Evento de acción creado.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {

@@ -9,6 +9,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ResourceBundle;
 
+/**
+ * Renderer. Clase utilizada para el renderizado de elementos tipo "Café", "Lote" y "Fabricante"
+ * para su posterior visualizado en diferentes componentes tales como JList.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class Renderer implements ListCellRenderer {
 
     public static final int CAFES = Color.CYAN.getRGB();
@@ -30,6 +37,9 @@ public class Renderer implements ListCellRenderer {
     private JPanel pnNorte;
     private JPanel pnCentral;
 
+    /**
+     * Constructor.
+     */
     public Renderer(int tipo) {
         idioma = Util.obtenerTraducciones();
         Color color = new Color(tipo);
@@ -37,6 +47,10 @@ public class Renderer implements ListCellRenderer {
         separadorInferior.setForeground(color);
     }
 
+    /**
+     * Obtener el componente asociado a esta clase para su posterior implementación
+     * en una lista.
+     */
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         if (value instanceof Cafe) {
@@ -57,6 +71,11 @@ public class Renderer implements ListCellRenderer {
         return renderer;
     }
 
+    /**
+     * Rellena los datos mostrados en el Renderer para aquellos objetos de tipo "Café".
+     *
+     * @param cafe Café a mostrar.
+     */
     private void rellenarDatosCafe(Cafe cafe) {
         lblIdentificador.setText(cafe.getIdentificador());
 
@@ -70,6 +89,11 @@ public class Renderer implements ListCellRenderer {
 
     }
 
+    /**
+     * Rellena los datos mostrados en el Renderer para aquellos objetos de tipo "Lote".
+     *
+     * @param lote Lote a mostrar.
+     */
     private void rellenarDatosLote(Lote lote) {
         lblIdentificador.setText(lote.getIdentificador());
 
@@ -81,6 +105,11 @@ public class Renderer implements ListCellRenderer {
 
     }
 
+    /**
+     * Rellena los datos mostrados en el Renderer para aquellos objetos de tipo "Fabricante".
+     *
+     * @param fabricante Fabricante a mostrar.
+     */
     private void rellenarDatosFabricante(Fabricante fabricante) {
         lblIdentificador.setText(fabricante.getIdentificador());
 
@@ -92,6 +121,9 @@ public class Renderer implements ListCellRenderer {
 
     }
 
+    /**
+     * Establece el color del Renderer cuando este ha sido seleccionado.
+     */
     private void resaltar() {
         Color color = new Color(28, 28, 28);
         pnEste.setBackground(color);
@@ -100,6 +132,9 @@ public class Renderer implements ListCellRenderer {
         pnCentral.setBackground(color);
     }
 
+    /**
+     * Establece el color del Renderer cuando este ha sido deseleccionado.
+     */
     private void restablecerFondo() {
         pnEste.setBackground(Color.DARK_GRAY);
         pnOeste.setBackground(Color.DARK_GRAY);

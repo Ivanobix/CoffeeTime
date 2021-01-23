@@ -26,6 +26,14 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador del Submenú. Controlador para la ventana del Submenú
+ * dedicado a la recogida de eventos, así como el acceso a las funciones de
+ * creación, eliminación, modificación, visualizado y filtrado de elementos.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class ControladorSubmenu implements ActionListener, KeyListener {
 
     private final Submenu submenu;
@@ -33,6 +41,12 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
     private final ResourceBundle idioma;
     private int graficaFabricanteAMostrar;
 
+    /**
+     * Constructor.
+     *
+     * @param submenu Ventana del Submenú.
+     * @param modelo  Modelo de la aplicación.
+     */
     public ControladorSubmenu(Submenu submenu, Modelo modelo) {
         this.submenu = submenu;
         this.modelo = modelo;
@@ -45,6 +59,10 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         crearEstadisticas();
     }
 
+    /**
+     * Inicializar Manejadores. Inicializa todos los manejadores de eventos
+     * necesarios para el correcto funcionamiento de la aplicación.
+     */
     private void initHandlers() {
         submenu.btnAnadir.addActionListener(this);
         submenu.btnEliminar.addActionListener(this);
@@ -55,6 +73,9 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         submenu.txtFiltro.addKeyListener(this);
     }
 
+    /**
+     * Establece los atajos de teclado para todos los botones existentes.
+     */
     private void crearAtajos() {
         submenu.btnAnadir.setMnemonic(KeyEvent.VK_1);
         submenu.btnEliminar.setMnemonic(KeyEvent.VK_2);
@@ -63,6 +84,9 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         submenu.btnCambiarGrafica.setMnemonic(KeyEvent.VK_5);
     }
 
+    /**
+     * Rellena la lista de los elementos existentes en función de su tipo.
+     */
     private void cargarDatos() {
         if (submenu.tipo == Submenu.TYPE_CAFES) {
             ArrayList<Cafe> cafes = modelo.getCafes();
@@ -82,6 +106,9 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         }
     }
 
+    /**
+     * Genera los gráficos en función del tipo de elemento gestionado.
+     */
     private void crearEstadisticas() {
         submenu.pnEstadisticas.removeAll();
         if (submenu.tipo == Submenu.TYPE_CAFES) {
@@ -95,6 +122,12 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         submenu.repaint();
     }
 
+    /**
+     * Genera los gráficos correspondientes a elementos de tipo Café.
+     *
+     * @param dataset Conjunto de datos.
+     * @return Gráfica con datos de tipo Café.
+     */
     private JFreeChart crearGraficoCafe(DefaultPieDataset dataset) {
         String tituloGrafica = idioma.getString("grafico.cafe");
         double arabico = 0;
@@ -110,6 +143,12 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         return ChartFactory.createPieChart(tituloGrafica, dataset);
     }
 
+    /**
+     * Genera los gráficos correspondientes a elementos de tipo Lote.
+     *
+     * @param dataset Conjunto de datos.
+     * @return Gráfica con datos de tipo Lote.
+     */
     private JFreeChart crearGraficoLote(DefaultCategoryDataset dataset) {
         String tituloGrafica = idioma.getString("grafico.lote");
         for (Lote lote : modelo.getLotes()) {
@@ -118,6 +157,12 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         return ChartFactory.createBarChart(tituloGrafica, idioma.getString("general.lote"), idioma.getString("general.coste"), dataset);
     }
 
+    /**
+     * Genera los gráficos correspondientes a elementos de tipo Fabricante.
+     *
+     * @param dataset Conjunto de datos.
+     * @return Gráfica con datos de tipo Fabricante.
+     */
     private JFreeChart crearGraficoFabricante(DefaultPieDataset dataset) {
         String tituloGrafica;
         if (graficaFabricanteAMostrar == 1) {
@@ -153,6 +198,9 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         return ChartFactory.createPieChart(tituloGrafica, dataset);
     }
 
+    /**
+     * Muestra el siguiente gráfico disponible.
+     */
     private void cambiarGraficaFabricante() {
         if (graficaFabricanteAMostrar == 1) {
             graficaFabricanteAMostrar = 2;
@@ -162,11 +210,17 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         crearEstadisticas();
     }
 
+    /**
+     * Actualiza la lista de elementos tras realizar cambios en ella.
+     */
     private void actualizarLista() {
         submenu.dlm.clear();
         cargarDatos();
     }
 
+    /**
+     * Crea un nuevo elemento en función de su tipo a la lista y lo añade a la aplicación.
+     */
     private void anadir() {
         if (submenu.tipo == Submenu.TYPE_CAFES) {
             new ControladorGestionCafes(new GestionCafes(), modelo);
@@ -179,6 +233,9 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         submenu.dispose();
     }
 
+    /**
+     * Elimina un elemento en función de su tipo de la lista y lo borra de la aplicación.
+     */
     private void eliminar() {
         int seguroDeEliminar = Util.mostrarConfirmacion(idioma.getString("confirmacion.eliminarElemento"));
         if (seguroDeEliminar == JOptionPane.YES_OPTION) {
@@ -200,6 +257,9 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
 
     }
 
+    /**
+     * Modifica un elemento en función de su tipo de la lista y lo actualiza en la aplicación.
+     */
     private void modificar() {
         Object objeto = submenu.listaElementos.getSelectedValue();
         if (objeto != null) {
@@ -217,6 +277,9 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
 
     }
 
+    /**
+     * Muestra todos los datos de un elemento en función de su tipo.
+     */
     private void mostrarInfoAdicional() {
         Object objeto = submenu.listaElementos.getSelectedValue();
         if (objeto != null) {
@@ -233,6 +296,9 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         }
     }
 
+    /**
+     * Filtra la lista en función del filtro y filtrado seleccionados.
+     */
     private void filtrar() {
         String filtro = submenu.txtFiltro.getText().trim().toLowerCase();
         if (!filtro.replaceAll(" ", "").equals("")) {
@@ -252,6 +318,12 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
 
     }
 
+    /**
+     * Busca todos los elementos de tipo Café que cumplan con el filtro seleccionado.
+     *
+     * @param filtrado Filtrado seleccionado.
+     * @param filtro   Filtro a aplicar.
+     */
     private void buscarCafes(int filtrado, String filtro) {
         for (Cafe cafe : modelo.getCafes()) {
             switch (filtrado) {
@@ -279,6 +351,12 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         }
     }
 
+    /**
+     * Busca todos los elementos de tipo Lote que cumplan con el filtro seleccionado.
+     *
+     * @param filtrado Filtrado seleccionado.
+     * @param filtro   Filtro a aplicar.
+     */
     private void buscarLotes(int filtrado, String filtro) {
         for (Lote lote : modelo.getLotes()) {
             switch (filtrado) {
@@ -302,6 +380,12 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         }
     }
 
+    /**
+     * Busca todos los elementos de tipo Fabricante que cumplan con el filtro seleccionado.
+     *
+     * @param filtrado Filtrado seleccionado.
+     * @param filtro   Filtro a aplicar.
+     */
     private void buscarFabricantes(int filtrado, String filtro) {
         for (Fabricante fabricante : modelo.getFabricantes()) {
             switch (filtrado) {
@@ -324,6 +408,9 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         }
     }
 
+    /**
+     * En función de los privilegios del usuario logueado activa o desactiva el acceso a determinadas funciones.
+     */
     private void cargarUsuario() {
         try {
             Properties properties = new Properties();
@@ -335,6 +422,11 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         }
     }
 
+    /**
+     * Establece las funciones disponibles o no para cada uno de los niveles de usuario.
+     *
+     * @param nivelUsuario Nivel de privilegios del usuario actual.
+     */
     private void activarFunciones(String nivelUsuario) {
         if (nivelUsuario.equals(String.valueOf(Usuario.DEFAULT))) {
             submenu.btnModificar.setEnabled(false);
@@ -346,6 +438,11 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         }
     }
 
+    /**
+     * Procedimientos a seguir en caso de que un botón haya sido pulsado.
+     *
+     * @param e Evento de acción creado.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -367,6 +464,11 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         }
     }
 
+    /**
+     * Procedimientos a seguir en caso de que una tecla haya sido pulsada.
+     *
+     * @param e Evento de teclado creado.
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         filtrar();

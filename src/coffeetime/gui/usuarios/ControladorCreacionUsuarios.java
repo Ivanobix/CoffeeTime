@@ -11,11 +11,24 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador de la Creación de Usuarios. Controlador para la ventana de Creación de Usuarios
+ * dedicado a la recogida de eventos, así como el acceso a las funciones de
+ * creación de usuarios.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class ControladorCreacionUsuarios {
 
     private final CreacionUsuarios creacionUsuarios;
     private final ResourceBundle idioma;
 
+    /**
+     * Constructor.
+     *
+     * @param creacionUsuarios Ventana de Creación de Usuarios.
+     */
     public ControladorCreacionUsuarios(CreacionUsuarios creacionUsuarios) {
         this.creacionUsuarios = creacionUsuarios;
         idioma = Util.obtenerTraducciones();
@@ -23,16 +36,26 @@ public class ControladorCreacionUsuarios {
         initHandlers();
     }
 
+    /**
+     * Inicializar Manejadores. Inicializa todos los manejadores de eventos
+     * necesarios para el correcto funcionamiento de la aplicación.
+     */
     private void initHandlers() {
         creacionUsuarios.btnCancelar.addActionListener(e -> creacionUsuarios.dispose());
         creacionUsuarios.btnAceptar.addActionListener(e -> crearUsuario());
     }
 
+    /**
+     * Establece los atajos de teclado para todos los botones existentes.
+     */
     private void crearAtajos() {
         creacionUsuarios.btnAceptar.setMnemonic(KeyEvent.VK_1);
         creacionUsuarios.btnCancelar.setMnemonic(KeyEvent.VK_2);
     }
 
+    /**
+     * Creación del usuario en función de los datos recogidos en la ventana.
+     */
     private void crearUsuario() {
         Usuario usuario = recogerDatos();
         if (usuario != null) {
@@ -61,6 +84,11 @@ public class ControladorCreacionUsuarios {
 
     }
 
+    /**
+     * Recoge los datos introducidos, los verifica y crea el usuario correspondiente.
+     *
+     * @return
+     */
     private Usuario recogerDatos() {
         Usuario usuario = null;
         String nombreUsuario = creacionUsuarios.txtUsuario.getText().replaceAll(" ", "");

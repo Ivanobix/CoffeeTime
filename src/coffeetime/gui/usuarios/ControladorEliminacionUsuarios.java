@@ -10,11 +10,24 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador de la Eliminación de Usuarios. Controlador para la ventana de Eliminación de Usuarios
+ * dedicado a la recogida de eventos, así como el acceso a las funciones de
+ * eliminación de usuarios.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class ControladorEliminacionUsuarios {
     private final EliminacionUsuarios eliminacionUsuarios;
     private final ResourceBundle idioma;
     private ArrayList<Usuario> usuarios;
 
+    /**
+     * Constructor.
+     *
+     * @param eliminacionUsuarios Ventana de Eliminación de Usuarios.
+     */
     public ControladorEliminacionUsuarios(EliminacionUsuarios eliminacionUsuarios) {
         this.eliminacionUsuarios = eliminacionUsuarios;
         idioma = Util.obtenerTraducciones();
@@ -23,16 +36,26 @@ public class ControladorEliminacionUsuarios {
         initHandlers();
     }
 
+    /**
+     * Inicializar Manejadores. Inicializa todos los manejadores de eventos
+     * necesarios para el correcto funcionamiento de la aplicación.
+     */
     private void initHandlers() {
         eliminacionUsuarios.btnCancelar.addActionListener(e -> eliminacionUsuarios.dispose());
         eliminacionUsuarios.btnAceptar.addActionListener(e -> eliminarUsuario());
     }
 
+    /**
+     * Establece los atajos de teclado para todos los botones existentes.
+     */
     private void crearAtajos() {
         eliminacionUsuarios.btnAceptar.setMnemonic(KeyEvent.VK_1);
         eliminacionUsuarios.btnCancelar.setMnemonic(KeyEvent.VK_2);
     }
 
+    /**
+     * En caso de existir, rellena el desplegable con los usuarios existentes.
+     */
     private void rellenarListaUsuarios() {
         usuarios = null;
         try {
@@ -50,6 +73,9 @@ public class ControladorEliminacionUsuarios {
         }
     }
 
+    /**
+     * Elimina el usuario seleccionado.
+     */
     private void eliminarUsuario() {
         if (eliminacionUsuarios.cbUsuario.getSelectedIndex() != -1) {
             int seguroDeEliminar = Util.mostrarConfirmacion(idioma.getString("confirmacion.eliminarUsuario"));

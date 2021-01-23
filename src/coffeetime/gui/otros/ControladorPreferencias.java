@@ -13,6 +13,14 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador de Preferencias. Controlador para la ventana de Preferencias
+ * dedicado a la recogida de eventos, así como la comprobación de datos
+ * introducidos, permitiendo de esta forma la configuración de la aplicación.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class ControladorPreferencias {
 
     private final Preferencias preferencias;
@@ -20,6 +28,11 @@ public class ControladorPreferencias {
     private String guardadoAutomatico;
     private String rutaGuardado;
 
+    /**
+     * Constructor.
+     *
+     * @param preferencias Ventana de preferencias.
+     */
     public ControladorPreferencias(Preferencias preferencias) {
         this.preferencias = preferencias;
         idioma = Util.obtenerTraducciones();
@@ -30,6 +43,10 @@ public class ControladorPreferencias {
         initHandlers();
     }
 
+    /**
+     * Inicializar Manejadores. Inicializa todos los manejadores de eventos
+     * necesarios para el correcto funcionamiento de la aplicación.
+     */
     private void initHandlers() {
         preferencias.btnAceptar.addActionListener(e -> {
             guardarPreferencias();
@@ -43,11 +60,17 @@ public class ControladorPreferencias {
         preferencias.rbAutoguardadoNo.addActionListener(e -> gestionarAutoGuardado());
     }
 
+    /**
+     * Establece los atajos de teclado para todos los botones existentes.
+     */
     private void crearAtajos() {
         preferencias.btnAceptar.setMnemonic(KeyEvent.VK_1);
         preferencias.btnCancelar.setMnemonic(KeyEvent.VK_2);
     }
 
+    /**
+     * Recoge y guarda todas las preferencias indicadas por el usuario en un archivo externo de configuración.
+     */
     private void guardarPreferencias() {
         Properties propiedades = new Properties();
 
@@ -71,6 +94,9 @@ public class ControladorPreferencias {
         }
     }
 
+    /**
+     * Rellena los valores de la ventana con aquellas preferencias previamente establecidas por el usuario en caso de existir.
+     */
     private void marcarPreferenciasAnteriores() {
         try {
             Properties properties = new Properties();
@@ -95,6 +121,10 @@ public class ControladorPreferencias {
         }
     }
 
+    /**
+     * Activa o desactiva la función de autoguardado de la aplicación.
+     * En caso de activación mostrará un diálogo para la selección de una ruta de guardado por defecto.
+     */
     private void gestionarAutoGuardado() {
         if (preferencias.rbAutoguardadoSi.isSelected()) {
             JFileChooser selector = new JFileChooser();

@@ -1,7 +1,8 @@
 package coffeetime.gui.principal;
 
 import coffeetime.base.Usuario;
-import coffeetime.gui.otros.*;
+import coffeetime.gui.otros.ControladorPreferencias;
+import coffeetime.gui.otros.Preferencias;
 import coffeetime.gui.usuarios.ControladorCreacionUsuarios;
 import coffeetime.gui.usuarios.ControladorEliminacionUsuarios;
 import coffeetime.gui.usuarios.CreacionUsuarios;
@@ -19,6 +20,13 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador del Menú Principal. Controlador para la ventana del Menú Principal
+ * dedicado a la recogida de eventos, así como el acceso al resto de funciones de la aplicación.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class ControladorMenuPrincipal implements ActionListener, WindowListener {
 
     public static final String EXTENSION_FICHEROS = ".dat";
@@ -27,6 +35,12 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
     private final Modelo modelo;
     private final ResourceBundle idioma;
 
+    /**
+     * Constructor.
+     *
+     * @param menuPrincipal Ventana del Menú Principal.
+     * @param modelo        Modelo de la aplicación.
+     */
     public ControladorMenuPrincipal(MenuPrincipal menuPrincipal, Modelo modelo) {
         this.menuPrincipal = menuPrincipal;
         this.modelo = modelo;
@@ -38,6 +52,10 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
 
     }
 
+    /**
+     * Inicializar Manejadores. Inicializa todos los manejadores de eventos
+     * necesarios para el correcto funcionamiento de la aplicación.
+     */
     private void initHandlers() {
         menuPrincipal.btnCafes.addActionListener(this);
         menuPrincipal.btnFabricantes.addActionListener(this);
@@ -68,12 +86,18 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
 
     }
 
+    /**
+     * Establece los atajos de teclado para todos los botones existentes.
+     */
     private void crearAtajos() {
         menuPrincipal.btnCafes.setMnemonic(KeyEvent.VK_1);
         menuPrincipal.btnFabricantes.setMnemonic(KeyEvent.VK_2);
         menuPrincipal.btnLotes.setMnemonic(KeyEvent.VK_3);
     }
 
+    /**
+     * Gestiona el cierre de la aplicación en función de las opciones de guardado activas en ese momento.
+     */
     private void cerrarVentana() {
         try {
             Properties properties = new Properties();
@@ -92,6 +116,9 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
 
     }
 
+    /**
+     * En caso de cambios realizados advierte al usuario de su existencia y le ofrece la posibilidad de proceder con su guardado.
+     */
     private void mostrarConfirmacionGuardado() {
         if (modelo.getCambios()) {
             int decision = Util.mostrarConfirmacion(idioma.getString("confirmacion.deseaGuardar"));
@@ -105,6 +132,9 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
         }
     }
 
+    /**
+     * En función de las opciones de guardado activas en ese momento carga o no datos externos.
+     */
     private void comprobarDatosAutoguardado() {
         try {
             Properties properties = new Properties();
@@ -122,6 +152,11 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
         }
     }
 
+    /**
+     * Guarda todos los datos referentes a Cafés, Lotes y Fabricantes presentes en la aplicación en ese momento.
+     *
+     * @param rutaGuardadoAutomatico De existir, ruta seleccionada para el guardado automático de datos.
+     */
     private void guardarDatos(String rutaGuardadoAutomatico) {
         if (rutaGuardadoAutomatico == null) {
             JFileChooser selector = new JFileChooser();
@@ -147,6 +182,9 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
 
     }
 
+    /**
+     * Carga todos los datos referentes a Cafés, Lotes y Fabricantes presentes en el archivo seleccionado.
+     */
     private void cargarDatos() {
         JFileChooser selectorCarga = new JFileChooser();
         selectorCarga.setAcceptAllFileFilterUsed(false);
@@ -162,12 +200,18 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
         }
     }
 
+    /**
+     * Borra todos los datos almacenados en la aplicación en ese momento.
+     */
     private void reiniciarElementos() {
         if (Util.mostrarConfirmacion(idioma.getString("error.seguroDeBorrar")) == Util.ACEPTAR) {
             modelo.reiniciarDatos();
         }
     }
 
+    /**
+     * Cierra la sesión actual, impidiendo el inicio de sesión automático la próxima vez que se inicie la aplicación.
+     */
     private void cerrarSesion() {
         try {
             Properties propiedades = new Properties();
@@ -181,6 +225,9 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
         System.exit(0);
     }
 
+    /**
+     * En función de los privilegios del usuario logueado activa o desactiva el acceso a determinadas partes de la aplicación.
+     */
     private void cargarUsuario() {
         try {
             Properties properties = new Properties();
@@ -192,6 +239,11 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
         }
     }
 
+    /**
+     * Establece las funciones disponibles o no para cada uno de los niveles de usuario.
+     *
+     * @param nivelUsuario Nivel de privilegios del usuario actual.
+     */
     private void activarFunciones(String nivelUsuario) {
         if (nivelUsuario.equals(String.valueOf(Usuario.DEFAULT))) {
             menuPrincipal.mnitAddUsuarios.setEnabled(false);
@@ -205,7 +257,11 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
         }
     }
 
-
+    /**
+     * Procedimientos a seguir en caso de que un botón haya sido pulsado.
+     *
+     * @param e Evento de acción creado.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -237,7 +293,7 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
                 new ControladorEliminacionUsuarios(new EliminacionUsuarios());
                 break;
             case "mnitDeshacer":
-                System.out.println("Deshacer");
+
                 break;
             case "mnitCerrarSesion":
                 cerrarSesion();
@@ -245,6 +301,11 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
         }
     }
 
+    /**
+     * Procedimiento a seguir en caso de que el usuario trate de cerrar la aplicación.
+     *
+     * @param e Evento de ventana creado.
+     */
     @Override
     public void windowClosing(WindowEvent e) {
         cerrarVentana();

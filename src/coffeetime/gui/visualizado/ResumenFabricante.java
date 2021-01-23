@@ -4,6 +4,12 @@ import coffeetime.base.Fabricante;
 
 import javax.swing.*;
 
+/**
+ * Resumen Fabricante. Ventana dedicada a la visualización de todas las propiedades presentes en un elemento de tipo Fabricante.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class ResumenFabricante extends JDialog {
     private JPanel contentPane;
     private JLabel lblIdentificador;
@@ -13,6 +19,11 @@ public class ResumenFabricante extends JDialog {
     private JLabel lblInternacional;
     private JLabel lblFechaAlta;
 
+    /**
+     * Cosntructor.
+     *
+     * @param fabricante Fabricante a visualizar.
+     */
     public ResumenFabricante(Fabricante fabricante) {
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

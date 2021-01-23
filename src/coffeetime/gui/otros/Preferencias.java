@@ -2,6 +2,13 @@ package coffeetime.gui.otros;
 
 import javax.swing.*;
 
+/**
+ * Preferencias. Ventana dedicada a la configuración de preferencias del usuario respecto
+ * al funcionamiento o apariencia de la aplicación.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class Preferencias extends JDialog {
     JSpinner spinFuente;
     JRadioButton rbTemaClaro;
@@ -14,7 +21,9 @@ public class Preferencias extends JDialog {
     SpinnerNumberModel snm;
     private JPanel contentPane;
 
-
+    /**
+     * Constructor.
+     */
     public Preferencias() {
         setContentPane(contentPane);
         initComponents();
@@ -23,6 +32,10 @@ public class Preferencias extends JDialog {
         setVisible(true);
     }
 
+    /**
+     * Inicializar Componentes. Inicializa todos aquellos componentes visuales de
+     * los que dispone esta clase y establece sus propiedades.
+     */
     private void initComponents() {
         snm = new SpinnerNumberModel();
         snm.setMaximum(25);

@@ -12,15 +12,29 @@ import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador Gestión Fabricante. Controlador para la ventana de Gestión de Fabricante
+ * dedicado a la recogida de eventos, así como la comprobación de datos
+ * introducidos e insercción de los datos en cada campo de texto (en el caso de
+ * modificación).
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class ControladorGestionFabricantes implements ActionListener {
 
     private final GestionFabricantes ventanaGestionFabricantes;
     private final Modelo modelo;
     private final boolean modificando;
     private final Fabricante fabricanteAModificar;
-
     private ResourceBundle idioma;
 
+    /**
+     * Constructor para crear un nuevo Fabricante.
+     *
+     * @param modelo                    Modelo de la aplicación.
+     * @param ventanaGestionFabricantes Ventana de Gestión de Fabricante a controlar.
+     */
     public ControladorGestionFabricantes(GestionFabricantes ventanaGestionFabricantes, Modelo modelo) {
         this.ventanaGestionFabricantes = ventanaGestionFabricantes;
         this.modelo = modelo;
@@ -32,6 +46,13 @@ public class ControladorGestionFabricantes implements ActionListener {
         initHandlers();
     }
 
+    /**
+     * Constructor para modificar un Fabricante.
+     *
+     * @param modelo                    Modelo de la aplicación.
+     * @param ventanaGestionFabricantes Ventana de Gestión de Fabricante a controlar.
+     * @param fabricante                Fabricante a modificar.
+     */
     public ControladorGestionFabricantes(GestionFabricantes ventanaGestionFabricantes, Modelo modelo, Fabricante fabricante) {
         this.ventanaGestionFabricantes = ventanaGestionFabricantes;
         this.modelo = modelo;
@@ -42,6 +63,10 @@ public class ControladorGestionFabricantes implements ActionListener {
         rellenarDatos();
     }
 
+    /**
+     * Inicializar Manejadores. Inicializa todos los manejadores de eventos
+     * necesarios para el correcto funcionamiento de la aplicación.
+     */
     private void initHandlers() {
         ventanaGestionFabricantes.btnGestionar.addActionListener(this);
         ventanaGestionFabricantes.btnCancelar.addActionListener(this);
@@ -51,12 +76,18 @@ public class ControladorGestionFabricantes implements ActionListener {
         }
     }
 
+    /**
+     * Establece los atajos de teclado para todos los botones existentes.
+     */
     private void crearAtajos() {
         ventanaGestionFabricantes.btnGestionar.setMnemonic(KeyEvent.VK_1);
         ventanaGestionFabricantes.btnCancelar.setMnemonic(KeyEvent.VK_2);
         ventanaGestionFabricantes.btnGestionarLotes.setMnemonic(KeyEvent.VK_3);
     }
 
+    /**
+     * Rellena los datos de todos los campos en función del fabricante a modificar.
+     */
     private void rellenarDatos() {
         ventanaGestionFabricantes.txtNombre.setText(fabricanteAModificar.getNombre());
         ventanaGestionFabricantes.txtDireccion.setText(fabricanteAModificar.getDireccion());
@@ -72,6 +103,9 @@ public class ControladorGestionFabricantes implements ActionListener {
         ventanaGestionFabricantes.btnGestionarLotes.setVisible(true);
     }
 
+    /**
+     * Gestiona el Fabricante generado tras la comprobación de datos.
+     */
     private void gestionarFabricante() {
         Fabricante fabricante = comprobarDatos();
         if (fabricante != null) {
@@ -87,6 +121,12 @@ public class ControladorGestionFabricantes implements ActionListener {
         }
     }
 
+    /**
+     * Comprobación de todos los datos introducidos para la creación o modificación
+     * de un Fabricante.
+     *
+     * @return Fabricante generado a partir de los datos introducidos en la ventana.
+     */
     private Fabricante comprobarDatos() {
         Fabricante fabricante = null;
         if (comprobarInt(ventanaGestionFabricantes.txtTrabajadores.getText())) {
@@ -126,6 +166,12 @@ public class ControladorGestionFabricantes implements ActionListener {
         return fabricante;
     }
 
+    /**
+     * Comprobación para saber si un String es un Int.
+     *
+     * @param aComprobar String a comprobar.
+     * @return Resultado de la comprobación.
+     */
     private boolean comprobarInt(String aComprobar) {
         boolean aDevolver = true;
         try {
@@ -136,7 +182,11 @@ public class ControladorGestionFabricantes implements ActionListener {
         return aDevolver;
     }
 
-
+    /**
+     * Procedimientos a seguir en caso de que un botón haya sido pulsado.
+     *
+     * @param e Evento de acción creado.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {

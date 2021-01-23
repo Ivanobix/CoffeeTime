@@ -5,6 +5,12 @@ import coffeetime.base.Lote;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * Resumen Lote. Ventana dedicada a la visualización de todas las propiedades presentes en un elemento de tipo Lote.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class ResumenLote extends JDialog {
     private JPanel contentPane;
     private JButton btnVerFabricante;
@@ -14,7 +20,11 @@ public class ResumenLote extends JDialog {
     private JLabel lblEnvasado;
     private JLabel lblCaducidad;
 
-
+    /**
+     * Cosntructor.
+     *
+     * @param lote Lote a visualizar.
+     */
     public ResumenLote(Lote lote) {
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

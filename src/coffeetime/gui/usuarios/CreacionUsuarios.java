@@ -2,6 +2,12 @@ package coffeetime.gui.usuarios;
 
 import javax.swing.*;
 
+/**
+ * Creación de Usuarios. Ventana dedicada a la creación de usuarios.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class CreacionUsuarios extends JDialog {
     JButton btnAceptar;
     JButton btnCancelar;
@@ -12,7 +18,9 @@ public class CreacionUsuarios extends JDialog {
     JRadioButton rbInvitado;
     private JPanel contentPane;
 
-
+    /**
+     * Constructor.
+     */
     public CreacionUsuarios() {
         setContentPane(contentPane);
         initComponents();
@@ -22,6 +30,10 @@ public class CreacionUsuarios extends JDialog {
 
     }
 
+    /**
+     * Inicializar Componentes. Inicializa todos aquellos componentes visuales de
+     * los que dispone esta clase y establece sus propiedades.
+     */
     private void initComponents() {
         contentPane.getRootPane().setDefaultButton(btnAceptar);
         txtUsuario.requestFocus();

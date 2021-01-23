@@ -4,6 +4,13 @@ import com.github.lgooddatepicker.components.DatePicker;
 
 import javax.swing.*;
 
+/**
+ * Gestión Fabricante. Ventana dedicada a la recogida de datos para la
+ * posterior creación y modificación de objetos tipo Fabricante.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class GestionFabricantes extends JDialog {
     JPanel contentPane;
     JTextField txtNombre;
@@ -16,16 +23,25 @@ public class GestionFabricantes extends JDialog {
     JButton btnGestionarLotes;
     JLabel lblLotesFabricados;
 
+    /**
+     * Constructor.
+     */
     public GestionFabricantes() {
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        initComponents();
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
 
+    /**
+     * Inicializar Componentes. Inicializa todos aquellos componentes visuales de
+     * los que dispone esta clase y establece sus propiedades.
+     */
+    private void initComponents() {
         contentPane.getRootPane().setDefaultButton(btnGestionar);
         btnGestionar.requestFocus();
-
     }
 
 }

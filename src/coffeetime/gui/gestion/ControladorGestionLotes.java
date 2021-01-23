@@ -12,15 +12,29 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador Gestión Lote. Controlador para la ventana de Gestión de Lote
+ * dedicado a la recogida de eventos, así como la comprobación de datos
+ * introducidos e insercción de los datos en cada campo de texto (en el caso de
+ * modificación).
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class ControladorGestionLotes implements ActionListener {
 
     private final GestionLotes ventanaGestionLotes;
     private final Modelo modelo;
     private final boolean modificando;
     private final Lote loteAModificar;
-
     private ResourceBundle idioma;
 
+    /**
+     * Constructor para crear un nuevo Lote.
+     *
+     * @param modelo              Modelo de la aplicación.
+     * @param ventanaGestionLotes Ventana de Gestión de Lote a controlar.
+     */
     public ControladorGestionLotes(GestionLotes ventanaGestionLotes, Modelo modelo) {
         this.ventanaGestionLotes = ventanaGestionLotes;
         this.modelo = modelo;
@@ -35,6 +49,13 @@ public class ControladorGestionLotes implements ActionListener {
         ventanaGestionLotes.dpEnvasado.setDate(LocalDate.now());
     }
 
+    /**
+     * Constructor para modificar un Lote.
+     *
+     * @param modelo              Modelo de la aplicación.
+     * @param ventanaGestionLotes Ventana de Gestión de Lote a controlar.
+     * @param lote                Lote a modificar.
+     */
     public ControladorGestionLotes(GestionLotes ventanaGestionLotes, Modelo modelo, Lote lote) {
         this.ventanaGestionLotes = ventanaGestionLotes;
         this.modelo = modelo;
@@ -46,16 +67,26 @@ public class ControladorGestionLotes implements ActionListener {
         rellenarDatos();
     }
 
+    /**
+     * Inicializar Manejadores. Inicializa todos los manejadores de eventos
+     * necesarios para el correcto funcionamiento de la aplicación.
+     */
     private void initHandlers() {
         ventanaGestionLotes.btnGestionar.addActionListener(this);
         ventanaGestionLotes.btnCancelar.addActionListener(this);
     }
 
+    /**
+     * Establece los atajos de teclado para todos los botones existentes.
+     */
     private void crearAtajos() {
         ventanaGestionLotes.btnGestionar.setMnemonic(KeyEvent.VK_1);
         ventanaGestionLotes.btnCancelar.setMnemonic(KeyEvent.VK_2);
     }
 
+    /**
+     * Rellena los datos de todos los campos en función del Lote a modificar.
+     */
     private void rellenarDatos() {
         ventanaGestionLotes.txtCoste.setText(String.valueOf(loteAModificar.getCosteTotal()));
         ventanaGestionLotes.txtUnidades.setText(String.valueOf(loteAModificar.getNumeroUnidades()));
@@ -65,6 +96,9 @@ public class ControladorGestionLotes implements ActionListener {
         ventanaGestionLotes.cbFabricante.setSelectedItem(loteAModificar.getFabricante());
     }
 
+    /**
+     * Añade al desplegable todos los Fabricantes existentes.
+     */
     private void cargarFabricantes() {
         ArrayList<Fabricante> fabricantes = modelo.getFabricantes();
         for (Fabricante fabricante : fabricantes) {
@@ -72,6 +106,9 @@ public class ControladorGestionLotes implements ActionListener {
         }
     }
 
+    /**
+     * Gestiona el Lote generado tras la comprobación de datos.
+     */
     private void gestionarLote() {
         Lote lote = comprobarDatos();
         if (lote != null) {
@@ -86,6 +123,12 @@ public class ControladorGestionLotes implements ActionListener {
         }
     }
 
+    /**
+     * Comprobación de todos los datos introducidos para la creación o modificación
+     * de un Lote.
+     *
+     * @return Lote generado a partir de los datos introducidos en la ventana.
+     */
     private Lote comprobarDatos() {
         Lote lote = null;
         if (comprobarInt(ventanaGestionLotes.txtUnidades.getText())) {
@@ -130,6 +173,12 @@ public class ControladorGestionLotes implements ActionListener {
         return lote;
     }
 
+    /**
+     * Comprobación para saber si un String es un Double.
+     *
+     * @param aComprobar String a comprobar.
+     * @return Resultado de la comprobación.
+     */
     private boolean comprobarDouble(String aComprobar) {
         boolean aDevolver = true;
         try {
@@ -140,6 +189,12 @@ public class ControladorGestionLotes implements ActionListener {
         return aDevolver;
     }
 
+    /**
+     * Comprobación para saber si un String es un Int.
+     *
+     * @param aComprobar String a comprobar.
+     * @return Resultado de la comprobación.
+     */
     private boolean comprobarInt(String aComprobar) {
         boolean aDevolver = true;
         try {
@@ -150,7 +205,11 @@ public class ControladorGestionLotes implements ActionListener {
         return aDevolver;
     }
 
-
+    /**
+     * Procedimientos a seguir en caso de que un botón haya sido pulsado.
+     *
+     * @param e Evento de acción creado.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {

@@ -97,6 +97,9 @@ public class Util {
         return new ImageIcon(imagenOriginal.getScaledInstance(anchoRecomendado, altoRecomendado, Image.SCALE_SMOOTH));
     }
 
+    /**
+     * Crea un directorio (si no existe) para almacenar datos generados o propios de la aplicación.
+     */
     public static void crearDirectorioData() {
         File data = new File("data");
         if (!data.exists()) {
@@ -104,6 +107,9 @@ public class Util {
         }
     }
 
+    /**
+     * Crea un directorio (si no existe) para almacenar una copia de las imágenes subidas por el usuario.
+     */
     public static void crearDirectorioImagenes() {
         File data = new File("img");
         if (!data.exists()) {
@@ -111,6 +117,11 @@ public class Util {
         }
     }
 
+    /**
+     * Obtiene el paquete de traducciones de la aplicación para facilitar la internacionalización de la misma.
+     *
+     * @return ResouceBundle de traducciones.
+     */
     public static ResourceBundle obtenerTraducciones() {
         return ResourceBundle.getBundle("idioma");
     }

@@ -6,6 +6,12 @@ import coffeetime.util.Util;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * Resumen Café. Ventana dedicada a la visualización de todas las propiedades presentes en un elemento de tipo Café.
+ *
+ * @author Iván García Prieto
+ * @version 23.01.2021
+ */
 public class ResumenCafe extends JDialog {
     private JPanel contentPane;
     private JButton btnVerLote;
@@ -15,6 +21,11 @@ public class ResumenCafe extends JDialog {
     private JLabel lblArabico;
     private JLabel lblRobusta;
 
+    /**
+     * Cosntructor.
+     *
+     * @param cafe Café a visualizar.
+     */
     public ResumenCafe(Cafe cafe) {
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
