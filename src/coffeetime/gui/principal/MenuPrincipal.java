@@ -57,6 +57,8 @@ public class MenuPrincipal extends Component {
      * los que dispone esta clase y establece sus propiedades.
      */
     private void initComponents() {
+        frame.setTitle(idioma.getString("general.nombreAplicacion"));
+        frame.setIconImage(new ImageIcon(this.getClass().getResource("/general/logo.png")).getImage());
         frame.getRootPane().setDefaultButton(btnFabricantes);
         initBarraDeHerramientas();
         establecerEstiloBotones();

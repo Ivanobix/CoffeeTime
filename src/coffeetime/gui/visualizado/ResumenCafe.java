@@ -22,7 +22,7 @@ public class ResumenCafe extends JDialog {
     private JLabel lblRobusta;
 
     /**
-     * Cosntructor.
+     * Constructor.
      *
      * @param cafe Café a visualizar.
      */
@@ -32,6 +32,8 @@ public class ResumenCafe extends JDialog {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
+        setIconImage(new ImageIcon(this.getClass().getResource("/general/logo.png")).getImage());
 
         contentPane.getRootPane().setDefaultButton(btnVerImagen);
         btnVerImagen.requestFocus();

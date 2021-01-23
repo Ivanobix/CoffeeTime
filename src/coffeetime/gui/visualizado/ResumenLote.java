@@ -21,7 +21,7 @@ public class ResumenLote extends JDialog {
     private JLabel lblCaducidad;
 
     /**
-     * Cosntructor.
+     * Constructor.
      *
      * @param lote Lote a visualizar.
      */
@@ -31,6 +31,8 @@ public class ResumenLote extends JDialog {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
+        setIconImage(new ImageIcon(this.getClass().getResource("/general/logo.png")).getImage());
 
         contentPane.getRootPane().setDefaultButton(btnVerFabricante);
 

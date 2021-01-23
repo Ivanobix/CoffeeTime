@@ -20,7 +20,7 @@ public class ResumenFabricante extends JDialog {
     private JLabel lblFechaAlta;
 
     /**
-     * Cosntructor.
+     * Constructor.
      *
      * @param fabricante Fabricante a visualizar.
      */
@@ -30,6 +30,8 @@ public class ResumenFabricante extends JDialog {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
+        setIconImage(new ImageIcon(this.getClass().getResource("/general/logo.png")).getImage());
 
         lblIdentificador.setText(fabricante.getIdentificador());
         lblNombre.setText(fabricante.getNombre());

@@ -33,6 +33,7 @@ public class Login extends JDialog {
      * los que dispone esta clase y establece sus propiedades.
      */
     private void initComponents() {
+        setIconImage(new ImageIcon(this.getClass().getResource("/general/logo.png")).getImage());
         contentPane.getRootPane().setDefaultButton(btnAceptar);
         txtUsuario.requestFocus();
     }

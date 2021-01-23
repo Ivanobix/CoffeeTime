@@ -59,6 +59,7 @@ public class Submenu extends JDialog {
      * los que dispone esta clase y establece sus propiedades.
      */
     private void initComponents() {
+        setIconImage(new ImageIcon(this.getClass().getResource("/general/logo.png")).getImage());
         rellenarFiltros();
 
         if (tipo == TYPE_FABRICANTES) {
