@@ -2,15 +2,16 @@ package coffeetime.gui.principal;
 
 import coffeetime.base.Usuario;
 import coffeetime.gui.otros.*;
+import coffeetime.gui.usuarios.ControladorCreacionUsuarios;
+import coffeetime.gui.usuarios.ControladorEliminacionUsuarios;
+import coffeetime.gui.usuarios.CreacionUsuarios;
+import coffeetime.gui.usuarios.EliminacionUsuarios;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,10 +19,10 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-public class ControladorMenuPrincipal implements ActionListener {
+public class ControladorMenuPrincipal implements ActionListener, WindowListener {
 
-    private static final String EXTENSION_FICHEROS = ".dat";
-    private static final String NOMBRE_EXTENSION_FICHEROS = "dat";
+    public static final String EXTENSION_FICHEROS = ".dat";
+    public static final String NOMBRE_EXTENSION_FICHEROS = "dat";
     private final MenuPrincipal menuPrincipal;
     private final Modelo modelo;
     private final ResourceBundle idioma;
@@ -33,6 +34,7 @@ public class ControladorMenuPrincipal implements ActionListener {
         initHandlers();
         crearAtajos();
         cargarUsuario();
+        comprobarDatosAutoguardado();
 
     }
 
@@ -62,28 +64,87 @@ public class ControladorMenuPrincipal implements ActionListener {
         menuPrincipal.mnitAddUsuarios.addActionListener(this);
         menuPrincipal.mnitRemoveUsuarios.addActionListener(this);
 
+        menuPrincipal.frame.addWindowListener(this);
+
     }
 
     private void crearAtajos() {
+        menuPrincipal.btnCafes.setMnemonic(KeyEvent.VK_1);
         menuPrincipal.btnFabricantes.setMnemonic(KeyEvent.VK_2);
         menuPrincipal.btnLotes.setMnemonic(KeyEvent.VK_3);
-        menuPrincipal.btnCafes.setMnemonic(KeyEvent.VK_1);
     }
 
-    private void guardarDatos() {
-        JFileChooser selector = new JFileChooser();
-        selector.setAcceptAllFileFilterUsed(false);
-        selector.setFileFilter(new FileNameExtensionFilter(EXTENSION_FICHEROS, NOMBRE_EXTENSION_FICHEROS));
-        int seleccion = selector.showSaveDialog(null);
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            File fichero = new File(selector.getSelectedFile().getAbsolutePath() + EXTENSION_FICHEROS);
-            //File fichero = selector.getSelectedFile();
-            try {
-                modelo.guardarDatos(fichero);
-            } catch (IOException e1) {
-                Util.mostrarError(idioma.getString("error.guardarFichero"));
+    private void cerrarVentana() {
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileReader("data/preferencias.conf"));
+            String guardadoAutomatico = properties.getProperty("GuardadoAutomatico");
+            if (guardadoAutomatico.equals("si")) {
+                String rutaGuardado = properties.getProperty("RutaGuardado");
+                guardarDatos(rutaGuardado);
+            } else {
+                mostrarConfirmacionGuardado();
             }
+
+        } catch (Exception e) {
+            activarFunciones(String.valueOf(Usuario.ADMIN));
         }
+
+    }
+
+    private void mostrarConfirmacionGuardado() {
+        if (modelo.getCambios()) {
+            int decision = Util.mostrarConfirmacion(idioma.getString("confirmacion.deseaGuardar"));
+            if (decision == JOptionPane.YES_OPTION) {
+                guardarDatos(null);
+            } else {
+                System.exit(0);
+            }
+        } else {
+            System.exit(0);
+        }
+    }
+
+    private void comprobarDatosAutoguardado() {
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileReader("data/preferencias.conf"));
+
+            if (properties.getProperty("GuardadoAutomatico").equals("si")) {
+                File datosGuardados = new File(properties.getProperty("RutaGuardado") + ".dat");
+                if (datosGuardados.exists())
+                    modelo.cargarDatos(datosGuardados);
+                else
+                    Util.mostrarError(idioma.getString("error.datosEliminados"));
+            }
+
+        } catch (Exception ignore) {
+        }
+    }
+
+    private void guardarDatos(String rutaGuardadoAutomatico) {
+        if (rutaGuardadoAutomatico == null) {
+            JFileChooser selector = new JFileChooser();
+            selector.setAcceptAllFileFilterUsed(false);
+            selector.setFileFilter(new FileNameExtensionFilter(EXTENSION_FICHEROS, NOMBRE_EXTENSION_FICHEROS));
+            int seleccion = selector.showSaveDialog(null);
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                File fichero = new File(selector.getSelectedFile().getAbsolutePath() + EXTENSION_FICHEROS);
+                try {
+                    modelo.guardarDatos(fichero);
+                } catch (IOException e1) {
+                    Util.mostrarError(idioma.getString("error.guardarFichero"));
+                }
+            }
+        } else {
+            try {
+                File fichero = new File(rutaGuardadoAutomatico + EXTENSION_FICHEROS);
+                modelo.guardarDatos(fichero);
+            } catch (Exception ignore) {
+            }
+
+        }
+
     }
 
     private void cargarDatos() {
@@ -144,6 +205,7 @@ public class ControladorMenuPrincipal implements ActionListener {
         }
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -157,7 +219,7 @@ public class ControladorMenuPrincipal implements ActionListener {
                 new ControladorSubmenu(new Submenu(Submenu.TYPE_LOTES), modelo);
                 break;
             case "mnitGuardar":
-                guardarDatos();
+                guardarDatos(null);
                 break;
             case "mnitCargar":
                 cargarDatos();
@@ -182,4 +244,34 @@ public class ControladorMenuPrincipal implements ActionListener {
                 break;
         }
     }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        cerrarVentana();
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+    }
+
 }

@@ -1,4 +1,4 @@
-package coffeetime.gui.otros;
+package coffeetime.gui.usuarios;
 
 import coffeetime.base.Usuario;
 import coffeetime.util.Util;

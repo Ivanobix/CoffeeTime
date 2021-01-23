@@ -1,4 +1,5 @@
 import coffeetime.gui.login.ControladorLogin;
+import coffeetime.gui.otros.PantallaDeCarga;
 import coffeetime.gui.principal.ControladorMenuPrincipal;
 import coffeetime.gui.principal.MenuPrincipal;
 import coffeetime.modelo.Modelo;
@@ -30,6 +31,15 @@ public class Launcher {
         Util.crearDirectorioData();
         cargarPreferencias();
         new ControladorLogin();
+
+        Thread pantallaDeCarga = new Thread(new PantallaDeCarga());
+        pantallaDeCarga.start();
+
+        try {
+            pantallaDeCarga.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         new ControladorMenuPrincipal(new MenuPrincipal(), new Modelo());
     }
 

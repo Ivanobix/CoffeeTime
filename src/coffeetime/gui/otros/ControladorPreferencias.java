@@ -1,8 +1,12 @@
 package coffeetime.gui.otros;
 
+import coffeetime.gui.principal.ControladorMenuPrincipal;
 import coffeetime.util.Util;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,10 +17,14 @@ public class ControladorPreferencias {
 
     private final Preferencias preferencias;
     private final ResourceBundle idioma;
+    private String guardadoAutomatico;
+    private String rutaGuardado;
 
     public ControladorPreferencias(Preferencias preferencias) {
         this.preferencias = preferencias;
         idioma = Util.obtenerTraducciones();
+        guardadoAutomatico = "no";
+        rutaGuardado = "";
         marcarPreferenciasAnteriores();
         crearAtajos();
         initHandlers();
@@ -29,6 +37,10 @@ public class ControladorPreferencias {
         });
 
         preferencias.btnCancelar.addActionListener(e -> preferencias.dispose());
+
+        preferencias.rbAutoguardadoSi.addActionListener(e -> gestionarAutoGuardado());
+
+        preferencias.rbAutoguardadoNo.addActionListener(e -> gestionarAutoGuardado());
     }
 
     private void crearAtajos() {
@@ -47,10 +59,8 @@ public class ControladorPreferencias {
         else tema = "oscuro";
         propiedades.put("Tema", tema);
 
-        String autoGuardado;
-        if (preferencias.rbAutoguardadoSi.isSelected()) autoGuardado = "si";
-        else autoGuardado = "no";
-        propiedades.put("Autoguardado", autoGuardado);
+        propiedades.put("GuardadoAutomatico", guardadoAutomatico);
+        propiedades.put("RutaGuardado", rutaGuardado);
 
         try {
             propiedades.store(new FileWriter("data/preferencias.conf"), "Coffe Time");
@@ -76,12 +86,34 @@ public class ControladorPreferencias {
                 preferencias.rbTemaClaro.setSelected(true);
             }
 
-            if (properties.getProperty("Autoguardado").equals("si")) {
+            if (properties.getProperty("GuardadoAutomatico").equals("si")) {
                 preferencias.rbAutoguardadoSi.setSelected(true);
             }
 
         } catch (IOException e) {
             guardarPreferencias();
         }
+    }
+
+    private void gestionarAutoGuardado() {
+        if (preferencias.rbAutoguardadoSi.isSelected()) {
+            JFileChooser selector = new JFileChooser();
+            selector.setAcceptAllFileFilterUsed(false);
+            selector.setFileFilter(new FileNameExtensionFilter(ControladorMenuPrincipal.EXTENSION_FICHEROS, ControladorMenuPrincipal.NOMBRE_EXTENSION_FICHEROS));
+            int seleccion = selector.showSaveDialog(null);
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                File fichero = new File(selector.getSelectedFile().getAbsolutePath());
+                guardadoAutomatico = "si";
+                rutaGuardado = fichero.getAbsolutePath();
+            } else {
+                preferencias.rbAutoguardadoNo.setSelected(true);
+            }
+
+        } else {
+            guardadoAutomatico = "no";
+            rutaGuardado = "";
+        }
+
+
     }
 }

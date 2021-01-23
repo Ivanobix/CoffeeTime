@@ -1,27 +1,31 @@
-package coffeetime.gui.otros;
-
-import coffeetime.base.Usuario;
+package coffeetime.gui.usuarios;
 
 import javax.swing.*;
 
-public class EliminacionUsuarios extends JDialog {
+public class CreacionUsuarios extends JDialog {
     JButton btnAceptar;
     JButton btnCancelar;
-    JComboBox<Usuario> cbUsuario;
+    JPasswordField txtContrasena;
+    JTextField txtUsuario;
+    JRadioButton rbAdmin;
+    JRadioButton rbNormal;
+    JRadioButton rbInvitado;
     private JPanel contentPane;
 
 
-    public EliminacionUsuarios() {
+    public CreacionUsuarios() {
         setContentPane(contentPane);
         initComponents();
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
     }
 
     private void initComponents() {
         contentPane.getRootPane().setDefaultButton(btnAceptar);
-        btnAceptar.requestFocus();
+        txtUsuario.requestFocus();
     }
+
 
 }
