@@ -12,6 +12,8 @@
       <component id="e298" class="javax.swing.JLabel" binding="lblIdentificador">
         <constraints border-constraint="North"/>
         <properties>
+          <font style="3"/>
+          <foreground color="-256"/>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
           <text value=""/>
@@ -28,6 +30,8 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font style="1"/>
+              <foreground color="-16711681"/>
               <text resource-bundle="idioma" key="general.nombre"/>
             </properties>
           </component>
@@ -36,6 +40,8 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font style="1"/>
+              <foreground color="-16711681"/>
               <text resource-bundle="idioma" key="general.arabico"/>
             </properties>
           </component>
@@ -44,6 +50,8 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font style="1"/>
+              <foreground color="-16711681"/>
               <text resource-bundle="idioma" key="general.robusta"/>
             </properties>
           </component>
@@ -52,6 +60,8 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font style="1"/>
+              <foreground color="-16711681"/>
               <text resource-bundle="idioma" key="general.lote"/>
             </properties>
           </component>
@@ -60,6 +70,7 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value=""/>
@@ -70,6 +81,7 @@
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value=""/>
@@ -80,6 +92,7 @@
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value=""/>
@@ -101,6 +114,8 @@
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font style="1"/>
+              <foreground color="-16711681"/>
               <text resource-bundle="idioma" key="general.imagenPromocional"/>
             </properties>
           </component>

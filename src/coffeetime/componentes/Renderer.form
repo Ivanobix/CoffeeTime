@@ -15,6 +15,7 @@
           <component id="f9331" class="javax.swing.JLabel" binding="lblTituloUno">
             <constraints/>
             <properties>
+              <font style="1"/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value="Informacion 1:"/>
@@ -25,6 +26,7 @@
           <component id="f8864" class="javax.swing.JLabel" binding="lblInfoUno">
             <constraints/>
             <properties>
+              <font/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value="1234567890"/>
@@ -42,6 +44,7 @@
           <component id="eb04f" class="javax.swing.JLabel" binding="lblTituloDos">
             <constraints/>
             <properties>
+              <font style="1"/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value="Informacion 2:"/>
@@ -52,6 +55,7 @@
           <component id="90926" class="javax.swing.JLabel" binding="lblInfoDos">
             <constraints/>
             <properties>
+              <font/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value="1234567890"/>
@@ -69,6 +73,7 @@
           <component id="2c5c0" class="javax.swing.JLabel" binding="lblIdentificador">
             <constraints border-constraint="Center"/>
             <properties>
+              <font style="1"/>
               <horizontalAlignment value="0"/>
               <text value="0123456789"/>
             </properties>

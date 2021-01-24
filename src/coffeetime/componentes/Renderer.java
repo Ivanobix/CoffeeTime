@@ -45,6 +45,7 @@ public class Renderer implements ListCellRenderer {
         Color color = new Color(tipo);
         separadorSuperior.setForeground(color);
         separadorInferior.setForeground(color);
+        lblIdentificador.setForeground(color);
     }
 
     /**

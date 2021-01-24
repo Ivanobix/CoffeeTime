@@ -104,12 +104,23 @@ public class ControladorGestionCafes implements ActionListener {
     }
 
     /**
-     * Añade al desplegable todos los Lotes existentes.
+     * Añade al desplegable todos los Lotes disponibles.
      */
     private void cargarLotes() {
-        ArrayList<Lote> lotes = modelo.getLotes();
-        for (Lote lote : lotes) {
-            ventanaGestionCafe.dcbm.addElement(lote);
+        boolean asignadoPreviamente = false;
+        for (Lote lote : modelo.getLotes()) {
+            for (Cafe cafe : modelo.getCafes()) {
+                if (cafe.getLote().equals(lote)) {
+                    asignadoPreviamente = true;
+                    break;
+                }
+            }
+            if (!asignadoPreviamente) {
+                ventanaGestionCafe.dcbm.addElement(lote);
+            } else {
+                asignadoPreviamente = false;
+            }
+
         }
     }
 
