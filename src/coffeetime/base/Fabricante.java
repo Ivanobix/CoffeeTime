@@ -30,7 +30,7 @@ public class Fabricante implements Serializable {
      * @param direccion     Direccion del fabricante.
      * @param trabajadores  Trabajadores de la empresa.
      * @param fechaAlta     Fecha de creación de la empresa.
-     * @param internacional Ámbito del fabricante.
+     * @param internacional Ambito del fabricante.
      */
     public Fabricante(String nombre, String direccion, int trabajadores, LocalDate fechaAlta,
                       boolean internacional) {
@@ -136,7 +136,7 @@ public class Fabricante implements Serializable {
     /**
      * Devuelve el ámbito del fabricante.
      *
-     * @return Ámbito del fabricante.
+     * @return Ambito del fabricante.
      */
     public boolean isInternacional() {
         return internacional;
@@ -145,7 +145,7 @@ public class Fabricante implements Serializable {
     /**
      * Establece el ámbito del fabricante.
      *
-     * @param internacional Ámbito del fabricante.
+     * @param internacional Ambito del fabricante.
      */
     public void setInternacional(boolean internacional) {
         this.internacional = internacional;

@@ -87,7 +87,7 @@ public class ControladorCreacionUsuarios {
     /**
      * Recoge los datos introducidos, los verifica y crea el usuario correspondiente.
      *
-     * @return
+     * @return Devuelve el usuario creado tras la recogida de datos.
      */
     private Usuario recogerDatos() {
         Usuario usuario = null;

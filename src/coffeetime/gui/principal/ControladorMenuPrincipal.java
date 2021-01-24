@@ -248,11 +248,13 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
         if (nivelUsuario.equals(String.valueOf(Usuario.DEFAULT))) {
             menuPrincipal.mnitAddUsuarios.setEnabled(false);
             menuPrincipal.mnitNuevo.setEnabled(false);
+            menuPrincipal.mnitPreferencias.setEnabled(false);
         } else if (nivelUsuario.equals(String.valueOf(Usuario.BASICO))) {
             menuPrincipal.mnitNuevo.setEnabled(false);
             menuPrincipal.mnitGuardar.setEnabled(false);
             menuPrincipal.mnitDeshacer.setEnabled(false);
             menuPrincipal.mnitAddUsuarios.setEnabled(false);
+            menuPrincipal.mnitPreferencias.setEnabled(false);
         }
     }
 

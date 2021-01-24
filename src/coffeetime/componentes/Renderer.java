@@ -39,6 +39,8 @@ public class Renderer implements ListCellRenderer {
 
     /**
      * Constructor.
+     *
+     * @param tipo Tipo de elemento a mostrar en el Renderer.
      */
     public Renderer(int tipo) {
         idioma = Util.obtenerTraducciones();
