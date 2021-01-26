@@ -186,6 +186,7 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
                         for (Cafe cafe : modelo.getCafes()) {
                             if (cafe.getLote().equals(lote) && !(variantesCafe.contains(cafe.getNombre()))) {
                                 variantesCafe.add(cafe.getNombre());
+                                break;
                             }
                         }
                     }
