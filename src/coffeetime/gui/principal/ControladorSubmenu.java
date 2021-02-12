@@ -39,7 +39,6 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
     private final Submenu submenu;
     private final Modelo modelo;
     private final ResourceBundle idioma;
-    private int graficaFabricanteAMostrar;
 
     /**
      * Constructor.
@@ -51,7 +50,6 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         this.submenu = submenu;
         this.modelo = modelo;
         idioma = Util.obtenerTraducciones();
-        graficaFabricanteAMostrar = 1;
         cargarDatos();
         initHandlers();
         crearAtajos();
@@ -68,7 +66,6 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         submenu.btnEliminar.addActionListener(this);
         submenu.btnModificar.addActionListener(this);
         submenu.btnMostrarInfoAdicional.addActionListener(this);
-        submenu.btnCambiarGrafica.addActionListener(this);
 
         submenu.txtFiltro.addKeyListener(this);
     }
@@ -81,7 +78,6 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         submenu.btnEliminar.setMnemonic(KeyEvent.VK_2);
         submenu.btnModificar.setMnemonic(KeyEvent.VK_3);
         submenu.btnMostrarInfoAdicional.setMnemonic(KeyEvent.VK_4);
-        submenu.btnCambiarGrafica.setMnemonic(KeyEvent.VK_5);
     }
 
     /**
@@ -164,52 +160,21 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
      * @return Gráfica con datos de tipo Fabricante.
      */
     private JFreeChart crearGraficoFabricante(DefaultPieDataset dataset) {
-        String tituloGrafica;
-        if (graficaFabricanteAMostrar == 1) {
-            tituloGrafica = idioma.getString("grafico.fabricante1");
-            int unidadesVendidas = 0;
-            for (Fabricante fabricante : modelo.getFabricantes()) {
-                for (Lote lote : modelo.getLotes()) {
-                    if (lote.getFabricante().equals(fabricante)) {
-                        unidadesVendidas += lote.getNumeroUnidades();
-                    }
+        String tituloGrafica = idioma.getString("grafico.fabricante1");
+        int unidadesVendidas = 0;
+        for (Fabricante fabricante : modelo.getFabricantes()) {
+            for (Lote lote : modelo.getLotes()) {
+                if (lote.getFabricante().equals(fabricante)) {
+                    unidadesVendidas += lote.getNumeroUnidades();
                 }
-                dataset.setValue(fabricante.getNombre(), unidadesVendidas);
-                unidadesVendidas = 0;
             }
-        } else {
-            tituloGrafica = idioma.getString("grafico.fabricante2");
-            ArrayList<String> variantesCafe = new ArrayList<>();
-            for (Fabricante fabricante : modelo.getFabricantes()) {
-                for (Lote lote : modelo.getLotes()) {
-                    if (lote.getFabricante().equals(fabricante)) {
-                        for (Cafe cafe : modelo.getCafes()) {
-                            if (cafe.getLote().equals(lote) && !(variantesCafe.contains(cafe.getNombre()))) {
-                                variantesCafe.add(cafe.getNombre());
-                                break;
-                            }
-                        }
-                    }
-                }
-                dataset.setValue(fabricante.getNombre(), variantesCafe.size());
-                variantesCafe.clear();
-            }
+            dataset.setValue(fabricante.getNombre(), unidadesVendidas);
+            unidadesVendidas = 0;
         }
 
         return ChartFactory.createPieChart(tituloGrafica, dataset);
     }
 
-    /**
-     * Muestra el siguiente gráfico disponible.
-     */
-    private void cambiarGraficaFabricante() {
-        if (graficaFabricanteAMostrar == 1) {
-            graficaFabricanteAMostrar = 2;
-        } else {
-            graficaFabricanteAMostrar = 1;
-        }
-        crearEstadisticas();
-    }
 
     /**
      * Actualiza la lista de elementos tras realizar cambios en ella.
@@ -343,11 +308,6 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
                         submenu.dlm.addElement(cafe);
                     }
                     break;
-                case 4: //Lote
-                    if (cafe.getLote().getIdentificador().toLowerCase().contains(filtro)) {
-                        submenu.dlm.addElement(cafe);
-                    }
-                    break;
             }
         }
     }
@@ -458,9 +418,6 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
                 break;
             case "btnMostrarInfoAdicional":
                 mostrarInfoAdicional();
-                break;
-            case "btnCambiarGrafica":
-                cambiarGraficaFabricante();
                 break;
         }
     }

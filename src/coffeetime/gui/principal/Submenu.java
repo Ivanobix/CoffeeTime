@@ -29,7 +29,6 @@ public class Submenu extends JDialog {
     JButton btnModificar;
     JButton btnEliminar;
     JButton btnMostrarInfoAdicional;
-    JButton btnCambiarGrafica;
     JTextField txtFiltro;
     JComboBox<String> cbFiltrado;
     JList listaElementos;
@@ -59,12 +58,17 @@ public class Submenu extends JDialog {
      * los que dispone esta clase y establece sus propiedades.
      */
     private void initComponents() {
+        if (tipo == TYPE_CAFES) {
+            setTitle(idioma.getString("submenu.cafes"));
+        } else if (tipo == TYPE_LOTES) {
+            setTitle(idioma.getString("submenu.lotes"));
+        } else {
+            setTitle(idioma.getString("submenu.fabricantes"));
+        }
+
         setIconImage(new ImageIcon(this.getClass().getResource("/general/logo.png")).getImage());
         rellenarFiltros();
 
-        if (tipo == TYPE_FABRICANTES) {
-            btnCambiarGrafica.setVisible(true);
-        }
     }
 
     /**
@@ -87,7 +91,6 @@ public class Submenu extends JDialog {
         cbFiltrado.addItem(idioma.getString("general.nombre"));
         cbFiltrado.addItem(idioma.getString("general.arabico"));
         cbFiltrado.addItem(idioma.getString("general.robusta"));
-        cbFiltrado.addItem(idioma.getString("general.lote"));
     }
 
     /**

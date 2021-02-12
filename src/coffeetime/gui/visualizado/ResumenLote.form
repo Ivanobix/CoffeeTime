@@ -21,7 +21,6 @@
             </constraints>
             <properties>
               <font style="1"/>
-              <foreground color="-16711936"/>
               <text resource-bundle="idioma" key="general.unidades"/>
             </properties>
           </component>
@@ -31,7 +30,6 @@
             </constraints>
             <properties>
               <font style="1"/>
-              <foreground color="-16711936"/>
               <text resource-bundle="idioma" key="general.coste"/>
             </properties>
           </component>
@@ -41,7 +39,6 @@
             </constraints>
             <properties>
               <font style="1"/>
-              <foreground color="-16711936"/>
               <text resource-bundle="idioma" key="general.envasado"/>
             </properties>
           </component>
@@ -51,7 +48,6 @@
             </constraints>
             <properties>
               <font style="1"/>
-              <foreground color="-16711936"/>
               <text resource-bundle="idioma" key="general.caducidad"/>
             </properties>
           </component>
@@ -61,7 +57,6 @@
             </constraints>
             <properties>
               <font style="1"/>
-              <foreground color="-16711936"/>
               <text resource-bundle="idioma" key="general.fabricante"/>
             </properties>
           </component>
@@ -122,7 +117,6 @@
             <constraints/>
             <properties>
               <font style="3"/>
-              <foreground color="-256"/>
               <text value=""/>
             </properties>
           </component>

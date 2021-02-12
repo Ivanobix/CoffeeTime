@@ -1,6 +1,9 @@
 package coffeetime.gui.otros;
 
+import coffeetime.util.Util;
+
 import javax.swing.*;
+import java.util.ResourceBundle;
 
 /**
  * Preferencias. Ventana dedicada a la configuración de preferencias del usuario respecto
@@ -10,6 +13,8 @@ import javax.swing.*;
  * @version 23.01.2021
  */
 public class Preferencias extends JDialog {
+    private final ResourceBundle idioma;
+
     JSpinner spinFuente;
     JRadioButton rbTemaClaro;
     JRadioButton rbTemaOscuro;
@@ -26,6 +31,7 @@ public class Preferencias extends JDialog {
      */
     public Preferencias() {
         setContentPane(contentPane);
+        idioma = Util.obtenerTraducciones();
         initComponents();
         setLocationRelativeTo(null);
         pack();
@@ -37,6 +43,8 @@ public class Preferencias extends JDialog {
      * los que dispone esta clase y establece sus propiedades.
      */
     private void initComponents() {
+        setTitle(idioma.getString("menu.preferencias"));
+
         setIconImage(new ImageIcon(this.getClass().getResource("/general/logo.png")).getImage());
         snm = new SpinnerNumberModel();
         snm.setMaximum(25);

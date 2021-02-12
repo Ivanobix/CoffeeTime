@@ -19,7 +19,7 @@ public class Cafe implements Serializable {
     private String imagenPromocional;
     private double porcentajeArabico;
     private double porcentajeRobusta;
-    private Lote lote;
+
 
     /**
      * Constructor.
@@ -28,17 +28,14 @@ public class Cafe implements Serializable {
      * @param imagenPromocional Fecha de envasado del café.
      * @param porcentajeArabico Porcentaje de café arábico en la mezcla.
      * @param porcentajeRobusta Porcentaje de café robusta en la mezcla.
-     * @param lote              Lote al que pertenece el café.
      */
-    public Cafe(String nombre, String imagenPromocional, double porcentajeArabico, double porcentajeRobusta,
-                Lote lote) {
+    public Cafe(String nombre, String imagenPromocional, double porcentajeArabico, double porcentajeRobusta) {
         super();
         identificador = UUID.randomUUID().toString().substring(0, 10);
         this.nombre = nombre;
         this.imagenPromocional = imagenPromocional;
         this.porcentajeArabico = porcentajeArabico;
         this.porcentajeRobusta = porcentajeRobusta;
-        this.lote = lote;
     }
 
     /**
@@ -131,23 +128,6 @@ public class Cafe implements Serializable {
         this.porcentajeRobusta = porcentajeRobusta;
     }
 
-    /**
-     * Devuelve el lote del café.
-     *
-     * @return Lote del café.
-     */
-    public Lote getLote() {
-        return lote;
-    }
-
-    /**
-     * Establece el lote del café.
-     *
-     * @param lote Lote del café.
-     */
-    public void setLote(Lote lote) {
-        this.lote = lote;
-    }
 
     /**
      * Devuelve una cadena con la información básica de un café.

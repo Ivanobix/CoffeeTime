@@ -107,15 +107,13 @@ public class Modelo {
      *                          café.
      * @param porcentajeRobusta Nuevo porcentaje de café robusta en la mezcla del
      *                          café.
-     * @param lote              Nuevo lote del café.
      */
     public void modificarCafe(Cafe cafe, String nombre, String imagenPromocional, double porcentajeArabico,
-                              double porcentajeRobusta, Lote lote) {
+                              double porcentajeRobusta) {
         cafe.setNombre(nombre);
         cafe.setImagenPromocional(imagenPromocional);
         cafe.setPorcentajeArabico(porcentajeArabico);
         cafe.setPorcentajeRobusta(porcentajeRobusta);
-        cafe.setLote(lote);
         cambios = true;
     }
 
@@ -130,19 +128,12 @@ public class Modelo {
     }
 
     /**
-     * Eliminación de un fabricante de la lista y todos los lotes y cafés producidos por
+     * Eliminación de un fabricante de la lista y todos los lotes producidos por
      * este.
      *
      * @param fabricante Fabricante a eliminar de la lista.
      */
     public void eliminarFabricante(Fabricante fabricante) {
-        //Eliminar todos los cafés de cada lote del fabricante
-        for (Lote lote : lotes) {
-            if (lote.getFabricante().equals(fabricante)) {
-                cafes.removeIf(cafe -> cafe.getLote().equals(lote));
-            }
-        }
-
         //Eliminar todos los lotes del fabricante
         lotes.removeIf(lote -> lote.getFabricante().equals(fabricante));
 
@@ -182,14 +173,12 @@ public class Modelo {
     }
 
     /**
-     * Eliminación de un lote de la lista y todos los cafés pertenecientes a
-     * este.
+     * Eliminación de un lote de la lista.
      *
      * @param lote Lote a eliminar de la lista.
      */
     public void eliminarLote(Lote lote) {
         lotes.remove(lote);
-        cafes.removeIf(cafe -> cafe.getLote().equals(lote));
         cambios = true;
     }
 

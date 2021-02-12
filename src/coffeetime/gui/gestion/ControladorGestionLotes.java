@@ -2,6 +2,8 @@ package coffeetime.gui.gestion;
 
 import coffeetime.base.Fabricante;
 import coffeetime.base.Lote;
+import coffeetime.gui.otros.AsignacionDeCafesALote;
+import coffeetime.gui.otros.ControladorAsignacionDeCafesALote;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
 
@@ -74,6 +76,7 @@ public class ControladorGestionLotes implements ActionListener {
     private void initHandlers() {
         ventanaGestionLotes.btnGestionar.addActionListener(this);
         ventanaGestionLotes.btnCancelar.addActionListener(this);
+        ventanaGestionLotes.btnGestionarCafes.addActionListener(this);
     }
 
     /**
@@ -82,6 +85,7 @@ public class ControladorGestionLotes implements ActionListener {
     private void crearAtajos() {
         ventanaGestionLotes.btnGestionar.setMnemonic(KeyEvent.VK_1);
         ventanaGestionLotes.btnCancelar.setMnemonic(KeyEvent.VK_2);
+        ventanaGestionLotes.btnGestionarCafes.setMnemonic(KeyEvent.VK_3);
     }
 
     /**
@@ -94,6 +98,9 @@ public class ControladorGestionLotes implements ActionListener {
         ventanaGestionLotes.dpCaducidad.setDate(loteAModificar.getFechaDeCaducidad());
 
         ventanaGestionLotes.cbFabricante.setSelectedItem(loteAModificar.getFabricante());
+
+        ventanaGestionLotes.btnGestionarCafes.setVisible(true);
+        ventanaGestionLotes.lblCafes.setVisible(true);
     }
 
     /**
@@ -217,6 +224,11 @@ public class ControladorGestionLotes implements ActionListener {
                 gestionarLote();
                 break;
             case "btnCancelar":
+                ventanaGestionLotes.dispose();
+                break;
+
+            case "btnGestionarCafes":
+                new ControladorAsignacionDeCafesALote(new AsignacionDeCafesALote(), loteAModificar, modelo.getCafes());
                 ventanaGestionLotes.dispose();
                 break;
         }

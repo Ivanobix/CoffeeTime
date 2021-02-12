@@ -2,6 +2,7 @@ package coffeetime.base;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -21,6 +22,7 @@ public class Lote implements Serializable {
     private LocalDate fechaDeEnvasado;
     private LocalDate fechaDeCaducidad;
     private Fabricante fabricante;
+    private ArrayList<Cafe> cafes;
 
     /**
      * Constructor.
@@ -38,6 +40,7 @@ public class Lote implements Serializable {
         this.fechaDeEnvasado = fechaDeEnvasado;
         this.fechaDeCaducidad = fechaDeCaducidad;
         this.fabricante = fabricante;
+        cafes = new ArrayList<>();
     }
 
     /**
@@ -146,6 +149,43 @@ public class Lote implements Serializable {
      */
     public void setFabricante(Fabricante fabricante) {
         this.fabricante = fabricante;
+    }
+
+
+    /**
+     * Devuelve los cafés del lote.
+     *
+     * @return Cafés del lote.
+     */
+    public ArrayList<Cafe> getCafes() {
+        return cafes;
+    }
+
+    /**
+     * Establece el los cafés que pertenecen al lote.
+     *
+     * @param cafes Cafés del lote.
+     */
+    public void setCafes(ArrayList<Cafe> cafes) {
+        this.cafes = cafes;
+    }
+
+    /**
+     * Añade un café a la lista.
+     *
+     * @param cafe Café a añadir.
+     */
+    public void addCafe(Cafe cafe) {
+        cafes.add(cafe);
+    }
+
+    /**
+     * Elimina un café de la lista.
+     *
+     * @param cafe Café a eliminar.
+     */
+    public void deleteCafe(Cafe cafe) {
+        cafes.remove(cafe);
     }
 
     /**

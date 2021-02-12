@@ -16,8 +16,8 @@ import java.util.ResourceBundle;
  * @version 23.01.2021
  */
 public class MenuPrincipal extends Component {
-    private static final Color TEMA_OSCURO = new Color(30, 30, 30);
-    private static final Color TEMA_CLARO = new Color(255, 255, 255);
+    public static final Color TEMA_OSCURO = new Color(30, 30, 30);
+    public static final Color TEMA_CLARO = new Color(255, 255, 255);
     final JFrame frame;
     private final ResourceBundle idioma;
     JPanel pnPrincipal;

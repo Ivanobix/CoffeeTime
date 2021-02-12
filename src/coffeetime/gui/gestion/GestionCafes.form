@@ -6,7 +6,7 @@
       <xy x="48" y="54" width="486" height="355"/>
     </constraints>
     <properties>
-      <preferredSize width="500" height="320"/>
+      <preferredSize width="600" height="350"/>
     </properties>
     <border type="none"/>
     <children>
@@ -63,29 +63,12 @@
       </component>
       <component id="932f8" class="javax.swing.JLabel">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font style="1"/>
           <text resource-bundle="idioma" key="general.imagenPromocional"/>
         </properties>
-      </component>
-      <component id="73f44" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font style="1"/>
-          <text resource-bundle="idioma" key="general.lote"/>
-        </properties>
-      </component>
-      <component id="24e4f" class="javax.swing.JComboBox" binding="cbLote">
-        <constraints>
-          <grid row="3" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="-1" height="20"/>
-          </grid>
-        </constraints>
-        <properties/>
       </component>
       <component id="c7185" class="javax.swing.JLabel" binding="imgPromocional">
         <constraints>
@@ -100,7 +83,7 @@
       </component>
       <component id="cc484" class="javax.swing.JTextField" binding="txtRutaImagen">
         <constraints>
-          <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="3" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="20"/>
           </grid>
         </constraints>
@@ -110,7 +93,7 @@
       </component>
       <component id="31a42" class="javax.swing.JButton" binding="btnSeleccionarImagen">
         <constraints>
-          <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="-1" height="20"/>
           </grid>
         </constraints>
@@ -148,6 +131,28 @@
           </component>
         </children>
       </grid>
+      <component id="4ff07" class="javax.swing.JLabel" binding="lblLotes">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font style="1"/>
+          <text resource-bundle="idioma" key="general.lote"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="702f0" class="javax.swing.JButton" binding="btnAsignarLotesACafe">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <actionCommand value="btnAsignarLotesACafe"/>
+          <icon value="visualizado/ir.png"/>
+          <text value=""/>
+          <toolTipText resource-bundle="idioma" key="asignar.Lote"/>
+          <visible value="false"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

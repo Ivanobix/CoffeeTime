@@ -7,7 +7,12 @@ import coffeetime.util.Util;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileReader;
+import java.util.Properties;
 import java.util.ResourceBundle;
+
+import static coffeetime.gui.principal.MenuPrincipal.TEMA_CLARO;
+import static coffeetime.gui.principal.MenuPrincipal.TEMA_OSCURO;
 
 /**
  * Renderer. Clase utilizada para el renderizado de elementos tipo "Café", "Lote" y "Fabricante"
@@ -47,7 +52,6 @@ public class Renderer implements ListCellRenderer {
         Color color = new Color(tipo);
         separadorSuperior.setForeground(color);
         separadorInferior.setForeground(color);
-        lblIdentificador.setForeground(color);
     }
 
     /**
@@ -68,7 +72,7 @@ public class Renderer implements ListCellRenderer {
             resaltar();
 
         } else {
-            restablecerFondo();
+            cargarTema();
         }
 
         return renderer;
@@ -128,20 +132,41 @@ public class Renderer implements ListCellRenderer {
      * Establece el color del Renderer cuando este ha sido seleccionado.
      */
     private void resaltar() {
-        Color color = new Color(28, 28, 28);
+        Color color = pnCentral.getBackground().darker();
         pnEste.setBackground(color);
         pnOeste.setBackground(color);
         pnNorte.setBackground(color);
         pnCentral.setBackground(color);
     }
 
+
     /**
-     * Establece el color del Renderer cuando este ha sido deseleccionado.
+     * Carga el tema seleccionado por el usuario, y en caso de no existir establece uno por defecto.
      */
-    private void restablecerFondo() {
-        pnEste.setBackground(Color.DARK_GRAY);
-        pnOeste.setBackground(Color.DARK_GRAY);
-        pnNorte.setBackground(Color.DARK_GRAY);
-        pnCentral.setBackground(Color.DARK_GRAY);
+    private void cargarTema() {
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileReader("data/preferencias.conf"));
+            if (properties.getProperty("Tema").equals("claro")) {
+                establecerTema(TEMA_CLARO);
+            } else {
+                establecerTema(TEMA_OSCURO);
+            }
+        } catch (Exception e) {
+            establecerTema(TEMA_OSCURO);
+        }
+    }
+
+    /**
+     * Establece el color de fondo de los componentes principales.
+     *
+     * @param tema Color a aplicar.
+     */
+    private void establecerTema(Color tema) {
+        pnEste.setBackground(tema);
+        pnOeste.setBackground(tema);
+        pnNorte.setBackground(tema);
+        pnCentral.setBackground(tema);
+        renderer.setBackground(tema);
     }
 }

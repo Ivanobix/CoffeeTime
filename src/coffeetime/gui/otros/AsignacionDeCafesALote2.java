@@ -5,23 +5,21 @@ import coffeetime.componentes.Renderer;
 
 import javax.swing.*;
 
-/**
- * AsignacionDeLotesAFabricante. Ventana dedicada a la asignación de lotes a un determinado fabricante.
- *
- * @author Iván García Prieto
- * @version 23.01.2021
- */
-public class AsignacionDeLotesAFabricante extends JDialog {
+public class AsignacionDeCafesALote2 extends JDialog {
 
-    JList<Lote> listLotesDeOtrosFabricantes;
-    JButton btnCambiarFabricante;
+    JList<Lote> listLotesSinAsignar;
+    JList<Lote> listLotesAsignados;
+    JButton btnAsignarLote;
+    JButton btnEliminarLote;
     DefaultListModel<Lote> dlm;
+    DefaultListModel<Lote> dlm2;
     private JPanel contentPane;
+
 
     /**
      * Constructor.
      */
-    public AsignacionDeLotesAFabricante() {
+    public AsignacionDeCafesALote2() {
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initComponents();
@@ -37,12 +35,15 @@ public class AsignacionDeLotesAFabricante extends JDialog {
      */
     private void initComponents() {
         setIconImage(new ImageIcon(this.getClass().getResource("/general/logo.png")).getImage());
-        contentPane.getRootPane().setDefaultButton(btnCambiarFabricante);
-        btnCambiarFabricante.requestFocus();
+        contentPane.getRootPane().setDefaultButton(btnAsignarLote);
+        btnAsignarLote.requestFocus();
 
         dlm = new DefaultListModel<>();
-        listLotesDeOtrosFabricantes.setModel(dlm);
-        listLotesDeOtrosFabricantes.setCellRenderer(new Renderer(Renderer.LOTES));
-    }
+        listLotesSinAsignar.setModel(dlm);
+        listLotesSinAsignar.setCellRenderer(new Renderer(coffeetime.componentes.Renderer.CAFES));
 
+        dlm2 = new DefaultListModel<>();
+        listLotesAsignados.setModel(dlm2);
+        listLotesAsignados.setCellRenderer(new Renderer(Renderer.CAFES));
+    }
 }

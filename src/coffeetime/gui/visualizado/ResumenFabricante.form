@@ -13,7 +13,6 @@
         <constraints border-constraint="North"/>
         <properties>
           <font style="3"/>
-          <foreground color="-256"/>
           <horizontalAlignment value="0"/>
           <text value=""/>
         </properties>
@@ -30,7 +29,6 @@
             </constraints>
             <properties>
               <font style="1"/>
-              <foreground color="-65536"/>
               <text resource-bundle="idioma" key="general.nombre"/>
             </properties>
           </component>
@@ -40,7 +38,6 @@
             </constraints>
             <properties>
               <font style="1"/>
-              <foreground color="-65536"/>
               <text resource-bundle="idioma" key="general.direccion"/>
             </properties>
           </component>
@@ -50,7 +47,6 @@
             </constraints>
             <properties>
               <font style="1"/>
-              <foreground color="-65536"/>
               <text resource-bundle="idioma" key="general.trabajadores"/>
             </properties>
           </component>
@@ -60,7 +56,6 @@
             </constraints>
             <properties>
               <font style="1"/>
-              <foreground color="-65536"/>
               <text resource-bundle="idioma" key="general.internacional"/>
             </properties>
           </component>
@@ -70,7 +65,6 @@
             </constraints>
             <properties>
               <font style="1"/>
-              <foreground color="-65536"/>
               <text resource-bundle="idioma" key="general.fechaDeAlta"/>
             </properties>
           </component>

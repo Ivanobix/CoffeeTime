@@ -1,8 +1,10 @@
 package coffeetime.gui.visualizado;
 
 import coffeetime.base.Fabricante;
+import coffeetime.util.Util;
 
 import javax.swing.*;
+import java.util.ResourceBundle;
 
 /**
  * Resumen Fabricante. Ventana dedicada a la visualización de todas las propiedades presentes en un elemento de tipo Fabricante.
@@ -11,6 +13,8 @@ import javax.swing.*;
  * @version 23.01.2021
  */
 public class ResumenFabricante extends JDialog {
+    private final ResourceBundle idioma;
+
     private JPanel contentPane;
     private JLabel lblIdentificador;
     private JLabel lblNombre;
@@ -31,6 +35,8 @@ public class ResumenFabricante extends JDialog {
         setLocationRelativeTo(null);
         setVisible(true);
 
+        idioma = Util.obtenerTraducciones();
+        setTitle(idioma.getString("ver.fabricante"));
         setIconImage(new ImageIcon(this.getClass().getResource("/general/logo.png")).getImage());
 
         lblIdentificador.setText(fabricante.getIdentificador());

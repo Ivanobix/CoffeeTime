@@ -1,7 +1,8 @@
 package coffeetime.gui.gestion;
 
 import coffeetime.base.Cafe;
-import coffeetime.base.Lote;
+import coffeetime.gui.otros.AsignacionDeCafesALote2;
+import coffeetime.gui.otros.ControladorAsignacionDeCafesALote2;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
 
@@ -46,7 +47,6 @@ public class ControladorGestionCafes implements ActionListener {
         idioma = Util.obtenerTraducciones();
         crearAtajos();
         initHandlers();
-        cargarLotes();
 
     }
 
@@ -62,7 +62,6 @@ public class ControladorGestionCafes implements ActionListener {
         this.modelo = modelo;
         modificando = true;
         cafeAModificar = cafe;
-        cargarLotes();
         crearAtajos();
         initHandlers();
         rellenarDatos();
@@ -76,6 +75,7 @@ public class ControladorGestionCafes implements ActionListener {
         ventanaGestionCafe.btnSeleccionarImagen.addActionListener(this);
         ventanaGestionCafe.btnGestionar.addActionListener(this);
         ventanaGestionCafe.btnCancelar.addActionListener(this);
+        ventanaGestionCafe.btnAsignarLotesACafe.addActionListener(this);
     }
 
     /**
@@ -85,6 +85,7 @@ public class ControladorGestionCafes implements ActionListener {
         ventanaGestionCafe.btnGestionar.setMnemonic(KeyEvent.VK_1);
         ventanaGestionCafe.btnCancelar.setMnemonic(KeyEvent.VK_2);
         ventanaGestionCafe.btnSeleccionarImagen.setMnemonic(KeyEvent.VK_3);
+        ventanaGestionCafe.btnAsignarLotesACafe.setMnemonic(KeyEvent.VK_4);
     }
 
     /**
@@ -96,35 +97,13 @@ public class ControladorGestionCafes implements ActionListener {
         ventanaGestionCafe.txtRobusta.setText(String.valueOf(cafeAModificar.getPorcentajeRobusta()));
         ventanaGestionCafe.txtRutaImagen.setText(cafeAModificar.getImagenPromocional());
 
-        ventanaGestionCafe.cbLote.setSelectedItem(cafeAModificar.getLote());
-
         ImageIcon iconoOriginal = new ImageIcon(ventanaGestionCafe.txtRutaImagen.getText());
         ventanaGestionCafe.imgPromocional.setIcon(Util.escalarImagen(iconoOriginal, 70, 70));
+
+        ventanaGestionCafe.btnAsignarLotesACafe.setVisible(true);
+        ventanaGestionCafe.lblLotes.setVisible(true);
     }
 
-    /**
-     * Añade al desplegable todos los Lotes disponibles.
-     */
-    private void cargarLotes() {
-        boolean asignadoPreviamente = false;
-        for (Lote lote : modelo.getLotes()) {
-            for (Cafe cafe : modelo.getCafes()) {
-                if (cafe.getLote().equals(lote)) {
-                    asignadoPreviamente = true;
-                    break;
-                }
-            }
-            if (!asignadoPreviamente) {
-                ventanaGestionCafe.dcbm.addElement(lote);
-            } else {
-                asignadoPreviamente = false;
-            }
-
-        }
-        if (modificando) {
-            ventanaGestionCafe.dcbm.addElement(cafeAModificar.getLote());
-        }
-    }
 
     /**
      * Permite al usuario seleccionar una imagen de su equipo.
@@ -151,7 +130,7 @@ public class ControladorGestionCafes implements ActionListener {
         if (cafe != null) {
             if (modificando) {
                 modelo.modificarCafe(cafeAModificar, cafe.getNombre(), cafe.getImagenPromocional(),
-                        cafe.getPorcentajeArabico(), cafe.getPorcentajeRobusta(), cafe.getLote());
+                        cafe.getPorcentajeArabico(), cafe.getPorcentajeRobusta());
             } else {
                 modelo.anadirCafe(cafe);
             }
@@ -171,24 +150,19 @@ public class ControladorGestionCafes implements ActionListener {
         if (comprobarDouble(ventanaGestionCafe.txtArabico.getText())
                 && comprobarDouble(ventanaGestionCafe.txtRobusta.getText())) {
             if (ventanaGestionCafe.txtNombre.getText().replace(" ", "").length() != 0) {
-                if (ventanaGestionCafe.cbLote.getSelectedItem() != null) {
-                    if (!ventanaGestionCafe.txtRutaImagen.getText().equals("")) {
-                        double arabico = Double.parseDouble(ventanaGestionCafe.txtArabico.getText());
-                        double robusta = Double.parseDouble(ventanaGestionCafe.txtRobusta.getText());
-                        if (arabico + robusta <= 100 && arabico + robusta >= 0) {
-                            String nombre = ventanaGestionCafe.txtNombre.getText();
-                            String rutaImagen = generarNuevaRutaImagen();
-                            Lote lote = (Lote) ventanaGestionCafe.cbLote.getSelectedItem();
-                            cafe = new Cafe(nombre, rutaImagen, arabico, robusta, lote);
+                if (!ventanaGestionCafe.txtRutaImagen.getText().equals("")) {
+                    double arabico = Double.parseDouble(ventanaGestionCafe.txtArabico.getText());
+                    double robusta = Double.parseDouble(ventanaGestionCafe.txtRobusta.getText());
+                    if (arabico + robusta <= 100 && arabico + robusta >= 0) {
+                        String nombre = ventanaGestionCafe.txtNombre.getText();
+                        String rutaImagen = generarNuevaRutaImagen();
+                        cafe = new Cafe(nombre, rutaImagen, arabico, robusta);
 
-                        } else {
-                            Util.mostrarError(idioma.getString("error.mezclaNoCorrecta"));
-                        }
                     } else {
-                        Util.mostrarError(idioma.getString("error.imagenNoSeleccionada"));
+                        Util.mostrarError(idioma.getString("error.mezclaNoCorrecta"));
                     }
                 } else {
-                    Util.mostrarError(idioma.getString("error.loteNoSeleccionado"));
+                    Util.mostrarError(idioma.getString("error.imagenNoSeleccionada"));
                 }
             } else {
                 Util.mostrarError(idioma.getString("error.nombreVacio"));
@@ -251,6 +225,10 @@ public class ControladorGestionCafes implements ActionListener {
                 break;
             case "btnGestionar":
                 gestionarCafe();
+                break;
+            case "btnAsignarLotesACafe":
+                new ControladorAsignacionDeCafesALote2(new AsignacionDeCafesALote2(), cafeAModificar, modelo.getLotes());
+                ventanaGestionCafe.dispose();
                 break;
         }
     }

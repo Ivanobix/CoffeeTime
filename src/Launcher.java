@@ -69,7 +69,7 @@ public class Launcher {
                 "OptionPane.font", "Panel.font", "ProgressBar.font", "ScrollPane.font", "Viewport.font",
                 "TabbedPane.font", "Table.font", "TableHeader.font", "TextField.font", "PasswordField.font",
                 "TextArea.font", "TextPane.font", "EditorPane.font", "TitledBorder.font", "ToolBar.font",
-                "ToolTip.font", "Tree.font"};
+                "ToolTip.font", "Tree.font", "Spinner.font"};
 
         for (String componente : componentes) {
             UIManager.put(componente, new FontUIResource(new Font(null, Font.PLAIN, tamano)));
