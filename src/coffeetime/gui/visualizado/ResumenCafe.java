@@ -1,10 +1,13 @@
 package coffeetime.gui.visualizado;
 
 import coffeetime.base.Cafe;
+import coffeetime.base.Lote;
+import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -23,13 +26,15 @@ public class ResumenCafe extends JDialog {
     private JLabel lblNombre;
     private JLabel lblArabico;
     private JLabel lblRobusta;
+    private JButton btnVerLotes;
 
     /**
      * Constructor.
      *
      * @param cafe Café a visualizar.
+     * @param lotes Lista de lotes.
      */
-    public ResumenCafe(Cafe cafe) {
+    public ResumenCafe(Cafe cafe, ArrayList<Lote> lotes) {
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
@@ -49,7 +54,9 @@ public class ResumenCafe extends JDialog {
         lblRobusta.setText(cafe.getPorcentajeRobusta() + "%");
 
         btnVerImagen.addActionListener(e -> Util.mostrarImagen(cafe.getImagenPromocional()));
-        btnVerImagen.setMnemonic(KeyEvent.VK_2);
+        btnVerImagen.setMnemonic(KeyEvent.VK_1);
 
+        btnVerLotes.addActionListener(e -> new VerLotes(cafe, lotes));
+        btnVerLotes.setMnemonic(KeyEvent.VK_2);
     }
 }

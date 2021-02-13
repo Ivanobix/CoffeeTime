@@ -5,6 +5,7 @@ import coffeetime.util.Util;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -23,13 +24,15 @@ public class ResumenLote extends JDialog {
     private JLabel lblCoste;
     private JLabel lblEnvasado;
     private JLabel lblCaducidad;
+    private JButton btnVerCafes;
 
     /**
      * Constructor.
      *
-     * @param lote Lote a visualizar.
+     * @param lote  Lote a visualizar.
+     * @param lotes Lista de lotes.
      */
-    public ResumenLote(Lote lote) {
+    public ResumenLote(Lote lote, ArrayList<Lote> lotes) {
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
@@ -48,7 +51,10 @@ public class ResumenLote extends JDialog {
         lblEnvasado.setText(lote.getFechaDeEnvasado().toString());
         lblCaducidad.setText(lote.getFechaDeCaducidad().toString());
 
-        btnVerFabricante.addActionListener(e -> new ResumenFabricante(lote.getFabricante()));
+        btnVerFabricante.addActionListener(e -> new ResumenFabricante(lote.getFabricante(), lotes));
         btnVerFabricante.setMnemonic(KeyEvent.VK_1);
+
+        btnVerCafes.addActionListener(e -> new VerCafes(lote));
+        btnVerCafes.setMnemonic(KeyEvent.VK_2);
     }
 }

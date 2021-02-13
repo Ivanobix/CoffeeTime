@@ -250,11 +250,11 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         Object objeto = submenu.listaElementos.getSelectedValue();
         if (objeto != null) {
             if (submenu.tipo == Submenu.TYPE_CAFES) {
-                new ResumenCafe((Cafe) objeto);
+                new ResumenCafe((Cafe) objeto, modelo.getLotes());
             } else if (submenu.tipo == Submenu.TYPE_LOTES) {
-                new ResumenLote((Lote) objeto);
+                new ResumenLote((Lote) objeto, modelo.getLotes());
             } else {
-                new ResumenFabricante((Fabricante) objeto);
+                new ResumenFabricante((Fabricante) objeto, modelo.getLotes());
             }
 
         } else {

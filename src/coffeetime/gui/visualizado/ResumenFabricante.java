@@ -1,9 +1,12 @@
 package coffeetime.gui.visualizado;
 
 import coffeetime.base.Fabricante;
+import coffeetime.base.Lote;
 import coffeetime.util.Util;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -22,13 +25,15 @@ public class ResumenFabricante extends JDialog {
     private JLabel lblTrabajadores;
     private JLabel lblInternacional;
     private JLabel lblFechaAlta;
+    private JButton btnVerLotes;
 
     /**
      * Constructor.
      *
      * @param fabricante Fabricante a visualizar.
+     * @param lotes Lista de lotes.
      */
-    public ResumenFabricante(Fabricante fabricante) {
+    public ResumenFabricante(Fabricante fabricante, ArrayList<Lote> lotes) {
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
@@ -51,5 +56,7 @@ public class ResumenFabricante extends JDialog {
             lblInternacional.setText("NO");
         }
 
+        btnVerLotes.addActionListener(e -> new VerLotes(fabricante, lotes));
+        btnVerLotes.setMnemonic(KeyEvent.VK_1);
     }
 }

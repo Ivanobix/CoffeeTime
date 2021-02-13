@@ -94,6 +94,11 @@ public class Modelo {
      */
     public void eliminarCafe(Cafe cafe) {
         cafes.remove(cafe);
+        for (Lote lote : lotes) {
+            if (lote.getCafes().contains(cafe)) {
+                lote.deleteCafe(cafe);
+            }
+        }
         cambios = true;
     }
 
