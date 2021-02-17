@@ -10,6 +10,12 @@ import coffeetime.gui.visualizado.ResumenFabricante;
 import coffeetime.gui.visualizado.ResumenLote;
 import coffeetime.modelo.Modelo;
 import coffeetime.util.Util;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.swing.JRViewer;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -17,6 +23,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -34,11 +42,12 @@ import java.util.ResourceBundle;
  * @author Iván García Prieto
  * @version 23.01.2021
  */
-public class ControladorSubmenu implements ActionListener, KeyListener {
+public class ControladorSubmenu implements ActionListener, KeyListener, ChangeListener {
 
     private final Submenu submenu;
     private final Modelo modelo;
     private final ResourceBundle idioma;
+    private int informeActual;
 
     /**
      * Constructor.
@@ -49,12 +58,12 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
     public ControladorSubmenu(Submenu submenu, Modelo modelo) {
         this.submenu = submenu;
         this.modelo = modelo;
+        informeActual = 1;
         idioma = Util.obtenerTraducciones();
         cargarDatos();
         initHandlers();
         crearAtajos();
         cargarUsuario();
-        crearEstadisticas();
     }
 
     /**
@@ -66,8 +75,10 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         submenu.btnEliminar.addActionListener(this);
         submenu.btnModificar.addActionListener(this);
         submenu.btnMostrarInfoAdicional.addActionListener(this);
+        submenu.btnCambiarInforme.addActionListener(this);
 
         submenu.txtFiltro.addKeyListener(this);
+        submenu.tabbedPane.addChangeListener(this);
     }
 
     /**
@@ -78,6 +89,7 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         submenu.btnEliminar.setMnemonic(KeyEvent.VK_2);
         submenu.btnModificar.setMnemonic(KeyEvent.VK_3);
         submenu.btnMostrarInfoAdicional.setMnemonic(KeyEvent.VK_4);
+        submenu.btnCambiarInforme.setMnemonic(KeyEvent.VK_5);
     }
 
     /**
@@ -116,6 +128,41 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         }
 
         submenu.repaint();
+    }
+
+    /**
+     * Genera los informes en función del tipo de elemento gestionado.
+     */
+    private void crearInformes() {
+        submenu.pnInforme.removeAll();
+        try {
+            JasperReport report;
+            JRBeanCollectionDataSource coleccion;
+            if (submenu.tipo == Submenu.TYPE_CAFES) {
+                report = (JasperReport) JRLoader.loadObject(getClass().getResource("/Cafes.jasper"));
+                coleccion = new JRBeanCollectionDataSource(modelo.getCafes());
+            } else if (submenu.tipo == Submenu.TYPE_LOTES) {
+                String nombreInforme = "/Lotes" + informeActual + ".jasper";
+                report = (JasperReport) JRLoader.loadObject(getClass().getResource(nombreInforme));
+                coleccion = new JRBeanCollectionDataSource(modelo.getLotes());
+            } else {
+                report = (JasperReport) JRLoader.loadObject(getClass().getResource("/Fabricantes.jasper"));
+                coleccion = new JRBeanCollectionDataSource(modelo.getFabricantes());
+            }
+            JasperPrint jasperPrint = JasperFillManager.fillReport(report, null, coleccion);
+            JRViewer visor = new JRViewer(jasperPrint);
+            submenu.pnInforme.add(visor);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        submenu.repaint();
+    }
+
+    private void mostrarSiguienteInforme() {
+        if (informeActual == 1) informeActual = 2;
+        else informeActual = 1;
+        crearInformes();
     }
 
     /**
@@ -390,7 +437,6 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
      */
     private void activarFunciones(String nivelUsuario) {
         if (nivelUsuario.equals(String.valueOf(Usuario.DEFAULT))) {
-            submenu.btnModificar.setEnabled(false);
             submenu.btnEliminar.setEnabled(false);
         } else if (nivelUsuario.equals(String.valueOf(Usuario.BASICO))) {
             submenu.btnAnadir.setEnabled(false);
@@ -419,6 +465,9 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
             case "btnMostrarInfoAdicional":
                 mostrarInfoAdicional();
                 break;
+            case "btnCambiarInforme":
+                mostrarSiguienteInforme();
+                break;
         }
     }
 
@@ -432,6 +481,17 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
         filtrar();
     }
 
+    /**
+     * Procedimientos a seguir en caso de que el panel que se muestra en un determinado cambia.
+     *
+     * @param e Evento de cambio de estado creado.
+     */
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        if (submenu.tabbedPane.getSelectedIndex() == 2) crearInformes();
+        else if (submenu.tabbedPane.getSelectedIndex() == 1) crearEstadisticas();
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -441,5 +501,4 @@ public class ControladorSubmenu implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
 
     }
-
 }

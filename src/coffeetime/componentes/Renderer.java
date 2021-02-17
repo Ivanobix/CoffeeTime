@@ -132,7 +132,7 @@ public class Renderer implements ListCellRenderer {
      * Establece el color del Renderer cuando este ha sido seleccionado.
      */
     private void resaltar() {
-        Color color = pnCentral.getBackground().darker();
+        Color color = pnCentral.getBackground().darker().darker();
         pnEste.setBackground(color);
         pnOeste.setBackground(color);
         pnNorte.setBackground(color);

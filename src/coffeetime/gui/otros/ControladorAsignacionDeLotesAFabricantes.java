@@ -5,6 +5,7 @@ import coffeetime.base.Lote;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controlador de Asignación de Lotes a Fabricantes. Controlador para la ventana de Asignación de Lotes a Fabricantes
@@ -45,7 +46,11 @@ public class ControladorAsignacionDeLotesAFabricantes {
     private void initHandlers() {
         ventanaAsignacionDeLotesAFabricante.btnCambiarFabricante.addActionListener(e -> {
             if (!ventanaAsignacionDeLotesAFabricante.listLotesDeOtrosFabricantes.isSelectionEmpty()) {
-                lotes.get(ventanaAsignacionDeLotesAFabricante.listLotesDeOtrosFabricantes.getSelectedIndex()).setFabricante(fabricante);
+                List<Lote> seleccion = ventanaAsignacionDeLotesAFabricante.listLotesDeOtrosFabricantes.getSelectedValuesList();
+                for (Lote lote : seleccion) {
+                    lote.setFabricante(fabricante);
+                }
+                seleccion.clear();
                 actualizarLista();
             }
 

@@ -6,9 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/media" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/idiomas" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/informes" type="java-resource" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="library" name="commons-beanutils-1.9.4" level="project" />
   </component>
 </module>

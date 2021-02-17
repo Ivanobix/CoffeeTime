@@ -4,9 +4,8 @@ import coffeetime.base.Cafe;
 import coffeetime.base.Lote;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controlador de Asignación de Cafés a Lote 2. Controlador para la ventana de Asignación de Cafés a Lote 2
@@ -55,11 +54,13 @@ public class ControladorAsignacionDeCafesALote2 {
     private void initHandlers() {
         ventanaAsignacionDeCafesALote.btnAsignarLote.addActionListener(e -> {
             if (!ventanaAsignacionDeCafesALote.listLotesSinAsignar.isSelectionEmpty()) {
-                int seleccion = ventanaAsignacionDeCafesALote.listLotesSinAsignar.getSelectedIndex();
-                Lote lote = lotesSinAsignar.get(seleccion);
-                lote.addCafe(cafe);
-                lotesAsignados.add(lote);
-                lotesSinAsignar.remove(lote);
+                List<Lote> seleccion = ventanaAsignacionDeCafesALote.listLotesSinAsignar.getSelectedValuesList();
+                for (Lote lote : seleccion) {
+                    lote.addCafe(cafe);
+                    lotesAsignados.add(lote);
+                    lotesSinAsignar.remove(lote);
+                }
+                seleccion.clear();
                 actualizarListas();
             }
 
@@ -67,11 +68,13 @@ public class ControladorAsignacionDeCafesALote2 {
 
         ventanaAsignacionDeCafesALote.btnEliminarLote.addActionListener(e -> {
             if (!ventanaAsignacionDeCafesALote.listLotesAsignados.isSelectionEmpty()) {
-                int seleccion = ventanaAsignacionDeCafesALote.listLotesAsignados.getSelectedIndex();
-                Lote lote = lotesAsignados.get(seleccion);
-                lote.deleteCafe(cafe);
-                lotesSinAsignar.add(lote);
-                lotesAsignados.remove(lote);
+                List<Lote> seleccion = ventanaAsignacionDeCafesALote.listLotesAsignados.getSelectedValuesList();
+                for (Lote lote : seleccion) {
+                    lote.deleteCafe(cafe);
+                    lotesSinAsignar.add(lote);
+                    lotesAsignados.remove(lote);
+                }
+                seleccion.clear();
                 actualizarListas();
             }
         });

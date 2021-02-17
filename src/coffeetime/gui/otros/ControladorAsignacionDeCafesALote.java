@@ -5,6 +5,7 @@ import coffeetime.base.Lote;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controlador de Asignación de Cafés a Lote. Controlador para la ventana de Asignación de Cafés a Lote
@@ -54,11 +55,13 @@ public class ControladorAsignacionDeCafesALote {
     private void initHandlers() {
         ventanaAsignacionDeCafesALote.btnAsignarCafe.addActionListener(e -> {
             if (!ventanaAsignacionDeCafesALote.listCafesSinAsignar.isSelectionEmpty()) {
-                int seleccion = ventanaAsignacionDeCafesALote.listCafesSinAsignar.getSelectedIndex();
-                Cafe cafe = cafesSinAsignar.get(seleccion);
-                lote.addCafe(cafe);
-                cafesAsignados.add(cafe);
-                cafesSinAsignar.remove(cafe);
+                List<Cafe> seleccion = ventanaAsignacionDeCafesALote.listCafesSinAsignar.getSelectedValuesList();
+                for (Cafe cafe : seleccion) {
+                    lote.addCafe(cafe);
+                    cafesAsignados.add(cafe);
+                    cafesSinAsignar.remove(cafe);
+                }
+                seleccion.clear();
                 actualizarListas();
             }
 
@@ -66,11 +69,13 @@ public class ControladorAsignacionDeCafesALote {
 
         ventanaAsignacionDeCafesALote.btnEliminarCafe.addActionListener(e -> {
             if (!ventanaAsignacionDeCafesALote.listCafesAsignados.isSelectionEmpty()) {
-                int seleccion = ventanaAsignacionDeCafesALote.listCafesAsignados.getSelectedIndex();
-                Cafe cafe = cafesAsignados.get(seleccion);
-                lote.deleteCafe(cafe);
-                cafesSinAsignar.add(cafe);
-                cafesAsignados.remove(cafe);
+                List<Cafe> seleccion = ventanaAsignacionDeCafesALote.listCafesAsignados.getSelectedValuesList();
+                for (Cafe cafe : seleccion) {
+                    lote.deleteCafe(cafe);
+                    cafesSinAsignar.add(cafe);
+                    cafesAsignados.remove(cafe);
+                }
+                seleccion.clear();
                 actualizarListas();
             }
         });

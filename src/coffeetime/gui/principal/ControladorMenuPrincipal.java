@@ -12,11 +12,14 @@ import coffeetime.util.Util;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -72,6 +75,7 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
         menuPrincipal.mnitPreferencias.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK));
         menuPrincipal.mnitAddUsuarios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.ALT_DOWN_MASK));
         menuPrincipal.mnitRemoveUsuarios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.SHIFT_DOWN_MASK));
+        menuPrincipal.mnitAyuda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, InputEvent.CTRL_DOWN_MASK));
 
         menuPrincipal.mnitGuardar.addActionListener(this);
         menuPrincipal.mnitCargar.addActionListener(this);
@@ -81,6 +85,7 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
         menuPrincipal.mnitCerrarSesion.addActionListener(this);
         menuPrincipal.mnitAddUsuarios.addActionListener(this);
         menuPrincipal.mnitRemoveUsuarios.addActionListener(this);
+        menuPrincipal.mnitAyuda.addActionListener(this);
 
         menuPrincipal.frame.addWindowListener(this);
 
@@ -259,6 +264,17 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
     }
 
     /**
+     * Abre el navegador y muestra al usuario la ayuda alojada en la web correspondiente.
+     */
+    private void mostrarAyuda() {
+        try {
+            Desktop.getDesktop().browse(new URI("https://github.com/Ivanobix/CoffeeTime/wiki"));
+        } catch (IOException | URISyntaxException ioException) {
+            Util.mostrarError(idioma.getString("error.navegador"));
+        }
+    }
+
+    /**
      * Procedimientos a seguir en caso de que un botón haya sido pulsado.
      *
      * @param e Evento de acción creado.
@@ -294,10 +310,12 @@ public class ControladorMenuPrincipal implements ActionListener, WindowListener 
                 new ControladorEliminacionUsuarios(new EliminacionUsuarios());
                 break;
             case "mnitDeshacer":
-
                 break;
             case "mnitCerrarSesion":
                 cerrarSesion();
+                break;
+            case "mnitAyuda":
+                mostrarAyuda();
                 break;
         }
     }

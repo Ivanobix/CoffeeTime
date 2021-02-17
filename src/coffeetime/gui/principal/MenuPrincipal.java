@@ -28,6 +28,7 @@ public class MenuPrincipal extends Component {
     JButton btnLotes;
     JMenu mnArchivo;
     JMenu mnEditar;
+    JMenu mnAyuda;
     JMenuItem mnitNuevo;
     JMenuItem mnitGuardar;
     JMenuItem mnitCargar;
@@ -36,6 +37,7 @@ public class MenuPrincipal extends Component {
     JMenuItem mnitCerrarSesion;
     JMenuItem mnitAddUsuarios;
     JMenuItem mnitRemoveUsuarios;
+    JMenuItem mnitAyuda;
 
     /**
      * Constructor.
@@ -158,6 +160,13 @@ public class MenuPrincipal extends Component {
         mnitRemoveUsuarios = new JMenuItem(idioma.getString("menu.usuarios"), new ImageIcon(this.getClass().getResource("/herramientas/eliminar_usuario.png")));
         mnitRemoveUsuarios.setActionCommand("mnitRemoveUsuarios");
         mnEditar.add(mnitRemoveUsuarios);
+
+        mnAyuda = new JMenu(idioma.getString("menu.ayuda"));
+        menuBar.add(mnAyuda);
+
+        mnitAyuda = new JMenuItem(idioma.getString("menu.ayuda"), new ImageIcon(this.getClass().getResource("/herramientas/ayuda.png")));
+        mnitAyuda.setActionCommand("mnitAyuda");
+        mnAyuda.add(mnitAyuda);
     }
 
 }

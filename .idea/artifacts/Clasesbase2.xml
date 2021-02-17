@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Clasesbase2">
+    <output-path>$PROJECT_DIR$/out/artifacts/Clasesbase2</output-path>
+    <root id="archive" name="Clasesbase2.jar">
+      <element id="directory" name="coffeetime">
+        <element id="directory" name="base">
+          <element id="file-copy" path="$PROJECT_DIR$/out/production/CoffeeTime/coffeetime/base/Cafe.class" />
+          <element id="file-copy" path="$PROJECT_DIR$/out/production/CoffeeTime/coffeetime/base/Fabricante.class" />
+          <element id="file-copy" path="$PROJECT_DIR$/out/production/CoffeeTime/coffeetime/base/Lote.class" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

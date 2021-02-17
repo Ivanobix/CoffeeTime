@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="commons-beanutils-1.9.4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/commons-beanutils-1.9.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/commons-collections4-4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/commons-digester-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/flatlaf-0.46.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/itext-2.1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jasperreports-6.16.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jcommon-1.0.24.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jfreechart-1.0.19.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/LGoodDatePicker-10.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/poi-4.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

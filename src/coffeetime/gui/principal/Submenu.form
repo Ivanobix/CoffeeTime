@@ -56,6 +56,16 @@
                   <toolTipText resource-bundle="idioma" key="submenu.visualizarInfoElemento"/>
                 </properties>
               </component>
+              <component id="ec67c" class="javax.swing.JButton" binding="btnCambiarInforme">
+                <constraints/>
+                <properties>
+                  <actionCommand value="btnCambiarInforme"/>
+                  <icon value="gestion/cambiarDeInforme.png"/>
+                  <text value=""/>
+                  <toolTipText resource-bundle="idioma" key="submenu.visualizarInfoElemento"/>
+                  <visible value="false"/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="f491b" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
@@ -123,6 +133,14 @@
                 <properties>
                   <toolTipText value=""/>
                 </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="7debc" binding="pnInforme" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <tabbedpane title="Informe"/>
+                </constraints>
+                <properties/>
                 <border type="none"/>
                 <children/>
               </grid>

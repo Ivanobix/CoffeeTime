@@ -24,11 +24,13 @@ public class Submenu extends JDialog {
     JPanel contentPane;
     JPanel pnListado;
     JPanel pnEstadisticas;
+    JPanel pnInforme;
     JTabbedPane tabbedPane;
     JButton btnAnadir;
     JButton btnModificar;
     JButton btnEliminar;
     JButton btnMostrarInfoAdicional;
+    JButton btnCambiarInforme;
     JTextField txtFiltro;
     JComboBox<String> cbFiltrado;
     JList listaElementos;
@@ -62,6 +64,7 @@ public class Submenu extends JDialog {
             setTitle(idioma.getString("submenu.cafes"));
         } else if (tipo == TYPE_LOTES) {
             setTitle(idioma.getString("submenu.lotes"));
+            btnCambiarInforme.setVisible(true);
         } else {
             setTitle(idioma.getString("submenu.fabricantes"));
         }
